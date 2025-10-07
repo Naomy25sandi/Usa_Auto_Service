@@ -126,3 +126,53 @@ html.light .social-link {
 html.light .social-link:hover {
   color: #00D1FF;
 }
+
+/* Nuevos estilos para alinear colores con el logo: negro de fondo, plata para texto y rojo para acentos. Se aplican como override en modo dark para mantener elegancia futurista sin alterar estructura. */
+html.dark .footer {
+  background: linear-gradient(90deg, #000000, #1a1a1a);
+  border-top: 2px solid #DC143C; /* Acento rojo sutil en la parte superior para evocar el borde del escudo */
+}
+
+html.dark .footer p {
+  color: #C0C0C0; /* Plata para texto, elegante y legible */
+}
+
+html.dark .social-link {
+  color: #C0C0C0; /* Plata base para íconos */
+}
+
+html.dark .social-link:hover {
+  color: #DC143C; /* Rojo del logo para hover, unificando acentos */
+  text-shadow: 0 0 8px rgba(220, 20, 60, 0.5); /* Brillo rojo sutil para efecto futurista */
+}
+
+html.dark .social-link.whatsapp:hover { 
+  color: #DC143C; /* Override a rojo del logo para consistencia, manteniendo el hover transform */
+}
+
+html.dark .social-link.instagram:hover { 
+  color: #DC143C; 
+}
+
+html.dark .social-link.facebook:hover { 
+  color: #DC143C; 
+}
+
+/* Ajuste ligero para light theme, incorporando toques del logo sin dominar */
+html.light .footer {
+  background: linear-gradient(90deg, #f5f5f5, #e0e0e0); /* Gris claro para simular plata en luz */
+  border-top: 2px solid #DC143C;
+}
+
+html.light .footer p {
+  color: #333;
+}
+
+html.light .social-link {
+  color: #666;
+}
+
+html.light .social-link:hover {
+  color: #DC143C;
+  text-shadow: 0 0 8px rgba(220, 20, 60, 0.3);
+}
