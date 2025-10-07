@@ -1,0 +1,128 @@
+/* Footer */
+.footer {
+  background: linear-gradient(90deg, #1A4030, #0A2540);
+  color: #E6F0FA;
+  padding: 1.5rem 1rem;
+  width: 100%;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #B0C4DE;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.social-link {
+  font-size: 2rem;
+  color: #B0C4DE;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.social-link:hover {
+  color: #00FFAA;
+  transform: translateY(-3px) scale(1.1);
+}
+
+.social-link.whatsapp:hover { color: #25D366; }
+.social-link.instagram:hover { color: #E1306C; }
+.social-link.facebook:hover { color: #3B5998; }
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .navbar-links {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: linear-gradient(90deg, #0A2540, #1A4030);
+    flex-direction: column;
+    width: 200px;
+    display: none;
+    padding: 1rem;
+    border-left: 3px solid #00D1FF;
+  }
+
+  #menu-toggle:checked + .menu-icon + .navbar-links {
+    display: flex;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .navbar-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .navbar-logo {
+    margin-top: 0.5rem;
+  }
+
+  .theme-toggle {
+    margin-top: 0.5rem;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+/* Theme Styles */
+html.dark {
+  background: #0D1B2A;
+  color: #E6F0FA;
+}
+
+html.light {
+  background: #F0F8FF;
+  color: #0A2540;
+}
+
+html.dark .navbar {
+  background: linear-gradient(90deg, #0A1F30, #153F2A);
+}
+
+html.light .navbar {
+  background: linear-gradient(90deg, #2A6F9F, #347B68);
+}
+
+html.dark .footer {
+  background: linear-gradient(90deg, #153F2A, #0A1F30);
+}
+
+html.light .footer {
+  background: linear-gradient(90deg, #347B68, #2A6F9F);
+}
+
+html.light .footer {
+  color: #0A2540;
+}
+
+html.light .footer p {
+  color: #333;
+}
+
+html.light .social-link {
+  color: #333;
+}
+
+html.light .social-link:hover {
+  color: #00D1FF;
+}
