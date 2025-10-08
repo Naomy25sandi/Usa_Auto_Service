@@ -1,14 +1,17 @@
 import React from 'react';
 import Footer from "../../components/Footer/index";
+import Navbar from "../../components/Navbar/index";
+import Hero from "../../components/Hero/index";
+import "../../styles/home.css";
 
 
 function PaginaPrincipal() {
   return (
     <div className="pagina-principal">
-      {/* <Navbar/>
-      <Hero /> */}
+      <Navbar/>
+      <Hero />
       
-      {/* Sección Bienvenida */}
+       {/* Sección Bienvenida  */}
       <header className="header">
         <div className="container">
           <h1 className="neon-title">Bienvenidos a Boldsites</h1>
@@ -29,20 +32,36 @@ function PaginaPrincipal() {
           </p>
           <ul>
             <li>
-              Diseño de Páginas Web
-              <span className="descripcion">Creamos sitios modernos, atractivos y funcionales con un enfoque en la experiencia del usuario.</span>
+              Mantenimiento Preventivo:
+              <span className="descripcion"> Mantenga su vehículo en óptimas condiciones.</span>
             </li>
             <li>
-              Optimización SEO
-              <span className="descripcion">Aumentamos tu visibilidad en motores de búsqueda con estrategias avanzadas.</span>
+             Reparaciones Generales:
+              <span className="descripcion">Soluciones precisas y duraderas para cualquier problema.</span>
             </li>
             <li>
-              Desarrollo Responsivo
-              <span className="descripcion">Garantizamos que tu sitio se adapte perfectamente a cualquier dispositivo.</span>
+              Frenos:
+              <span className="descripcion">Seguridad y rendimiento garantizados con inspección experta.</span>
             </li>
             <li>
-              Asesoría y Soporte Técnico
-              <span className="descripcion">Te acompañamos con soporte continuo para mantener tu web en óptimas condiciones.</span>
+             Aire Acondicionado:
+              <span className="descripcion">Diagnóstico y reparación para mantenerlo Fresco</span>
+            </li>
+             <li>
+              Suspension:
+              <span className="descripcion">Para un viaje cómodo y seguro con alineación experta.</span>
+            </li>
+            <li>
+              Cambio de aceite:
+              <span className="descripcion">Rápido, limpio y profesional con aceites premium.</span>
+            </li>
+            <li>
+              Giagnostico computarizado:
+              <span className="descripcion">Tecnología avanzada para detectar problemas con precisión.</span>
+            </li>
+            <li>
+              Llantas:
+              <span className="descripcion">Venta, instalación y balanceo de llantas nuevas y usadas de calidad.</span>
             </li>
           </ul>
         </div>
@@ -61,23 +80,23 @@ function PaginaPrincipal() {
           <div className="testimonio-cards">
             <div className="testimonio-card">
               <img src="" alt="Cliente 3" />
-              <h3>Cartmania</h3>
+              <h3>Anastasia McLemar</h3>
               <p className="testimonio-text">
-                "Boldsites creó un e-commerce ágil y sin back-end, reduciendo significativamente costos y tiempos de desarrollo. Gracias a su optimización SEO de primer nivel, mi negocio ha experimentado un crecimiento exponencial. Estoy muy agradecido por su solución innovadora y efectiva"
+                "USA Auto Service mantiene nuestros dos autos familiares con precisión experta, diagnosticando fallos computarizados y restaurando la suspensión para viajes seguros con los niños. Su compromiso con las reparaciones generales nos da tranquilidad diaria, permitiendo que nuestra familia disfrute de salidas sin preocupaciones y vehículos que lucen impecables."
               </p>
             </div>
             <div className="testimonio-card">
               <img src="" alt="Cliente 2" />
-              <h3>Dirlux</h3>
+              <h3>Benito Ramires</h3>
               <p className="testimonio-text">
-            "Boldsites mantiene nuestro sitio web con un enfoque impecable, optimizando la experiencia de usuario y asegurando un rendimiento fluido. Su dedicación al mantenimiento nos permite centrarnos en nuestro negocio mientras nuestro sitio brilla con un diseño moderno y funcional."   
+            USA Auto Service cuida mi flota de vehículos con un enfoque impecable, optimizando el rendimiento y asegurando una seguridad total en cada ruta. Su dedicación al mantenimiento preventivo nos permite enfocarnos en el crecimiento del negocio mientras nuestros autos brillan con un servicio moderno y confiable"   
               </p>
             </div>
             <div className="testimonio-card">
                <img src="" alt="Cliente 1" />
-              <h3>Granja Cunicula</h3>
+              <h3>Phillipe Jhonson</h3>
               <p className="testimonio-text">
-                "Boldsites revolucionó mi granja con una solución web que simplifica la gestión de animales y potencia nuestra productividad. ¡Un gran aliado!"
+                "USA Auto Service resuelve mis problemas de auto con maestría, equilibrando llantas y refrescando el aire acondicionado para un confort total en mi commute diario. Su pasión por el servicio integral me libera de estrés mecánico, ayudándome a enfocarme en mi rutina con un vehículo que impresiona por su eficiencia y estilo confiable."
               </p>
               
             </div>

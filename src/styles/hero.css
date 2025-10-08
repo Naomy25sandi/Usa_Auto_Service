@@ -1,0 +1,448 @@
+/* =======================
+   HERO BASE
+======================= */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  overflow: hidden;
+  animation: gradientShift 15s ease infinite;
+  background: linear-gradient(135deg, #0A2540, #1A4030); /* Default dark */
+  color: #E6F0FA;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ... (mantengo todo tu CSS tal como lo enviaste) ... */
+
+/* =======================
+   THEME VARIANTS (originales)
+======================= */
+html.dark .hero {
+  background: linear-gradient(135deg, #0A1F30, #153F2A);
+}
+
+html.dark .hero-content {
+  background: rgba(10, 37, 64, 0.9);
+  color: #E6F0FA;
+}
+
+html.light .hero {
+  background: linear-gradient(135deg, #EAF6FF, #DFF6E0);
+}
+
+html.light .hero-content {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  color: #000;
+}
+
+html.light .hero-content h1 {
+  background: none;
+  -webkit-background-clip: border-box;
+  -webkit-text-fill-color: #000;
+  color: #000;
+  text-shadow: none;
+  animation: none;
+}
+
+html.light .cursor {
+  color: #000;
+  text-shadow: none;
+}
+
+html.light .hero-content p {
+  color: #333;
+}
+
+html.light .boldsites {
+  color: #111;
+  text-shadow: none;
+}
+
+html.light .hero-button {
+  background: linear-gradient(135deg, #007BFF, #00D1FF);
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
+}
+
+/* =======================
+   OVERRIDE: FORZAR LEGIBILIDAD si React detecta light (force-light)
+   Estas reglas tienen prioridad y solo afectan al Hero
+======================= */
+.hero.force-light .hero-content {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(0,0,0,0.08) !important;
+  box-shadow: 0 0 20px rgba(0,0,0,0.08) !important;
+  color: #000 !important;
+}
+
+.hero.force-light .hero-content h1,
+.hero.force-light .hero-content h1 * {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+  color: #000 !important;
+  text-shadow: none !important;
+  animation: none !important;
+}
+
+.hero.force-light .cursor {
+  color: #000 !important;
+  text-shadow: none !important;
+}
+
+.hero.force-light .hero-content p {
+  color: #222 !important;
+}
+
+.hero.force-light .boldsites {
+  color: #111 !important;
+  text-shadow: none !important;
+}
+
+.hero.force-light .hero-button {
+  background: linear-gradient(135deg, #007BFF, #00D1FF) !important;
+  color: #fff !important;
+  box-shadow: 0 0 10px rgba(0,123,255,0.3) !important;
+}
+
+/* opcional: asegurar que partículas no enmascaren el texto en light */
+.hero.force-light .particle {
+  background: radial-gradient(circle, #00D1FF, #007BFF) !important;
+  box-shadow: 0 0 6px #00D1FF !important;
+}
+/* =======================
+   NEON BORDER ANIMATION
+======================= */
+.hero-content {
+  position: relative;
+  padding: 2.5rem;
+  border-radius: 22px;
+  background: rgba(0, 0, 0, 0.65); /* Fondo oscuro semi-transparente */
+  box-shadow: 0 0 25px rgba(0, 255, 170, 0.4);
+  border: 2px solid rgba(0, 255, 170, 0.6);
+  animation: neonPulse 4s ease-in-out infinite;
+}
+
+.hero-content::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 22px;
+  background: linear-gradient(90deg, #00D1FF, #00FFAA, #007BFF, #00FFAA, #00D1FF);
+  background-size: 300% 300%;
+  z-index: -1;
+  filter: blur(8px);
+  animation: neonBorder 6s linear infinite;
+}
+
+@keyframes neonBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* =======================
+   PARAGRAPH ANIMATION
+======================= */
+.hero-content p {
+  animation: textGlow 3s ease-in-out infinite;
+}
+
+@keyframes textGlow {
+  0% { opacity: 0.8; text-shadow: 0 0 5px rgba(0, 209, 255, 0.4); }
+  50% { opacity: 1; text-shadow: 0 0 15px rgba(0, 209, 255, 0.9); }
+  100% { opacity: 0.8; text-shadow: 0 0 5px rgba(0, 209, 255, 0.4); }
+}
+
+/* =======================
+   OVERRIDES FUTURISTAS: Alineados con logo (negro/plata/rojo) para audaz y profesional
+   Agregados al final para no modificar lo existente – usan !important para prioridad
+======================= */
+html.dark .hero {
+  background: linear-gradient(135deg, #000000, #1a1a1a) !important; /* Negro/plata del logo */
+  border-bottom: 2px solid #DC143C !important; /* Borde rojo audaz */
+  color: #C0C0C0 !important; /* Plata para texto */
+}
+
+html.dark .hero::before {
+  background: 
+    linear-gradient(90deg, transparent 49%, rgba(220, 20, 60, 0.1) 50%, transparent 51%), /* Escaneo rojo */
+    radial-gradient(circle at 20% 80%, rgba(192, 192, 192, 0.05) 0%, transparent 50%);
+  animation: holographicScan 8s linear infinite !important; /* Escaneo holográfico futurista */
+}
+
+@keyframes holographicScan {
+  0% { 
+    transform: translateX(-100%) translateY(0); 
+    opacity: 0.5;
+  }
+  50% { 
+    opacity: 1;
+  }
+  100% { 
+    transform: translateX(100%) translateY(100px); 
+    opacity: 0.5;
+  }
+}
+
+html.dark .hero-content {
+  background: rgba(0, 0, 0, 0.8) !important; /* Negro sutil */
+  border: 2px solid #DC143C !important; /* Rojo audaz */
+  box-shadow: 0 0 30px rgba(220, 20, 60, 0.4) !important; /* Sombra roja futurista */
+  color: #C0C0C0 !important;
+  animation: glitchBorder 4s ease-in-out infinite !important; /* Glitch en lugar de neonPulse */
+}
+
+@keyframes glitchBorder {
+  0%, 100% { 
+    box-shadow: 0 0 25px rgba(220, 20, 60, 0.4); 
+    border-color: #DC143C;
+  }
+  10%, 20% { 
+    box-shadow: 0 0 35px rgba(220, 20, 60, 0.6), inset -2px 0 #C0C0C0; 
+    border-color: #C0C0C0;
+  }
+  30%, 40% { 
+    box-shadow: 0 0 35px rgba(220, 20, 60, 0.6), inset 2px 0 #DC143C; 
+    border-color: #DC143C;
+  }
+}
+
+html.dark .hero-content::before {
+  background: linear-gradient(90deg, #C0C0C0, #DC143C, #C0C0C0) !important; /* Plata a rojo */
+  background-size: 300% 300% !important;
+  filter: blur(10px) !important;
+  animation: neonBorder 6s linear infinite !important; /* Mantenido pero con colores del logo */
+}
+
+html.dark .hero-content h1 {
+  background: linear-gradient(90deg, #C0C0C0, #DC143C) !important; /* Plata a rojo */
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  text-shadow: 0 0 20px #DC143C !important;
+  animation: glitchEffect 3s infinite !important; /* Glitch audaz para título */
+  font-weight: 900 !important;
+  letter-spacing: 5px !important;
+  text-transform: uppercase !important;
+}
+
+@keyframes glitchEffect {
+  0%, 100% { 
+    transform: translate(0); 
+    text-shadow: 0 0 20px #DC143C, 0 0 30px #C0C0C0;
+  }
+  10%, 20% { 
+    transform: translate(-2px, -2px); 
+    text-shadow: -2px 0 #DC143C, 2px 0 #C0C0C0;
+  }
+  30%, 40% { 
+    transform: translate(2px, 2px); 
+    text-shadow: 2px 0 #DC143C, -2px 0 #C0C0C0;
+  }
+  50% { 
+    transform: translate(0); 
+    text-shadow: 0 0 20px #DC143C;
+  }
+}
+
+html.dark .hero-content p {
+  color: #C0C0C0 !important;
+  animation: cyberFade 2s ease-out !important; /* Fade holográfico en lugar de textGlow */
+}
+
+@keyframes cyberFade {
+  from { 
+    opacity: 0; 
+    transform: scale(0.95) rotateX(10deg); 
+    filter: blur(5px);
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1) rotateX(0);
+    filter: blur(0);
+  }
+}
+
+html.dark .hero-button {
+  background: linear-gradient(135deg, #DC143C, #C0C0C0) !important; /* Rojo a plata audaz */
+  color: #000 !important;
+  box-shadow: 0 0 15px rgba(220, 20, 60, 0.5) !important;
+  border: 1px solid #DC143C !important;
+  transition: all 0.3s ease !important;
+}
+
+html.dark .hero-button:hover {
+  transform: scale(1.05) rotate(2deg) !important; /* Hover audaz con rotación */
+  box-shadow: 0 0 25px rgba(220, 20, 60, 0.8) !important;
+}
+
+html.dark .cursor {
+  color: #DC143C !important; /* Rojo para cursor */
+  text-shadow: 0 0 10px #DC143C !important;
+  animation: blink 1s infinite !important;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+html.dark .boldsites {
+  color: #DC143C !important; /* Rojo para énfasis */
+  text-shadow: 0 0 10px #DC143C !important;
+}
+
+html.dark .particle {
+  background: radial-gradient(circle, #DC143C, #C0C0C0) !important;
+  box-shadow: 0 0 8px #DC143C !important;
+}
+
+/* LIGHT MODE ADAPTADO: Grises para plata, rojo intacto para audacia */
+html.light .hero {
+  background: linear-gradient(135deg, #2a2a2a, #404040) !important; /* Gris oscuro simulando plata */
+  border-bottom: 2px solid #DC143C !important;
+  color: #C0C0C0 !important;
+}
+
+html.light .hero::before {
+  background: 
+    linear-gradient(90deg, transparent 49%, rgba(220, 20, 60, 0.1) 50%, transparent 51%),
+    radial-gradient(circle at 20% 80%, rgba(192, 192, 192, 0.1) 0%, transparent 50%);
+  animation: holographicScan 8s linear infinite !important;
+}
+
+html.light .hero-content {
+  background: rgba(40, 40, 40, 0.9) !important;
+  border: 2px solid #DC143C !important;
+  box-shadow: 0 0 30px rgba(220, 20, 60, 0.3) !important;
+  color: #C0C0C0 !important;
+  animation: glitchBorder 4s ease-in-out infinite !important;
+}
+
+html.light .hero-content::before {
+  background: linear-gradient(90deg, #C0C0C0, #DC143C, #C0C0C0) !important;
+  filter: blur(10px) !important;
+}
+
+html.light .hero-content h1 {
+  background: linear-gradient(90deg, #C0C0C0, #DC143C) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  text-shadow: 0 0 20px #DC143C !important;
+  animation: glitchEffect 3s infinite !important;
+}
+
+html.light .hero-content p {
+  color: #A0A0A0 !important;
+  animation: cyberFade 2s ease-out !important;
+}
+
+html.light .hero-button {
+  background: linear-gradient(135deg, #DC143C, #C0C0C0) !important;
+  color: #000 !important;
+  box-shadow: 0 0 15px rgba(220, 20, 60, 0.4) !important;
+  border: 1px solid #DC143C !important;
+}
+
+html.light .hero-button:hover {
+  transform: scale(1.05) rotate(2deg) !important;
+  box-shadow: 0 0 25px rgba(220, 20, 60, 0.7) !important;
+}
+
+html.light .cursor {
+  color: #DC143C !important;
+  text-shadow: 0 0 10px #DC143C !important;
+  animation: blink 1s infinite !important;
+}
+
+html.light .boldsites {
+  color: #DC143C !important;
+  text-shadow: 0 0 10px #DC143C !important;
+}
+
+html.light .particle {
+  background: radial-gradient(circle, #DC143C, #C0C0C0) !important;
+  box-shadow: 0 0 8px #DC143C !important;
+}
+
+/* FORCE-LIGHT OVERRIDES ACTUALIZADOS CON COLORES DEL LOGO */
+.hero.force-light .hero {
+  background: linear-gradient(135deg, #2a2a2a, #404040) !important;
+  border-bottom: 2px solid #DC143C !important;
+  color: #C0C0C0 !important;
+}
+
+.hero.force-light .hero::before {
+  background: 
+    linear-gradient(90deg, transparent 49%, rgba(220, 20, 60, 0.1) 50%, transparent 51%),
+    radial-gradient(circle at 20% 80%, rgba(192, 192, 192, 0.1) 0%, transparent 50%);
+  animation: holographicScan 8s linear infinite !important;
+}
+
+.hero.force-light .hero-content {
+  background: rgba(40, 40, 40, 0.95) !important;
+  border: 2px solid #DC143C !important;
+  box-shadow: 0 0 30px rgba(220, 20, 60, 0.3) !important;
+  color: #C0C0C0 !important;
+  animation: glitchBorder 4s ease-in-out infinite !important;
+}
+
+.hero.force-light .hero-content h1,
+.hero.force-light .hero-content h1 * {
+  background: linear-gradient(90deg, #C0C0C0, #DC143C) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important; /* Para clip */
+  text-shadow: 0 0 20px #DC143C !important;
+  animation: glitchEffect 3s infinite !important;
+}
+
+.hero.force-light .cursor {
+  color: #DC143C !important;
+  text-shadow: 0 0 10px #DC143C !important;
+  animation: blink 1s infinite !important;
+}
+
+.hero.force-light .hero-content p {
+  color: #A0A0A0 !important;
+  animation: cyberFade 2s ease-out !important;
+}
+
+.hero.force-light .boldsites {
+  color: #DC143C !important;
+  text-shadow: 0 0 10px #DC143C !important;
+}
+
+.hero.force-light .hero-button {
+  background: linear-gradient(135deg, #DC143C, #C0C0C0) !important;
+  color: #000 !important;
+  box-shadow: 0 0 15px rgba(220, 20, 60, 0.4) !important;
+  border: 1px solid #DC143C !important;
+}
+
+.hero.force-light .hero-button:hover {
+  transform: scale(1.05) rotate(2deg) !important;
+  box-shadow: 0 0 25px rgba(220, 20, 60, 0.7) !important;
+}
+
+.hero.force-light .particle {
+  background: radial-gradient(circle, #DC143C, #C0C0C0) !important;
+  box-shadow: 0 0 8px #DC143C !important;
+}

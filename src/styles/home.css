@@ -1,0 +1,523 @@
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  font-family: 'Orbitron', 'Arial', sans-serif; /* Fuente futurista para audacia */
+  overflow-x: hidden;
+  background: linear-gradient(180deg, #000000, #1a1a1a); /* Fondo negro base, como el logo */
+  color: #C0C0C0; /* Plata para texto principal */
+}
+
+.pagina-principal {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Contenedor general para centrar contenido */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+/* Hero - Más futurista con escaneo holográfico */
+.hero {
+  background: linear-gradient(135deg, #000000, #1a1a1a); /* Negro/plata del logo */
+  min-height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 2px solid #DC143C; /* Borde rojo audaz */
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(90deg, transparent 49%, rgba(220, 20, 60, 0.1) 50%, transparent 51%), /* Línea de escaneo roja */
+    radial-gradient(circle at 20% 80%, rgba(192, 192, 192, 0.05) 0%, transparent 50%);
+  animation: holographicScan 8s linear infinite; /* Nueva animación: escaneo futurista */
+  z-index: 1;
+}
+
+@keyframes holographicScan {
+  0% { 
+    transform: translateX(-100%) translateY(0); 
+    opacity: 0.5;
+  }
+  50% { 
+    opacity: 1;
+  }
+  100% { 
+    transform: translateX(100%) translateY(100px); 
+    opacity: 0.5;
+  }
+}
+
+/* Header - Título con efecto glitch audaz */
+.header {
+  background: rgba(26, 26, 26, 0.9); /* Negro sutil */
+  padding: 4rem 1rem;
+  text-align: center;
+  border-radius: 20px;
+  margin: 2rem 0;
+  box-shadow: 0 0 30px rgba(220, 20, 60, 0.3); /* Sombra roja futurista */
+  border: 1px solid #DC143C; /* Borde rojo para audacia */
+}
+
+.neon-title {
+  font-size: 3.5rem; /* Más grande y audaz */
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, #C0C0C0, #DC143C); /* Plata a rojo */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px #DC143C;
+  animation: glitchEffect 3s infinite; /* Nueva animación: glitch cyberpunk */
+  font-weight: 900; /* Bold para 'audaz' */
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+@keyframes glitchEffect {
+  0%, 100% { 
+    transform: translate(0); 
+    text-shadow: 0 0 20px #DC143C, 0 0 30px #C0C0C0;
+  }
+  10%, 20% { 
+    transform: translate(-2px, -2px); 
+    text-shadow: -2px 0 #DC143C, 2px 0 #C0C0C0;
+  }
+  30%, 40% { 
+    transform: translate(2px, 2px); 
+    text-shadow: 2px 0 #DC143C, -2px 0 #C0C0C0;
+  }
+  50% { 
+    transform: translate(0); 
+    text-shadow: 0 0 20px #DC143C;
+  }
+}
+
+.intro-text {
+  font-size: 1.3rem;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #C0C0C0;
+  animation: cyberFade 2s ease-out; /* Nueva: fade con distorsión */
+}
+
+@keyframes cyberFade {
+  from { 
+    opacity: 0; 
+    transform: scale(0.95) rotateX(10deg); /* Efecto 3D holográfico */
+    filter: blur(5px);
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1) rotateX(0);
+    filter: blur(0);
+  }
+}
+
+/* Servicios - Cards con warp holográfico */
+.servicios {
+  background: rgba(26, 26, 26, 0.9);
+  padding: 4rem 1rem;
+  text-align: center;
+  border-radius: 20px;
+  margin: 2rem 0;
+  box-shadow: 0 0 30px rgba(192, 192, 192, 0.1); /* Plata sutil */
+  border: 1px solid #333; /* Negro audaz */
+}
+
+.section-title {
+  font-size: 3rem; /* Más audaz */
+  margin-bottom: 1rem;
+  color: #C0C0C0;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 0 0 10px #DC143C;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: #808080; /* Gris plata atenuado */
+  margin-bottom: 2rem;
+}
+
+.servicios ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Más espacio audaz */
+  gap: 2.5rem;
+  margin: 0 auto;
+}
+
+.servicios li {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(220, 20, 60, 0.1);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Spring effect futurista */
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #333;
+}
+
+.servicios li:hover {
+  transform: translateY(-15px) rotateX(5deg) scale(1.05); /* Warp 3D audaz */
+  box-shadow: 0 0 40px rgba(220, 20, 60, 0.5);
+}
+
+.servicios li::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, rgba(220, 20, 60, 0.1), transparent); /* Cono rojo giratorio */
+  animation: circuitRotate 6s linear infinite;
+  z-index: 0;
+}
+
+@keyframes circuitRotate {
+  0% { transform: rotate(0deg) scale(1); }
+  100% { transform: rotate(360deg) scale(1.1); }
+}
+
+.descripcion {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(220, 20, 60, 0.9); /* Rojo audaz */
+  color: #000;
+  padding: 1rem;
+  font-size: 0.95rem;
+  transform: translateY(100%) scaleY(0);
+  transition: all 0.4s ease;
+  z-index: 1;
+  font-weight: bold;
+}
+
+.servicios li:hover .descripcion {
+  transform: translateY(0) scaleY(1);
+}
+
+/* Sobre nosotros - Founders con orbit holográfico */
+.nosotros {
+  background: rgba(0, 0, 0, 0.9);
+  padding: 4rem 1rem;
+  text-align: center;
+  border-radius: 20px;
+  margin: 2rem 0;
+  box-shadow: 0 0 30px rgba(192, 192, 192, 0.2);
+  border: 1px solid #DC143C;
+}
+
+.fundadores {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+  position: relative;
+}
+
+.fundadores::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  border: 1px dashed #DC143C;
+  border-radius: 50%;
+  animation: orbitGlow 10s linear infinite; /* Nueva: órbita futurista */
+  transform: translate(-50%, -50%);
+}
+
+@keyframes orbitGlow {
+  0% { transform: translate(-50%, -50%) rotate(0deg); box-shadow: 0 0 20px #DC143C; }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.persona {
+  max-width: 220px;
+  text-align: center;
+  z-index: 2;
+  position: relative;
+}
+
+.persona img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #DC143C; /* Rojo audaz */
+  transition: all 0.5s ease;
+  filter: drop-shadow(0 0 10px #DC143C);
+}
+
+.persona img:hover {
+  transform: scale(1.15) rotate(360deg); /* Rotación completa futurista */
+  filter: drop-shadow(0 0 20px #DC143C) brightness(1.2);
+}
+
+.role {
+  color: #DC143C; /* Rojo para roles */
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* Testimonios - Cards flotantes con levitación */
+.testimonios {
+  background: rgba(26, 26, 26, 0.9);
+  padding: 4rem 1rem;
+  text-align: center;
+  border-radius: 20px;
+  margin: 2rem 0;
+  box-shadow: 0 0 30px rgba(220, 20, 60, 0.2);
+  border: 1px solid #333;
+}
+
+.testimonio-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.testimonio-card {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(192, 192, 192, 0.1);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); /* Bounce futurista */
+  text-align: center;
+  overflow: hidden;
+  border: 1px solid #DC143C;
+  animation: floatCard 6s ease-in-out infinite; /* Nueva: flotación holográfica */
+}
+
+.testimonio-card:nth-child(2) { animation-delay: -2s; }
+.testimonio-card:nth-child(3) { animation-delay: -4s; }
+
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0px) rotateZ(0deg); }
+  50% { transform: translateY(-20px) rotateZ(2deg); }
+}
+
+.testimonio-card:hover {
+  transform: translateY(-20px) scale(1.1);
+  box-shadow: 0 0 50px rgba(220, 20, 60, 0.6);
+  animation-play-state: paused;
+}
+
+.testimonio-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #C0C0C0; /* Plata */
+  margin-bottom: 1rem;
+  transition: all 0.4s ease;
+}
+
+.testimonio-card:hover img {
+  transform: rotate(360deg) scale(1.2); /* Rotación audaz */
+  border-color: #DC143C;
+  filter: drop-shadow(0 0 15px #DC143C);
+}
+
+.testimonio-card h3 {
+  font-size: 1.6rem;
+  color: #C0C0C0;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.testimonio-text {
+  font-size: 1.1rem;
+  color: #808080;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero {
+    padding: 1rem;
+    min-height: calc(100vh - 50px);
+  }
+
+  .neon-title {
+    font-size: 2.5rem;
+  }
+
+  .intro-text {
+    font-size: 1.1rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .servicios ul {
+    grid-template-columns: 1fr;
+  }
+
+  .fundadores {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .testimonio-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .fundadores::before {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+/* Theme Styles - Enfocado en dark futurista, light opcional con plata/rojo */
+html.dark {
+  background: linear-gradient(180deg, #000000, #1a1a1a);
+  color: #C0C0C0;
+}
+
+html.light {
+  background: linear-gradient(180deg, #2a2a2a, #404040); /* Gris oscuro para simular plata en luz */
+  color: #C0C0C0;
+}
+
+html.dark .header,
+html.dark .servicios,
+html.dark .nosotros,
+html.dark .testimonios {
+  background: rgba(0, 0, 0, 0.9);
+  border-color: #DC143C;
+}
+
+html.light .header {
+  background: rgba(50, 50, 50, 0.9);
+  border-color: #DC143C;
+}
+
+html.light .servicios {
+  background: rgba(40, 40, 40, 0.9);
+}
+
+html.light .nosotros {
+  background: rgba(30, 30, 30, 0.9);
+}
+
+html.light .testimonios {
+  background: rgba(40, 40, 40, 0.9);
+}
+
+html.light .intro-text,
+html.light .section-subtitle,
+html.light .testimonio-text {
+  color: #A0A0A0;
+}
+
+html.light .section-title,
+html.light .neon-title {
+  color: #C0C0C0;
+  text-shadow: 0 0 10px #DC143C;
+}
+
+html.light .servicios li {
+  background: rgba(20, 20, 20, 0.8);
+  border-color: #666;
+}
+
+html.light .descripcion {
+  background: rgba(220, 20, 60, 0.8);
+  color: #000;
+}
+
+html.light .testimonio-card {
+  background: rgba(20, 20, 20, 0.8);
+  border-color: #DC143C;
+}
+
+html.light .testimonio-card h3 {
+  color: #C0C0C0;
+}
+
+html.light .role {
+  color: #DC143C;
+}
+
+html.light .neon-title {
+  background: linear-gradient(90deg, #C0C0C0, #DC143C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 15px #DC143C;
+}
+
+/* Estilos footer alineados con logo - Mantenidos y mejorados */
+html.dark .footer {
+  background: linear-gradient(90deg, #000000, #1a1a1a) !important;
+  border-top: 2px solid #DC143C !important;
+}
+
+html.dark .footer p {
+  color: #C0C0C0 !important;
+}
+
+html.dark .footer-socials .social-link {
+  color: #C0C0C0 !important;
+}
+
+html.dark .footer-socials .social-link:hover {
+  color: #DC143C !important;
+  text-shadow: 0 0 12px rgba(220, 20, 60, 0.7) !important;
+}
+
+html.dark .footer-socials .social-link.whatsapp:hover, 
+html.dark .footer-socials .social-link.instagram:hover, 
+html.dark .footer-socials .social-link.facebook:hover { 
+  color: #DC143C !important; 
+}
+
+html.light .footer {
+  background: linear-gradient(90deg, #2a2a2a, #404040) !important;
+  border-top: 2px solid #DC143C !important;
+}
+
+html.light .footer p {
+  color: #A0A0A0 !important;
+}
+
+html.light .footer-socials .social-link {
+  color: #A0A0A0 !important;
+}
+
+html.light .footer-socials .social-link:hover {
+  color: #DC143C !important;
+  text-shadow: 0 0 12px rgba(220, 20, 60, 0.5) !important;
+}
+
+.footer {
+  background: linear-gradient(90deg, #000000, #1a1a1a) !important;
+}

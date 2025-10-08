@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
-import "../../Styles/contacto.css";
-import Navbar from "../../Components/Navbar/index";
+import Navbar from "../../components/Navbar/index";
+import "../../styles/contacto.css"
 import Footer from "../../components/Footer/index";
+
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
