@@ -1,0 +1,303 @@
+/* General section styling with a futuristic gradient background */
+.nosotros {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #ffffff;
+  padding: 4rem 1rem;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  position: relative; /* Para posicionar la animación nueva */
+}
+
+/* Container for content with max-width and centered layout */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Section title with futuristic typography and animation */
+.section-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(45deg, #00ddeb, #ff007a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: fadeInDown 1s ease-out;
+}
+
+/* Subtle animation for title */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Section subtitle with clean and readable styling */
+.section-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+  color: #d0d2d6;
+  animation: fadeIn 1.2s ease-out;
+}
+
+/* Additional description text */
+.section-description {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  color: #b0b3b8;
+  animation: fadeIn 1.4s ease-out;
+}
+
+/* Fade-in animation for text content */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Founders grid with responsive layout */
+.fundadores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  position: relative; /* Para la animación orbital */
+}
+
+/* Nueva animación inspirada en Tron: Anillo holográfico "Light Cycle Trail" que rota y deja estela luminosa alrededor de los fundadores – profesional, audaz y sutil como un núcleo de datos en la Grid. */
+.fundadores::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px; /* Más grande para envolver el grid */
+  height: 300px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  background: conic-gradient(transparent 0deg, #00ddeb 10deg, transparent 20deg, #ff007a 30deg, transparent 40deg); /* Estela de colores Tron-like: cyan a magenta */
+  background-size: 200% 200%; /* Para movimiento fluido */
+  transform: translate(-50%, -50%);
+  z-index: -1; /* Detrás de las cards */
+  filter: blur(1px); /* Suave glow para pro look */
+  animation: tronCycleOrbit 8s linear infinite; /* Rotación con estela, inspirada en las light cycles de Tron (elegante y no invasiva) */
+  box-shadow: 
+    0 0 20px rgba(0, 221, 235, 0.3), /* Glow cyan exterior */
+    inset 0 0 20px rgba(255, 0, 122, 0.2); /* Glow interno magenta */
+}
+
+@keyframes tronCycleOrbit {
+  0% { 
+    transform: translate(-50%, -50%) rotate(0deg) scale(1); 
+    background-position: 0% 50%; 
+    opacity: 0.6;
+  }
+  25% { 
+    background-position: 50% 50%; 
+    opacity: 0.8;
+  }
+  50% { 
+    transform: translate(-50%, -50%) rotate(180deg) scale(1.05); 
+    background-position: 100% 50%; 
+    opacity: 0.6;
+  }
+  75% { 
+    background-position: 50% 50%; 
+    opacity: 0.8;
+  }
+  100% { 
+    transform: translate(-50%, -50%) rotate(360deg) scale(1); 
+    background-position: 0% 50%; 
+    opacity: 0.6;
+  }
+}
+
+/* Individual team member card with futuristic hover effect */
+.persona {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.persona:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 221, 235, 0.3);
+}
+
+/* Team member image with circular shape and neon border */
+.persona img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 3px solid transparent;
+  transition: border 0.3s ease;
+}
+
+.persona:hover img {
+  border: 3px solid #00ddeb;
+}
+
+/* Team member name and role */
+.persona p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.persona .role {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #00ddeb;
+  display: block;
+  margin-top: 0.3rem;
+}
+
+/* Bio text for team members */
+.persona .bio {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #b0b3b8;
+  margin-top: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .section-description {
+    font-size: 0.9rem;
+  }
+
+  .persona {
+    padding: 1rem;
+  }
+
+  .persona img {
+    width: 120px;
+    height: 120px;
+  }
+
+  /* Ajuste responsive para la animación Tron: Más chica en mobile para no invadir */
+  .fundadores::before {
+    width: 250px !important;
+    height: 250px !important;
+    animation-duration: 10s !important; /* Más lento en pequeño */
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+  }
+
+  .section-description {
+    font-size: 0.85rem;
+  }
+
+  .persona img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .fundadores::before {
+    width: 200px !important;
+    height: 200px !important;
+    opacity: 0.5 !important; /* Semi-transparente en ultra-mobile */
+  }
+}
+
+/* Theme Styles */
+html.light .nosotros {
+  background: linear-gradient(135deg, #f0f8ff 0%, #e4f0e8 100%);
+  color: #0A2540;
+}
+
+html.light .section-title {
+  background: linear-gradient(45deg, #007bff, #ff007a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+html.light .section-subtitle {
+  color: #333;
+}
+
+html.light .section-description {
+  color: #555;
+}
+
+html.light .persona {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+html.light .persona:hover {
+  box-shadow: 0 10px 20px rgba(0, 123, 255, 0.3);
+}
+
+html.light .persona:hover img {
+  border: 3px solid #007bff;
+}
+
+html.light .persona p {
+  color: #0A2540;
+}
+
+html.light .persona .role {
+  color: #007bff;
+}
+
+html.light .persona .bio {
+  color: #555;
+}
+
+/* Adaptación light para la animación Tron: Colores atenuados para legibilidad */
+html.light .fundadores::before {
+  background: conic-gradient(transparent 0deg, #007bff 10deg, transparent 20deg, #ff007a 30deg, transparent 40deg) !important;
+  box-shadow: 
+    0 0 15px rgba(0, 123, 255, 0.2),
+    inset 0 0 15px rgba(255, 0, 122, 0.1) !important;
+  filter: blur(0.5px) !important; /* Menos blur en light */
+}

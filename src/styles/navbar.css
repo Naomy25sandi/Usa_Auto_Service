@@ -314,3 +314,191 @@ html.light .navbar-links a:hover {
 .navbar {
   background: linear-gradient(90deg, #000000, #1a1a1a) !important;
 }
+
+/* Nuevos estilos para dropdown de idioma: futurista, elegante y audaz, alineado con colores del logo (plata/rojo) y animaciones glitch/glow. Agregados al final como overrides sin tocar lo existente. */
+/* Nuevos estilos para dropdown de idioma: futurista, elegante y audaz, alineado con colores del logo (plata/rojo) y animaciones glitch/glow. Agregados al final como overrides sin tocar lo existente. */
+.language-dropdown {
+  position: relative;
+  display: inline-block;
+  margin-left: 1rem; /* Espacio sutil del theme-toggle */
+}
+
+.lang-toggle {
+  background: none;
+  border: none;
+  color: inherit; /* Hereda del tema (plata en dark) */
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lang-toggle::after {
+  content: '▼';
+  margin-left: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.language-dropdown:hover .lang-toggle::after {
+  transform: rotate(180deg);
+}
+
+.flag-icon {
+  transition: filter 0.3s ease;
+  filter: drop-shadow(0 0 2px currentColor);
+}
+
+.lang-toggle:hover .flag-icon {
+  filter: drop-shadow(0 0 5px #DC143C);
+}
+
+.lang-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: rgba(0, 0, 0, 0.95); /* Negro futurista */
+  border: 1px solid #DC143C; /* Borde rojo audaz */
+  border-radius: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0;
+  min-width: 140px; /* Ajustado para flags + texto */
+  box-shadow: 0 0 20px rgba(220, 20, 60, 0.4); /* Glow rojo */
+  z-index: 1001;
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+  animation: dropdownSlide 0.3s ease forwards;
+  transition: all 0.3s ease;
+}
+
+.language-dropdown:not(:hover) .lang-menu {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+  pointer-events: none;
+}
+
+@keyframes dropdownSlide {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.lang-menu li {
+  margin: 0;
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  background: none;
+  border: none;
+  color: #C0C0C0; /* Plata base */
+  padding: 0.8rem 1.5rem;
+  text-align: left;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.lang-option:hover {
+  color: #DC143C; /* Rojo audaz en hover */
+  background: rgba(220, 20, 60, 0.1);
+  text-shadow: 0 0 8px rgba(220, 20, 60, 0.5); /* Brillo glitch sutil */
+  transform: translateX(5px); /* Slide audaz */
+}
+
+.lang-option:hover .flag-icon {
+  filter: drop-shadow(0 0 5px #DC143C) brightness(1.2);
+}
+
+/* Overrides para dark/light – alineados con navbar */
+html.dark .lang-toggle {
+  color: #C0C0C0 !important;
+  text-shadow: 0 0 5px rgba(220, 20, 60, 0.3) !important;
+}
+
+html.dark .lang-toggle:hover {
+  color: #DC143C !important;
+  text-shadow: 0 0 10px rgba(220, 20, 60, 0.6) !important;
+  transform: scale(1.05) !important;
+}
+
+html.dark .lang-menu {
+  background: rgba(0, 0, 0, 0.95) !important;
+  border-color: #DC143C !important;
+  box-shadow: 0 0 20px rgba(220, 20, 60, 0.6) !important; /* Neón rojo intensificado */
+}
+
+html.dark .lang-option {
+  color: #C0C0C0 !important;
+}
+
+html.dark .lang-option:hover {
+  color: #DC143C !important;
+  text-shadow: 0 0 8px rgba(220, 20, 60, 0.8) !important;
+  background: rgba(220, 20, 60, 0.15) !important;
+}
+
+html.light .lang-toggle {
+  color: #666 !important;
+  text-shadow: none !important;
+}
+
+html.light .lang-toggle:hover {
+  color: #DC143C !important;
+  text-shadow: 0 0 8px rgba(220, 20, 60, 0.4) !important;
+  transform: scale(1.05) !important;
+}
+
+html.light .lang-menu {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: #DC143C !important;
+  box-shadow: 0 0 20px rgba(220, 20, 60, 0.4) !important;
+}
+
+html.light .lang-option {
+  color: #666 !important;
+}
+
+html.light .lang-option:hover {
+  color: #DC143C !important;
+  text-shadow: 0 0 8px rgba(220, 20, 60, 0.6) !important;
+  background: rgba(220, 20, 60, 0.1) !important;
+}
+
+/* Responsive: En mobile, dropdown se integra al menú hamburguesa si es necesario, pero se mantiene visible al lado del theme-toggle */
+@media (max-width: 768px) {
+  .language-dropdown {
+    margin-left: 0.5rem;
+  }
+
+  .lang-toggle {
+    font-size: 1.1rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .lang-menu {
+    right: -1rem;
+    min-width: 120px;
+  }
+
+  html.dark .lang-menu {
+    box-shadow: 0 0 15px rgba(220, 20, 60, 0.5) !important;
+  }
+
+  html.light .lang-menu {
+    box-shadow: 0 0 15px rgba(220, 20, 60, 0.3) !important;
+  }
+}

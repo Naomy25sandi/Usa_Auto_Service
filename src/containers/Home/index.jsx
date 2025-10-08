@@ -14,7 +14,7 @@ function PaginaPrincipal() {
        {/* Sección Bienvenida  */}
       <header className="header">
         <div className="container">
-          <h1 className="neon-title">Bienvenidos a Boldsites</h1>
+          <h1 className="neon-title">Bienvenidos a USA Auto Service</h1>
           <p className="intro-text">
             Transformamos tus ideas en sitios web impactantes que capturan la esencia de tu marca. 
             Con tecnología de punta y un diseño innovador, elevamos tu presencia digital a otro nivel. 
@@ -28,7 +28,7 @@ function PaginaPrincipal() {
         <div className="container">
           <h2 className="section-title">Nuestros Servicios</h2>
           <p className="section-subtitle">
-            Ofrecemos soluciones personalizadas para potenciar tu negocio en el mundo digital.
+            Ofrecemos un excelente servicio para que tu auto quede en optimas condiciones.
           </p>
           <ul>
             <li>
