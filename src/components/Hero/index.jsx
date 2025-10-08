@@ -1,78 +1,63 @@
 import React, { useState, useEffect } from "react";
-import '../../styles/hero.css';
+import "../../styles/hero.css";
+import Logo from "../../assets/logo-taller.jpg";
+import foto1 from "../../assets/foto1.jpg";
+import foto2 from "../../assets/foto2.jpg";
+import foto3 from "../../assets/foto3.jpg";
 
-// Mueve phrases fuera del componente
-const phrases = ["Sitios web modernos", "Diseño responsivo", "SEO optimizado"];
+const workImages = [foto1, foto2, foto3];
 
 const Hero = () => {
-  const [currentText, setCurrentText] = useState("");
-  const [cursorVisible, setCursorVisible] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    let phraseIndex = 0;
-    let charIndex = 0;
-    let deleting = false;
+    // Animación de aparición suave
+    const fadeTimer = setTimeout(() => setIsVisible(true), 200);
 
-    const type = () => {
-      const phrase = phrases[phraseIndex];
+    // Carrusel automático cada 4 segundos
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % workImages.length);
+    }, 4000);
 
-      if (!deleting) {
-        setCurrentText(phrase.substring(0, charIndex + 1));
-        charIndex++;
-        if (charIndex === phrase.length) {
-          deleting = true;
-          setTimeout(type, 1500);
-          return;
-        }
-      } else {
-        setCurrentText(phrase.substring(0, charIndex - 1));
-        charIndex--;
-        if (charIndex === 0) {
-          deleting = false;
-          phraseIndex = (phraseIndex + 1) % phrases.length;
-        }
-      }
-      setTimeout(type, deleting ? 50 : 120);
+    return () => {
+      clearTimeout(fadeTimer);
+      clearInterval(interval);
     };
-
-    type();
-
-    const cursorBlink = setInterval(
-      () => setCursorVisible((prev) => !prev),
-      500
-    );
-
-    setTimeout(() => setIsVisible(true), 200);
-
-    return () => clearInterval(cursorBlink);
-  }, []); // Remueve phrases del array de dependencias, ya que ahora es estable
-
-  // Detecta si estamos en modo claro revisando <html class="light">
-  const isLightMode = document.documentElement.classList.contains("light");
+  }, []);
 
   return (
-    <section className="hero">
-      <div className="hero-content">
-        <h1
-          className={`${isVisible ? "fade-in-up neon-text" : ""}`}
-          style={{
-            color: isLightMode ? "#000" : "", // negro en modo claro
-          }}
-        >
-          {currentText}
-          {cursorVisible && <span className="cursor">|</span>}
-        </h1>
+    <section className={`hero ${isVisible ? "fade-in-up" : ""}`}>
+      <div className="hero-carousel">
+        {workImages.map((imageSrc, index) =>
+          imageSrc ? (
+            <div
+              key={index}
+              className={`carousel-slide ${currentIndex === index ? "active" : ""}`}
+              style={{
+                backgroundImage: `url(${imageSrc})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              {/* Logo en la esquina inferior derecha */}
+              <div className="slide-logo-overlay">
+                <img src={Logo} alt="USA Auto Service Logo" className="small-logo" />
+              </div>
+            </div>
+          ) : null
+        )}
 
-        <p
-          className={isVisible ? "fade-in-up delay-1 pulse-text" : ""}
-          style={{
-            color: isLightMode ? "#000" : "#B0C4DE", // negro en claro, azul clarito en oscuro
-          }}
-        >
-          En <span className="boldsites">Boldsites</span>, diseñamos páginas
-          modernas, rápidas y optimizadas para SEO que impulsan tu negocio.
-        </p>
+        {/* Indicadores del carrusel (puntitos) */}
+        <div className="carousel-indicators">
+          {workImages.map((_, index) => (
+            <span
+              key={index}
+              className={`indicator ${currentIndex === index ? "active" : ""}`}
+              onClick={() => setCurrentIndex(index)}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

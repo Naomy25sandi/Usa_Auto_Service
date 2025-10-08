@@ -5,6 +5,7 @@ import Hero from "../../components/Hero/index";
 import "../../styles/home.css";
 
 
+
 function PaginaPrincipal() {
   return (
     <div className="pagina-principal">
@@ -79,21 +80,21 @@ function PaginaPrincipal() {
           </p>
           <div className="testimonio-cards">
             <div className="testimonio-card">
-              <img src="" alt="Cliente 3" />
+              {/* <img src="" alt="Cliente 3" /> */}
               <h3>Anastasia McLemar</h3>
               <p className="testimonio-text">
                 "USA Auto Service mantiene nuestros dos autos familiares con precisión experta, diagnosticando fallos computarizados y restaurando la suspensión para viajes seguros con los niños. Su compromiso con las reparaciones generales nos da tranquilidad diaria, permitiendo que nuestra familia disfrute de salidas sin preocupaciones y vehículos que lucen impecables."
               </p>
             </div>
             <div className="testimonio-card">
-              <img src="" alt="Cliente 2" />
+              {/* <img src="" alt="Cliente 2" /> */}
               <h3>Benito Ramires</h3>
               <p className="testimonio-text">
             USA Auto Service cuida mi flota de vehículos con un enfoque impecable, optimizando el rendimiento y asegurando una seguridad total en cada ruta. Su dedicación al mantenimiento preventivo nos permite enfocarnos en el crecimiento del negocio mientras nuestros autos brillan con un servicio moderno y confiable"   
               </p>
             </div>
             <div className="testimonio-card">
-               <img src="" alt="Cliente 1" />
+               {/* <img src="" alt="Cliente 1" /> */}
               <h3>Phillipe Jhonson</h3>
               <p className="testimonio-text">
                 "USA Auto Service resuelve mis problemas de auto con maestría, equilibrando llantas y refrescando el aire acondicionado para un confort total en mi commute diario. Su pasión por el servicio integral me libera de estrés mecánico, ayudándome a enfocarme en mi rutina con un vehículo que impresiona por su eficiencia y estilo confiable."
