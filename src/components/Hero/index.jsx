@@ -9,46 +9,38 @@ const workImages = [foto1, foto2, foto3];
 
 const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
+  const [fade, setFade] = useState(true);
 
   useEffect(() => {
-    // Animación de aparición suave
-    const fadeTimer = setTimeout(() => setIsVisible(true), 200);
-
-    // Carrusel automático cada 4 segundos
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % workImages.length);
-    }, 4000);
-
-    return () => {
-      clearTimeout(fadeTimer);
-      clearInterval(interval);
-    };
+      setFade(false);
+      setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % workImages.length);
+        setFade(true);
+      }, 400);
+    }, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className={`hero ${isVisible ? "fade-in-up" : ""}`}>
+    <section className="hero">
       <div className="hero-carousel">
-        {workImages.map((imageSrc, index) =>
-          imageSrc ? (
-            <div
-              key={index}
-              className={`carousel-slide ${currentIndex === index ? "active" : ""}`}
-              style={{
-                backgroundImage: `url(${imageSrc})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-            >
-              {/* Logo en la esquina inferior derecha */}
-              <div className="slide-logo-overlay">
-                <img src={Logo} alt="USA Auto Service Logo" className="small-logo" />
-              </div>
-            </div>
-          ) : null
-        )}
+        <div
+          className={`carousel-slide ${fade ? "fade-in" : "fade-out"}`}
+          style={{
+            backgroundImage: `url(${workImages[currentIndex]})`,
+          }}
+        ></div>
 
-        {/* Indicadores del carrusel (puntitos) */}
+        {/* Marco animado tipo neón */}
+        <div className="neon-frame"></div>
+
+        {/* Logo flotante */}
+        <div className="slide-logo-overlay">
+          <img src={Logo} alt="USA Auto Service Logo" className="small-logo" />
+        </div>
+
+        {/* Indicadores */}
         <div className="carousel-indicators">
           {workImages.map((_, index) => (
             <span

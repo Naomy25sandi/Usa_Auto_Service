@@ -41,9 +41,7 @@ function PaginaPrincipal() {
             <div className="container">
               <h1 className="neon-title">Bienvenidos a USA Auto Service</h1>
               <p className="intro-text">
-                Transformamos tus ideas en sitios web impactantes que capturan la esencia de tu marca. 
-                Con tecnología de punta y un diseño innovador, elevamos tu presencia digital a otro nivel. 
-                ¡Descubre cómo podemos hacer crecer tu negocio hoy!
+             
               </p>
             </div>
           </header>

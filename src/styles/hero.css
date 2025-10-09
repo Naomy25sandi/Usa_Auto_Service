@@ -1,271 +1,153 @@
-/* styles/hero.css - Enhanced for carousel with logo overlay, keeping existing animations intact */
 /* =======================
-   HERO BASE (fixed height for visibility)
+   HERO BASE
 ======================= */
 .hero {
   position: relative;
   width: 100%;
-  height: 100vh; /* Changed from min-height to ensure full visibility */
+  height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 2rem;
-  box-sizing: border-box;
   overflow: hidden;
-  animation: gradientShift 15s ease infinite;
-  background: linear-gradient(135deg, #0A2540, #1A4030); /* Default dark */
-  color: #E6F0FA;
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  transition: background 0.5s ease;
 }
 
 /* =======================
-   CAROUSEL SPECIFIC STYLES (fixed height propagation)
+   MODO OSCURO
+======================= */
+html.dark .hero {
+  background: radial-gradient(circle at center, #000 60%, #0A0A0A 100%);
+}
+
+/* =======================
+   MODO CLARO (gris elegante)
+======================= */
+html.light .hero {
+  background: linear-gradient(180deg, #2a2a2a, #404040); /* Gris oscuro para simular plata en luz */
+  color: #C0C0C0;
+}
+
+/* =======================
+   CARRUSEL BASE
 ======================= */
 .hero-carousel {
   position: relative;
-  width: 100%;
-  height: 100%; /* Full height of parent hero */
-  max-width: 1000px; /* Constrain carousel width for better focus */
+  width: 90%;
+  height: 85vh;
   border-radius: 22px;
   overflow: hidden;
-  box-shadow: 0 0 25px rgba(220, 20, 60, 0.4); /* Red glow consistent with logo */
-  border: 2px solid rgba(220, 20, 60, 0.6); /* Red border */
-  animation: glitchBorder 4s ease-in-out infinite; /* Reuse glitch for futuristic feel */
+  transition: all 0.4s ease;
 }
 
+/* =======================
+   IMAGEN DEL CARRUSEL (con borde neón)
+======================= */
 .carousel-slide {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0;
-  transition: opacity 1s ease-in-out, transform 1s ease; /* Smooth fade/slide */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 2rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: opacity 1s ease-in-out, filter 0.5s ease;
+  border-radius: 22px;
+  box-shadow:
+    0 0 15px rgba(255, 0, 60, 0.8),
+    0 0 35px rgba(255, 0, 60, 0.6),
+    0 0 60px rgba(255, 0, 60, 0.4);
+  animation: neonGlow 3s ease-in-out infinite;
 }
 
-.carousel-slide.active {
-  opacity: 1;
-  transform: scale(1); /* Subtle scale on active for emphasis */
+@keyframes neonGlow {
+  0%, 100% {
+    box-shadow:
+      0 0 10px rgba(255, 0, 60, 0.7),
+      0 0 25px rgba(255, 0, 60, 0.6),
+      0 0 50px rgba(255, 0, 60, 0.5);
+    filter: brightness(1);
+  }
+  50% {
+    box-shadow:
+      0 0 5px rgba(255, 50, 100, 0.5),
+      0 0 15px rgba(255, 50, 100, 0.4),
+      0 0 30px rgba(255, 50, 100, 0.3);
+    filter: brightness(1.05);
+  }
 }
 
-.carousel-slide:not(.active) {
-  transform: scale(0.95); /* Slightly smaller when inactive */
+/* === AJUSTE SEGÚN MODO === */
+html.dark .carousel-slide {
+  box-shadow:
+    0 0 20px rgba(255, 0, 50, 0.9),
+    0 0 50px rgba(255, 0, 50, 0.7);
 }
 
-/* Small logo overlay - positioned bottom-right, semi-transparent for subtlety */
+html.light .carousel-slide {
+  box-shadow:
+    0 0 20px rgba(255, 0, 80, 0.5),
+    0 0 40px rgba(255, 0, 60, 0.3);
+  filter: brightness(0.95) contrast(1.05);
+}
+
+/* Animaciones de transición entre slides */
+.fade-in { opacity: 1; }
+.fade-out { opacity: 0; }
+
+/* =======================
+   LOGO FLOTANTE
+======================= */
 .slide-logo-overlay {
   position: absolute;
-  bottom: 1rem;
-  right: 1rem;
+  bottom: 2rem;
+  right: 2rem;
   z-index: 10;
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
-}
-
-.slide-logo-overlay:hover {
-  opacity: 1;
+  opacity: 0.9;
 }
 
 .small-logo {
-  width: 60px; /* Small size as requested */
+  width: 80px;
   height: auto;
-  filter: drop-shadow(0 0 5px rgba(220, 20, 60, 0.5)); /* Red glow on logo */
+  filter: drop-shadow(0 0 10px #DC143C);
+  transition: transform 0.3s ease;
 }
 
-/* Carousel indicators (dots) - bottom center */
+.small-logo:hover {
+  transform: scale(1.1);
+}
+
+/* =======================
+   INDICADORES (PUNTOS)
+======================= */
 .carousel-indicators {
   position: absolute;
-  bottom: 1rem;
+  bottom: 1.5rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 0.5rem;
-  z-index: 5;
+  gap: 0.7rem;
+  z-index: 20;
 }
 
 .indicator {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: rgba(220, 20, 60, 0.3); /* Red subtle */
+  background: rgba(150, 150, 150, 0.4);
   cursor: pointer;
   transition: all 0.3s ease;
-  opacity: 0.5;
 }
 
 .indicator.active {
-  background: #DC143C; /* Full red */
-  opacity: 1;
+  background: #DC143C;
+  box-shadow: 0 0 10px #DC143C;
   transform: scale(1.2);
-  box-shadow: 0 0 5px #DC143C; /* Glow */
 }
 
-/* Theme variants (adapted for carousel) */
-html.dark .hero-carousel {
-  box-shadow: 0 0 30px rgba(220, 20, 60, 0.4);
-  border: 2px solid #DC143C;
+/* === INDICADORES SEGÚN MODO === */
+html.light .indicator {
+  background: rgba(120, 120, 120, 0.3);
 }
 
-html.light .hero-carousel {
-  box-shadow: 0 0 30px rgba(220, 20, 60, 0.3);
-  border: 2px solid #DC143C;
-  background: rgba(40, 40, 40, 0.9); /* Gray for light mode */
-}
-
-/* Existing overrides and animations kept intact for consistency */
-/* =======================
-   THEME VARIANTS (originales)
-======================= */
-html.dark .hero {
-  background: linear-gradient(135deg, #0A1F30, #153F2A);
-}
-
-html.dark .hero-content {
-  background: rgba(10, 37, 64, 0.9);
-  color: #E6F0FA;
-}
-
-html.light .hero {
-  background: linear-gradient(135deg, #EAF6FF, #DFF6E0);
-}
-
-html.light .hero-content {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  color: #000;
-}
-
-html.light .hero-content h1 {
-  background: none;
-  -webkit-background-clip: border-box;
-  -webkit-text-fill-color: #000;
-  color: #000;
-  text-shadow: none;
-  animation: none;
-}
-
-html.light .cursor {
-  color: #000;
-  text-shadow: none;
-}
-
-html.light .hero-content p {
-  color: #333;
-}
-
-html.light .boldsites {
-  color: #111;
-  text-shadow: none;
-}
-
-html.light .hero-button {
-  background: linear-gradient(135deg, #007BFF, #00D1FF);
-  color: #fff;
-  box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
-}
-
-/* =======================
-   OVERRIDE: FORZAR LEGIBILIDAD si React detecta light (force-light)
-   Estas reglas tienen prioridad y solo afectan al Hero
-======================= */
-.hero.force-light .hero-content {
-  background: rgba(255, 255, 255, 0.95) !important;
-  border: 1px solid rgba(0,0,0,0.08) !important;
-  box-shadow: 0 0 20px rgba(0,0,0,0.08) !important;
-  color: #000 !important;
-}
-
-.hero.force-light .hero-content h1,
-.hero.force-light .hero-content h1 * {
-  background: none !important;
-  -webkit-background-clip: unset !important;
-  -webkit-text-fill-color: unset !important;
-  color: #000 !important;
-  text-shadow: none !important;
-  animation: none !important;
-}
-
-.hero.force-light .cursor {
-  color: #000 !important;
-  text-shadow: none !important;
-}
-
-.hero.force-light .hero-content p {
-  color: #222 !important;
-}
-
-.hero.force-light .boldsites {
-  color: #111 !important;
-  text-shadow: none !important;
-}
-
-.hero.force-light .hero-button {
-  background: linear-gradient(135deg, #007BFF, #00D1FF) !important;
-  color: #fff !important;
-  box-shadow: 0 0 10px rgba(0,123,255,0.3) !important;
-}
-
-/* opcional: asegurar que partículas no enmascaren el texto en light */
-.hero.force-light .particle {
-  background: radial-gradient(circle, #00D1FF, #007BFF) !important;
-  box-shadow: 0 0 6px #00D1FF !important;
-}
-/* =======================
-   NEON BORDER ANIMATION
-======================= */
-.hero-content {
-  position: relative;
-  padding: 2.5rem;
-  border-radius: 22px;
-  background: rgba(0, 0, 0, 0.65); /* Fondo oscuro semi-transparente */
-  box-shadow: 0 0 25px rgba(0, 255, 170, 0.4);
-  border: 2px solid rgba(0, 255, 170, 0.6);
-  animation: neonPulse 4s ease-in-out infinite;
-}
-
-.hero-content::before {
-  content: "";
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  border-radius: 22px;
-  background: linear-gradient(90deg, #00D1FF, #00FFAA, #007BFF, #00FFAA, #00D1FF);
-  background-size: 300% 300%;
-  z-index: -1;
-  filter: blur(8px);
-  animation: neonBorder 6s linear infinite;
-}
-
-@keyframes neonBorder {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* =======================
-   PARAGRAPH ANIMATION
-======================= */
-.hero-content p {
-  animation: textGlow 3s ease-in-out infinite;
-}
-
-@keyframes textGlow {
-  0% { opacity: 0.8; text-shadow: 0 0 5px rgba(0, 209, 255, 0.4); }
-  50% { opacity: 1;}
+html.light .indicator.active {
+  background: #B00020;
+  box-shadow: 0 0 10px #B00020;
 }
