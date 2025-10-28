@@ -54,6 +54,7 @@ export default function Navbar() {
           <li><Link to="/">Inicio</Link></li>
           <li><Link to="/servicios">Servicios</Link></li>
           <li><Link to="/nosotros">Nosotros</Link></li>
+          <li><Link to="/promociones">Promociones</Link></li> {/* ← NUEVO */}
           <li><Link to="/contacto">Contacto</Link></li>
         </ul>
 

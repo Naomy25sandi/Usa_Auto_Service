@@ -3,7 +3,7 @@ import Home from "../containers/Home/index";
 import Contacto from "../containers/contacto/index";
 import Servicios from "../containers/Servicios/index";
 import Nosotros from "../../src/containers/Nosotros/index";
-
+import PromocionesPage from "../containers/PromocionesPage/index";
 export default function Rutas() {
   return (
     <BrowserRouter>
@@ -12,6 +12,7 @@ export default function Rutas() {
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/servicios" element={<Servicios />} />
         <Route path="/Nosotros" element={<Nosotros />} />
+        <Route path="promociones"  element={<PromocionesPage/>}/>
       </Routes>
     </BrowserRouter>
   );
