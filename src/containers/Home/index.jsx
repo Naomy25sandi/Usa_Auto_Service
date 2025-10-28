@@ -4,8 +4,7 @@ import Navbar from "../../components/Navbar/index";
 import Hero from "../../components/Hero/index";
 import "../../styles/home.css";
 import Logo from "../../assets/Boldsites-logo.png";
-import Promo1 from "../../assets/Promo1.jpg";
-import Promo2 from "../../assets/Promo2.jpg";
+
 
 function PaginaPrincipal() {
   const [showModal, setShowModal] = useState(true);
@@ -48,20 +47,7 @@ function PaginaPrincipal() {
             </div>
           </header>
 
-          {/* PROMOCIONES */}
-<section className="promo-section">
-  <h2 className="promo-title">Promociones del Mes</h2>
-
-  <div className="promo-grid">
-    <div className="promo-card">
-      <img src={Promo1} alt="Promoción 1" className="promo-image" />
-    </div>
-
-    <div className="promo-card">
-      <img src={Promo2} alt="Promoción 2" className="promo-image" />
-    </div>
-  </div>
-</section>
+          
 
           {/* Servicios */}
           <section className="servicios">
