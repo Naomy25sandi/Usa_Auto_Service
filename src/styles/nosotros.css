@@ -248,9 +248,9 @@
 }
 
 /* Theme Styles */
-html.light .nosotros {
-  background: linear-gradient(135deg, #f0f8ff 0%, #e4f0e8 100%);
-  color: #0A2540;
+html.light .nosotros{
+  background: linear-gradient(180deg, #2a2a2a, #404040); /* Gris oscuro para simular plata en luz */
+  color: #C0C0C0;
 }
 
 html.light .section-title {
@@ -261,15 +261,15 @@ html.light .section-title {
 }
 
 html.light .section-subtitle {
-  color: #333;
+  color: #d1cbcb;
 }
 
 html.light .section-description {
-  color: #555;
+  color: #c8c5c5;
 }
 
 html.light .persona {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(192, 190, 190, 0.05);
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -282,7 +282,7 @@ html.light .persona:hover img {
 }
 
 html.light .persona p {
-  color: #0A2540;
+  color: #e37575;
 }
 
 html.light .persona .role {
@@ -290,7 +290,7 @@ html.light .persona .role {
 }
 
 html.light .persona .bio {
-  color: #555;
+  color: #cfcbcb;
 }
 
 /* Adaptación light para la animación Tron: Colores atenuados para legibilidad */

@@ -10,7 +10,7 @@ export default function Footer() {
 
         <div className="footer-socials">
           <a
-            href="https://wa.me/0017543663591"
+            href="https://wa.me/17543663591"
             target="_blank"
             rel="noopener noreferrer"
             className="social-link whatsapp"

@@ -521,3 +521,109 @@ html.light .footer-socials .social-link:hover {
 .footer {
   background: linear-gradient(90deg, #000000, #1a1a1a) !important;
 }
+/* =============================== */
+/* Modal de bienvenida futurista   */
+/* =============================== */
+.welcome-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #000000, #1a1a1a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeOut 0.5s ease-out forwards;
+  animation-delay: 2.8s;
+}
+
+.welcome-content {
+  text-align: center;
+  color: #C0C0C0;
+  animation: popIn 0.8s ease-out;
+}
+
+.welcome-title {
+  font-size: 3rem;
+  background: linear-gradient(90deg, #C0C0C0, #DC143C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 25px #DC143C;
+  letter-spacing: 4px;
+  font-weight: 900;
+}
+
+.welcome-subtitle {
+  margin-top: 1rem;
+  color: #C0C0C0;
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+.loader {
+  margin: 2rem auto 0;
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(192, 192, 192, 0.3);
+  border-top: 4px solid #DC143C;
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
+}
+
+/* =============================== */
+/* Créditos Boldsites en el modal  */
+/* =============================== */
+.boldsites-text {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #C0C0C0;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.boldsites-text span {
+  color: #DC143C;
+  font-weight: 700;
+  text-shadow: 0 0 10px #DC143C;
+}
+
+.boldsites-logo {
+  width: 80px;
+  height: auto;
+  margin: 0.3rem auto 0;
+  filter: drop-shadow(0 0 8px #DC143C);
+  animation: fadeIn 1.8s ease-in 0.8s both;
+}
+
+/* Animaciones */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+    filter: blur(5px);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
