@@ -627,3 +627,175 @@ html.light .footer-socials .social-link:hover {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+/* =============================== */
+/* 🌅 NUEVO TEMA CLARO ROJO VIDRIO */
+/* =============================== */
+html.light {
+  background: linear-gradient(135deg, rgba(255, 80, 80, 0.1), rgba(255, 30, 30, 0.3)), #fafafa;
+  color: #1a1a1a;
+  backdrop-filter: blur(15px);
+  transition: all 0.5s ease;
+}
+
+/* Navbar y Footer con efecto vidrio rojo */
+html.light .navbar,
+html.light .footer {
+  background: rgba(255, 40, 40, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 25px rgba(255, 50, 50, 0.3);
+}
+
+/* Textos mantienen buena legibilidad */
+html.light h1,
+html.light h2,
+html.light h3,
+html.light p,
+html.light li,
+html.light span {
+  color: #1a1a1a !important;
+}
+
+/* Secciones con reflejo translúcido y energía roja */
+html.light .header,
+html.light .servicios,
+html.light .testimonios,
+html.light .nosotros {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 60, 60, 0.3);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 0 30px rgba(255, 60, 60, 0.25);
+  transition: all 0.4s ease;
+}
+
+/* Títulos con gradiente rojo-oro para elegancia */
+html.light .section-title,
+html.light .neon-title {
+  background: linear-gradient(90deg, #b00020, #ff5252, #ff8a80);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 15px rgba(255, 60, 60, 0.5);
+}
+
+/* Animación de brillo holográfico suave */
+@keyframes glassPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 70, 70, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 100, 100, 0.5);
+  }
+}
+
+/* Aplicar el pulso dinámico */
+html.light .header,
+html.light .servicios,
+html.light .testimonios,
+html.light .nosotros {
+  animation: glassPulse 5s infinite ease-in-out;
+}
+
+/* Botones con brillo rojo futurista */
+html.light button,
+html.light .btn {
+  background: linear-gradient(90deg, #ff3b3b, #b00020);
+  color: #fff !important;
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 15px rgba(255, 50, 50, 0.4);
+  transition: all 0.3s ease;
+}
+
+html.light button:hover,
+html.light .btn:hover {
+  background: linear-gradient(90deg, #ff5252, #ff8a80);
+  box-shadow: 0 0 25px rgba(255, 80, 80, 0.6);
+  transform: translateY(-3px);
+}
+
+/* Tarjetas flotantes con reflejo animado */
+html.light .testimonio-card,
+html.light .servicios li {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 60, 60, 0.3);
+  backdrop-filter: blur(18px);
+  transition: all 0.4s ease;
+}
+
+html.light .testimonio-card:hover,
+html.light .servicios li:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 0 30px rgba(255, 60, 60, 0.5);
+}
+
+/* =======================
+   Sección de Promociones
+======================= */
+.promo-section {
+  margin-top: 4rem;
+  padding: 3rem 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.promo-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #ff003c;
+  text-shadow: 0 0 12px rgba(255, 0, 80, 0.8);
+  margin-bottom: 2rem;
+  letter-spacing: 2px;
+}
+
+/* GRID 2 IMÁGENES */
+.promo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+}
+
+/* CARD VIDRIO FUTURISTA */
+.promo-card {
+  position: relative;
+  padding: 1rem;
+  border-radius: 18px;
+  overflow: hidden;
+  backdrop-filter: blur(15px) saturate(1.2);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 0, 60, 0.35);
+  box-shadow:
+    0 0 45px rgba(255, 0, 80, 0.25),
+    inset 0 0 60px rgba(255, 0, 80, 0.15);
+  transform: translateY(0);
+  transition: transform 0.45s ease, box-shadow 0.45s ease;
+}
+
+/* EFECTO HOVER → Flota */
+.promo-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow:
+    0 0 60px rgba(255, 0, 80, 0.35),
+    inset 0 0 80px rgba(255, 0, 80, 0.2);
+}
+
+/* IMÁGENES SIN RECORTE, SIN BORDES BLANCOS */
+.promo-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+
+  /* Glow suave */
+  filter: drop-shadow(0 0 14px rgba(255, 0, 80, 0.35));
+  transition: transform 0.6s ease;
+}
+
+/* Animación holográfica suave */
+.promo-image:hover {
+  transform: scale(1.05);
+}
+

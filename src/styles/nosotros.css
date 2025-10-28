@@ -301,3 +301,71 @@ html.light .fundadores::before {
     inset 0 0 15px rgba(255, 0, 122, 0.1) !important;
   filter: blur(0.5px) !important; /* Menos blur en light */
 }
+/* ====== NUEVAS MEJORAS ====== */
+
+/* Centrado absoluto de la card única */
+.fundadores {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.persona-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: floaty 6s ease-in-out infinite;
+}
+
+/* Movimiento sutil de levitación */
+@keyframes floaty {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* Efecto de energía dinámica y reflejos futuristas */
+.persona {
+  position: relative;
+  overflow: hidden;
+}
+
+.persona::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(0, 221, 235, 0.15) 50%, transparent 100%);
+  transform: translateX(-100%);
+  animation: hologlow 3.5s infinite linear;
+}
+
+@keyframes hologlow {
+  0% { transform: translateX(-100%); opacity: 0.4; }
+  50% { transform: translateX(100%); opacity: 0.8; }
+  100% { transform: translateX(200%); opacity: 0.4; }
+}
+
+/* Resplandor pulsante del borde neon */
+.persona:hover {
+  box-shadow: 0 0 25px rgba(0, 221, 235, 0.6), 0 0 45px rgba(255, 0, 122, 0.3);
+  transform: translateY(-10px) scale(1.03);
+  transition: all 0.4s ease;
+}
+
+/* Imagen con efecto 3D holográfico */
+.persona img {
+  animation: pulseGlow 4s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% {
+    filter: drop-shadow(0 0 8px #00ddeb) brightness(1);
+  }
+  100% {
+    filter: drop-shadow(0 0 18px #ff007a) brightness(1.2);
+  }
+}
+

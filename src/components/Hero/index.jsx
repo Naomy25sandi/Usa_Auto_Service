@@ -25,22 +25,22 @@ const Hero = () => {
   return (
     <section className="hero">
       <div className="hero-carousel">
-        <div
-          className={`carousel-slide ${fade ? "fade-in" : "fade-out"}`}
-          style={{
-            backgroundImage: `url(${workImages[currentIndex]})`,
-          }}
-        ></div>
 
-        {/* Marco animado tipo neón */}
-        <div className="neon-frame"></div>
+        {/* SLIDE */}
+        <div className={`carousel-slide ${fade ? "fade-in" : "fade-out"}`}>
+          <img
+            src={workImages[currentIndex]}
+            alt="Trabajo Realizado"
+            className="slide-image"
+          />
+        </div>
 
-        {/* Logo flotante */}
+        {/* LOGO */}
         <div className="slide-logo-overlay">
           <img src={Logo} alt="USA Auto Service Logo" className="small-logo" />
         </div>
 
-        {/* Indicadores */}
+        {/* INDICADORES */}
         <div className="carousel-indicators">
           {workImages.map((_, index) => (
             <span
