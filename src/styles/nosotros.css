@@ -187,7 +187,7 @@
   font-family: 'Montserrat', sans-serif;
   font-size: 0.95rem;
   line-height: 1.6;
-  color: #b0b3b8;
+  color: #f4f5f7;
   margin-top: 0.5rem;
 }
 
@@ -367,5 +367,49 @@ html.light .fundadores::before {
   100% {
     filter: drop-shadow(0 0 18px #ff007a) brightness(1.2);
   }
+}
+/* ============================================== */
+/* 🧠 FIX GLOBAL PARA CONTRASTE DEL MODO CLARO     */
+/* ============================================== */
+
+html.light body,
+html.light .nosotros,
+html.light .container {
+  color: #111 !important; /* Texto más oscuro para contraste */
+}
+
+/* Ajuste del fondo en modo claro para que no se confunda con el texto */
+html.light .nosotros {
+  background: linear-gradient(180deg, #f9f9f9, #e6e6e6) !important; /* Fondo más claro */
+}
+
+/* Textos principales más legibles */
+html.light .section-title {
+  background: linear-gradient(90deg, #b00020, #ff5252, #ff8a80);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(255, 60, 60, 0.3);
+}
+
+html.light .section-subtitle,
+html.light .section-description,
+html.light .persona p,
+html.light .persona .bio {
+  color: #1a1a1a !important; /* Negro suave para texto */
+}
+
+/* Roles y acentos */
+html.light .persona .role {
+  color: #d90429 !important; /* Rojo elegante de acento */
+}
+
+/* Imágenes con borde visible */
+html.light .persona img {
+  border: 3px solid rgba(255, 60, 60, 0.4);
+}
+
+/* Glow sutil para mantener el toque futurista */
+html.light .persona:hover {
+  box-shadow: 0 0 20px rgba(255, 60, 60, 0.3);
 }
 

@@ -223,7 +223,7 @@ html.dark .navbar-logo span {
 }
 
 html.dark .navbar-links a {
-  color: #C0C0C0 !important; /* Plata base para links */
+  color: #f0efef !important; /* Plata base para links */
 }
 
 html.dark .navbar-links a:hover {
@@ -262,7 +262,7 @@ html.dark .navbar-links a:hover {
 /* Ajuste ligero para light theme, incorporando toques del logo sin dominar */
 html.light .navbar {
   background: linear-gradient(180deg, #2a2a2a, #404040) !important; /* Gris oscuro para simular plata en luz */
-  color: #C0C0C0;
+  color: #070707;
 }
 
 html.light .navbar-logo {
@@ -283,7 +283,7 @@ html.light .navbar-links a:hover {
 }
 
 html.light .menu-icon {
-  color: #666 !important;
+  color: #0a0a0a !important;
 }
 
 html.light .theme-toggle {
@@ -402,7 +402,7 @@ html.light .navbar-links a:hover {
   width: 100%;
   background: none;
   border: none;
-  color: #C0C0C0; /* Plata base */
+  color: #0e0d0d; /* Plata base */
   padding: 0.8rem 1.5rem;
   text-align: left;
   font-size: 1rem;
@@ -500,4 +500,379 @@ html.light .lang-option:hover {
   html.light .lang-menu {
     box-shadow: 0 0 15px rgba(220, 20, 60, 0.3) !important;
   }
+}
+/* ========================================================= */
+/* 🌞 MODO CLARO GLOBAL REFINADO PARA NAVBAR Y FOOTER         */
+/* ========================================================= */
+
+/* --- NAVBAR --- */
+html.light .navbar {
+  background: linear-gradient(180deg, #ffffff, #f5f5f5) !important;
+  color: #111 !important;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08) !important;
+  border-bottom: 2px solid #dc143c !important; /* Acento rojo */
+}
+
+html.light .navbar-logo {
+  color: #111 !important;
+}
+
+html.light .navbar-links a {
+  color: #111 !important;
+  font-weight: 600;
+}
+
+html.light .navbar-links a:hover {
+  color: #dc143c !important;
+  text-shadow: 0 0 8px rgba(220, 20, 60, 0.4) !important;
+}
+
+html.light .theme-toggle {
+  color: #111 !important;
+}
+
+html.light .theme-toggle:hover {
+  color: #dc143c !important;
+  text-shadow: 0 0 8px rgba(220, 20, 60, 0.3);
+}
+
+html.light .menu-icon {
+  color: #111 !important;
+}
+
+/* Dropdown de idioma visible sobre fondo blanco */
+html.light .lang-menu {
+  background: #fff !important;
+  border: 1px solid #dc143c !important;
+  box-shadow: 0 0 15px rgba(220, 20, 60, 0.15) !important;
+}
+
+html.light .lang-option {
+  color: #111 !important;
+}
+
+html.light .lang-option:hover {
+  background: rgba(220, 20, 60, 0.08) !important;
+  color: #dc143c !important;
+}
+
+/* --- FOOTER --- */
+html.light .footer {
+  background: #ffffff !important;
+  border-top: 2px solid #dc143c !important;
+  color: #111 !important;
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.05) !important;
+}
+
+html.light .footer p {
+  color: #333 !important;
+}
+
+html.light .social-link {
+  color: #555 !important;
+  transition: all 0.3s ease;
+}
+
+html.light .social-link:hover {
+  color: #dc143c !important;
+  transform: translateY(-3px) scale(1.1);
+  text-shadow: 0 0 6px rgba(220, 20, 60, 0.4);
+}
+/* ================================================ */
+/* 🧠 FIX: Logo Text - Modo Claro                   */
+/* ================================================ */
+
+html.light .navbar-logo .logo-text {
+  color: #111 !important; /* negro sólido para contraste */
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 0 8px rgba(220, 20, 60, 0.15); /* leve glow rojo */
+  transition: all 0.3s ease;
+}
+
+/* Hover audaz del título */
+html.light .navbar-logo:hover .logo-text {
+  color: #dc143c !important; /* rojo del branding */
+  text-shadow: 0 0 10px rgba(220, 20, 60, 0.4);
+  transform: scale(1.03);
+}
+/* ========================================================= */
+/* 🪄 MAGIC MENU REFINADO                                    */
+/* ========================================================= */
+
+.magic-menu {
+  position: relative;
+  background: var(--nav-bg);
+  border-radius: 15px;
+  padding: 0.7rem 1.2rem;
+  margin: 1rem auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  width: fit-content;
+  transition: all 0.3s ease;
+}
+
+.magic-menu ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.magic-menu ul li {
+  position: relative;
+  width: 75px;
+  height: 75px;
+  text-align: center;
+  z-index: 1;
+}
+
+.magic-menu ul li a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  transition: all 0.3s;
+}
+
+.magic-menu ul li .icon {
+  font-size: 1.6rem;
+  transition: all 0.3s ease;
+}
+
+.magic-menu ul li .text {
+  font-size: 0.75rem;
+  opacity: 0;
+  transition: 0.3s;
+  margin-top: 0.3rem;
+}
+
+/* Activo */
+.magic-menu ul li.active a {
+  color: var(--active-text);
+}
+
+.magic-menu ul li.active .icon {
+  transform: translateY(-4px);
+}
+
+.magic-menu ul li.active .text {
+  opacity: 1;
+  color: var(--active-text);
+  font-weight: 700;
+}
+
+/* Círculo indicador */
+.magic-menu .indicator {
+  position: absolute;
+  top: 5px;
+  left: 7px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--nav-bg);
+  transition: transform 0.4s ease;
+  z-index: 0;
+  box-shadow: 0 0 18px var(--accent);
+}
+
+/* 🌞 MODO CLARO */
+html.light {
+  --nav-bg: #ffffff;
+  --text-color: #111;
+  --accent: #dc143c;
+  --active-text: #fff;
+}
+
+html.light .magic-menu ul li a:hover {
+  transform: translateY(-3px);
+}
+
+/* 🌑 MODO OSCURO */
+html.dark {
+  --nav-bg: #141414;
+  --text-color: #dcdcdc;
+  --accent: #dc143c;
+  --active-text: #fff;
+}
+
+html.dark .magic-menu ul li.active .text {
+  color: #fff;
+}
+
+html.dark .magic-menu .indicator {
+  background: #dc143c;
+  border: 3px solid #0a0a0a;
+}
+/* ========================================================= */
+/* 🌍 SELECTOR DE IDIOMA REFINADO CON BANDERAS               */
+/* ========================================================= */
+
+.language-dropdown {
+  position: relative;
+  display: inline-block;
+  margin-left: 1rem;
+}
+
+.lang-toggle {
+  background: var(--lang-bg);
+  border: 1px solid var(--accent);
+  color: var(--text-color);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.lang-toggle:hover {
+  transform: scale(1.05);
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 0 10px rgba(220, 20, 60, 0.3);
+}
+
+.flag-icon {
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.lang-menu {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: var(--lang-bg);
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0.3rem 0;
+  min-width: 160px;
+  z-index: 1001;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: all 0.25s ease;
+}
+
+.language-dropdown:hover .lang-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.lang-option {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.lang-option:hover {
+  background: rgba(220, 20, 60, 0.08);
+  color: var(--accent);
+  transform: translateX(5px);
+}
+
+/* 🌞 MODO CLARO */
+html.light {
+  --lang-bg: #ffffff;
+  --text-color: #111;
+  --accent: #dc143c;
+}
+
+/* 🌑 MODO OSCURO */
+html.dark {
+  --lang-bg: #0e0e0e;
+  --text-color: #f5f5f5;
+  --accent: #dc143c;
+}
+/* ========================================================= */
+/* 🌌 ANIMACIONES 3D PREMIUM PARA MENÚ MÁGICO                 */
+/* ========================================================= */
+
+/* Contenedor con perspectiva 3D */
+.magic-menu {
+  perspective: 800px;
+}
+
+/* Indicador con efecto de elevación y brillo pulsante */
+.magic-menu .indicator {
+  position: absolute;
+  top: 5px;
+  left: 7px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--nav-bg);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+  z-index: 0;
+  box-shadow: 0 0 18px var(--accent);
+  transform-style: preserve-3d;
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+/* Animación de “glow pulsante” */
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 15px rgba(220, 20, 60, 0.6);
+    transform: translateZ(0);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(220, 20, 60, 0.9);
+    transform: translateZ(8px);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(220, 20, 60, 0.6);
+    transform: translateZ(0);
+  }
+}
+
+/* Íconos con animación 3D al activarse */
+.magic-menu ul li .icon {
+  transition: transform 0.4s ease, text-shadow 0.4s ease;
+  transform-style: preserve-3d;
+}
+
+.magic-menu ul li.active .icon {
+  transform: translateY(-5px) rotateX(20deg) scale(1.1);
+  text-shadow: 0 0 12px rgba(220, 20, 60, 0.8);
+}
+
+/* Texto con entrada elegante y leve flotación */
+.magic-menu ul li .text {
+  transition: opacity 0.4s ease, transform 0.3s ease;
+}
+
+.magic-menu ul li.active .text {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+/* Hover con profundidad */
+.magic-menu ul li:hover a {
+  transform: translateY(-4px) rotateX(8deg);
 }

@@ -1,0 +1,58 @@
+/* ========================================================= */
+/* 🌞 GLOBAL LIGHT MODE: Fondo blanco limpio y moderno       */
+/* ========================================================= */
+
+html.light, 
+html.light body, 
+html.light #root, 
+html.light .App {
+  background: linear-gradient(180deg, #ffffff, #f4f4f4) !important;
+  color: #111 !important;
+  transition: all 0.4s ease-in-out;
+}
+
+/* Ajuste para secciones y contenedores */
+html.light section,
+html.light .container,
+html.light main {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: #111 !important;
+  backdrop-filter: blur(12px);
+  border-radius: 10px;
+}
+
+/* Ajustes para texto y encabezados */
+html.light h1,
+html.light h2,
+html.light h3,
+html.light p,
+html.light span,
+html.light li {
+  color: #111 !important;
+}
+
+/* Navbar y Footer translúcidos en modo claro */
+html.light .navbar,
+html.light .footer {
+  background: rgba(255, 255, 255, 0.75) !important;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+/* Botones y acentos */
+html.light button,
+html.light .btn {
+  background: linear-gradient(90deg, #ff3b3b, #b00020);
+  color: #fff !important;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(255, 60, 60, 0.4);
+  transition: all 0.3s ease;
+}
+
+html.light button:hover,
+html.light .btn:hover {
+  background: linear-gradient(90deg, #ff6b6b, #ff8a80);
+  transform: translateY(-3px);
+}

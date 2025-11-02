@@ -1,12 +1,17 @@
 import "../../styles/footer.css";
 import { FaWhatsapp, FaInstagram, FaFacebook } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
+  const { t } = useTranslation();
+
   return (
     <footer className="footer">
       <div className="footer-container">
-        <p>© {new Date().getFullYear()} USA Auto-Service – Todos los derechos reservados</p>
-        <p>Lake Worth, Florida, Estados Unidos</p>
+        <p>
+          © {new Date().getFullYear()} USA Auto-Service – {t("footer.rights")}
+        </p>
+        <p>{t("footer.location")}</p>
 
         <div className="footer-socials">
           <a

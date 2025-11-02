@@ -4,10 +4,12 @@ import Logo from "../../assets/logo-taller.jpg";
 import foto1 from "../../assets/foto1.jpg";
 import foto2 from "../../assets/foto2.jpg";
 import foto3 from "../../assets/foto3.jpg";
+import { useTranslation } from "react-i18next";
 
 const workImages = [foto1, foto2, foto3];
 
 const Hero = () => {
+  const { t } = useTranslation(); // ✅ Hook de traducción global
   const [currentIndex, setCurrentIndex] = useState(0);
   const [fade, setFade] = useState(true);
 
@@ -25,12 +27,11 @@ const Hero = () => {
   return (
     <section className="hero">
       <div className="hero-carousel">
-
         {/* SLIDE */}
         <div className={`carousel-slide ${fade ? "fade-in" : "fade-out"}`}>
           <img
             src={workImages[currentIndex]}
-            alt="Trabajo Realizado"
+            alt={t("hero.alt")} // ✅ Texto alternativo traducible
             className="slide-image"
           />
         </div>
@@ -38,6 +39,11 @@ const Hero = () => {
         {/* LOGO */}
         <div className="slide-logo-overlay">
           <img src={Logo} alt="USA Auto Service Logo" className="small-logo" />
+
+          {/* ✅ Texto de bienvenida traducible */}
+          <div className="hero-text">
+         
+          </div>
         </div>
 
         {/* INDICADORES */}

@@ -1,32 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import Footer from "../../components/Footer/index";
 import Navbar from "../../components/Navbar/index";
 import Hero from "../../components/Hero/index";
 import "../../styles/home.css";
 import Logo from "../../assets/Boldsites-logo.png";
-
+import { useTranslation } from "react-i18next";
 
 function PaginaPrincipal() {
   const [showModal, setShowModal] = useState(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowModal(false);
-    }, 5000 ); // 5 segundos
-
+    const timer = setTimeout(() => setShowModal(false), 5000);
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <div className="pagina-principal">
-      {/* Modal de bienvenida */}
+      {/* MODAL DE BIENVENIDA */}
       {showModal && (
         <div className="welcome-modal">
           <div className="welcome-content">
             <h1 className="welcome-title">USA AUTO SERVICE</h1>
-            <p className="boldsites-text">By <span>Boldsites</span></p>
+            <p className="boldsites-text">
+              By <span>Boldsites</span>
+            </p>
             <img src={Logo} alt="Boldsites Logo" className="boldsites-logo" />
-            <p className="welcome-subtitle">Cargando experiencia...</p>
+            <p className="welcome-subtitle">{t("home.loading")}</p>
             <div className="loader"></div>
           </div>
         </div>
@@ -37,90 +37,101 @@ function PaginaPrincipal() {
           <Navbar />
           <Hero />
 
-          {/* Sección Bienvenida */}
+          {/* BIENVENIDA */}
           <header className="header">
             <div className="container">
-              <h1 className="neon-title">Bienvenidos a USA Auto Service</h1>
-              <p className="intro-text">
-             
-              </p>
+              <h1 className="neon-title">{t("home.welcomeTitle")}</h1>
+              <p className="intro-text">{t("home.introText")}</p>
             </div>
           </header>
 
-          
-
-          {/* Servicios */}
+          {/* SERVICIOS */}
           <section className="servicios">
             <div className="container">
-              <h2 className="section-title">Nuestros Servicios</h2>
-              <p className="section-subtitle">
-                Ofrecemos un excelente servicio para que tu auto quede en óptimas condiciones.
-              </p>
+              <h2 className="section-title">{t("home.servicesTitle")}</h2>
+              <p className="section-subtitle">{t("home.servicesSubtitle")}</p>
+
               <ul>
                 <li>
-                  Mantenimiento Preventivo:
-                  <span className="descripcion"> Mantenga su vehículo en óptimas condiciones.</span>
+                  {t("home.services.maintenance.title")}:
+                  <span className="descripcion">
+                    {" "}
+                    {t("home.services.maintenance.desc")}
+                  </span>
                 </li>
                 <li>
-                  Reparaciones Generales:
-                  <span className="descripcion">Soluciones precisas y duraderas para cualquier problema.</span>
+                  {t("home.services.repairs.title")}:
+                  <span className="descripcion">
+                    {" "}
+                    {t("home.services.repairs.desc")}
+                  </span>
                 </li>
                 <li>
-                  Frenos:
-                  <span className="descripcion">Seguridad y rendimiento garantizados con inspección experta.</span>
+                  {t("home.services.brakes.title")}:
+                  <span className="descripcion">
+                    {" "}
+                    {t("home.services.brakes.desc")}
+                  </span>
                 </li>
                 <li>
-                  Aire Acondicionado:
-                  <span className="descripcion">Diagnóstico y reparación para mantenerlo fresco.</span>
+                  {t("home.services.ac.title")}:
+                  <span className="descripcion">
+                    {" "}
+                    {t("home.services.ac.desc")}
+                  </span>
                 </li>
                 <li>
-                  Suspensión:
-                  <span className="descripcion">Para un viaje cómodo y seguro con alineación experta.</span>
+                  {t("home.services.suspension.title")}:
+                  <span className="descripcion">
+                    {" "}
+                    {t("home.services.suspension.desc")}
+                  </span>
                 </li>
                 <li>
-                  Cambio de aceite:
-                  <span className="descripcion">Rápido, limpio y profesional con aceites premium.</span>
+                  {t("home.services.oil.title")}:
+                  <span className="descripcion">
+                    {" "}
+                    {t("home.services.oil.desc")}
+                  </span>
                 </li>
                 <li>
-                  Diagnóstico computarizado:
-                  <span className="descripcion">Tecnología avanzada para detectar problemas con precisión.</span>
+                  {t("home.services.diagnostic.title")}:
+                  <span className="descripcion">
+                    {" "}
+                    {t("home.services.diagnostic.desc")}
+                  </span>
                 </li>
                 <li>
-                  Llantas:
-                  <span className="descripcion">Venta, instalación y balanceo de llantas nuevas y usadas de calidad.</span>
+                  {t("home.services.tires.title")}:
+                  <span className="descripcion">
+                    {" "}
+                    {t("home.services.tires.desc")}
+                  </span>
                 </li>
               </ul>
             </div>
           </section>
 
-          {/* Testimonios */}
+          {/* TESTIMONIOS */}
           <section className="testimonios">
             <div className="container">
-              <h2 className="section-title">Testimonios</h2>
-              <p className="section-subtitle">
-                Escucha lo que nuestros clientes dicen sobre nosotros.
-              </p>
+              <h2 className="section-title">{t("home.testimonialsTitle")}</h2>
+              <p className="section-subtitle">{t("home.testimonialsSubtitle")}</p>
+
               <div className="testimonio-cards">
                 <div className="testimonio-card">
-                  <img src="" alt="Cliente 3" />
                   <h3>Anastasia McLemar</h3>
-                  <p className="testimonio-text">
-                    "USA Auto Service mantiene nuestros dos autos familiares con precisión experta, diagnosticando fallos computarizados y restaurando la suspensión para viajes seguros con los niños..."
-                  </p>
+                  <p className="testimonio-text">{t("home.testimonials.1")}</p>
                 </div>
+
                 <div className="testimonio-card">
-                  <img src="" alt="Cliente 2" />
                   <h3>Benito Ramires</h3>
-                  <p className="testimonio-text">
-                    "USA Auto Service cuida mi flota de vehículos con un enfoque impecable, optimizando el rendimiento y asegurando una seguridad total en cada ruta..."
-                  </p>
+                  <p className="testimonio-text">{t("home.testimonials.2")}</p>
                 </div>
+
                 <div className="testimonio-card">
-                  <img src="" alt="Cliente 1" />
                   <h3>Phillipe Jhonson</h3>
-                  <p className="testimonio-text">
-                    "USA Auto Service resuelve mis problemas de auto con maestría, equilibrando llantas y refrescando el aire acondicionado para un confort total..."
-                  </p>
+                  <p className="testimonio-text">{t("home.testimonials.3")}</p>
                 </div>
               </div>
             </div>
