@@ -1,11 +1,13 @@
-// containers/contacto/index.jsx
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
 import Navbar from "../../components/Navbar/index";
-import "../../styles/contacto.css"
 import Footer from "../../components/Footer/index";
+import "../../styles/contacto.css";
+import { useTranslation } from "react-i18next";
 
 export default function ContactForm() {
+  const { t } = useTranslation();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,11 +20,11 @@ export default function ContactForm() {
 
   const validate = () => {
     const newErrors = {};
-    if (!formData.name.trim()) newErrors.name = "El nombre es obligatorio";
-    if (!formData.email.trim()) newErrors.email = "El email es obligatorio";
+    if (!formData.name.trim()) newErrors.name = t("contact.errors.name");
+    if (!formData.email.trim()) newErrors.email = t("contact.errors.emailEmpty");
     else if (!/\S+@\S+\.\S+/.test(formData.email))
-      newErrors.email = "Email inválido";
-    if (!formData.message.trim()) newErrors.message = "El mensaje es obligatorio";
+      newErrors.email = t("contact.errors.emailInvalid");
+    if (!formData.message.trim()) newErrors.message = t("contact.errors.message");
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -46,12 +48,12 @@ export default function ContactForm() {
     emailjs
       .send(serviceID, templateID, formData, userID)
       .then(() => {
-        setSuccessMsg("¡Mensaje enviado con éxito! Gracias 😊");
+        setSuccessMsg(t("contact.success"));
         setFormData({ name: "", email: "", message: "" });
         setSending(false);
       })
       .catch((error) => {
-        setSuccessMsg(`Error al enviar: ${error.text || error.message}`);
+        setSuccessMsg(`${t("contact.error")} ${error.text || error.message}`);
         setSending(false);
       });
   };
@@ -61,16 +63,16 @@ export default function ContactForm() {
       <Navbar />
       <div className="contact-content">
         <form className="contact-form" onSubmit={handleSubmit} noValidate>
-          <h2 className="contact-form__title">Contacto USA Auto Service</h2>
+          <h2 className="contact-form__title">{t("contact.title")}</h2>
           <div className="contact-form__container">
             <label htmlFor="name" className="contact-form__label">
-              Nombre
+              {t("contact.fields.name")}
             </label>
             <input
               type="text"
               id="name"
               name="name"
-              placeholder="Tu nombre completo"
+              placeholder={t("contact.placeholders.name")}
               value={formData.name}
               onChange={handleChange}
               className={`contact-form__input ${errors.name ? "contact-form__input--error" : ""}`}
@@ -78,13 +80,13 @@ export default function ContactForm() {
             {errors.name && <p className="contact-form__error">{errors.name}</p>}
 
             <label htmlFor="email" className="contact-form__label">
-              Correo Electrónico
+              {t("contact.fields.email")}
             </label>
             <input
               type="email"
               id="email"
               name="email"
-              placeholder="tuemail@ejemplo.com"
+              placeholder={t("contact.placeholders.email")}
               value={formData.email}
               onChange={handleChange}
               className={`contact-form__input ${errors.email ? "contact-form__input--error" : ""}`}
@@ -92,12 +94,12 @@ export default function ContactForm() {
             {errors.email && <p className="contact-form__error">{errors.email}</p>}
 
             <label htmlFor="message" className="contact-form__label">
-              Mensaje
+              {t("contact.fields.message")}
             </label>
             <textarea
               id="message"
               name="message"
-              placeholder="Escribe tu mensaje aquí..."
+              placeholder={t("contact.placeholders.message")}
               value={formData.message}
               onChange={handleChange}
               className={`contact-form__textarea ${errors.message ? "contact-form__input--error" : ""}`}
@@ -105,7 +107,7 @@ export default function ContactForm() {
             {errors.message && <p className="contact-form__error">{errors.message}</p>}
 
             <button type="submit" className="contact-form__button" disabled={sending}>
-              {sending ? "Enviando..." : "Enviar"}
+              {sending ? t("contact.sending") : t("contact.send")}
             </button>
 
             {successMsg && <p className="contact-form__success">{successMsg}</p>}
