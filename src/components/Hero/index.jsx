@@ -9,16 +9,16 @@ import { useTranslation } from "react-i18next";
 const workImages = [foto1, foto2, foto3];
 
 const Hero = () => {
-  const { t } = useTranslation(); // ✅ Hook de traducción global
+  const { t } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [fade, setFade] = useState(true);
+  const [animation, setAnimation] = useState("fadeInSlide");
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setFade(false);
+      setAnimation("fadeOutSlide");
       setTimeout(() => {
         setCurrentIndex((prev) => (prev + 1) % workImages.length);
-        setFade(true);
+        setAnimation("fadeInSlide");
       }, 400);
     }, 5000);
     return () => clearInterval(interval);
@@ -28,10 +28,10 @@ const Hero = () => {
     <section className="hero">
       <div className="hero-carousel">
         {/* SLIDE */}
-        <div className={`carousel-slide ${fade ? "fade-in" : "fade-out"}`}>
+        <div className={`carousel-slide ${animation}`}>
           <img
             src={workImages[currentIndex]}
-            alt={t("hero.alt")} // ✅ Texto alternativo traducible
+            alt={t("hero.alt")}
             className="slide-image"
           />
         </div>
@@ -39,11 +39,6 @@ const Hero = () => {
         {/* LOGO */}
         <div className="slide-logo-overlay">
           <img src={Logo} alt="USA Auto Service Logo" className="small-logo" />
-
-          {/* ✅ Texto de bienvenida traducible */}
-          <div className="hero-text">
-         
-          </div>
         </div>
 
         {/* INDICADORES */}

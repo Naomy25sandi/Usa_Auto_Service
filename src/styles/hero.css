@@ -136,3 +136,82 @@ html.light .hero {
   box-shadow: 0 0 10px #DC143C;
   transform: scale(1.2);
 }
+/* ===========================
+   🎞️ ANIMACIONES DE TRANSICIÓN ENTRE SLIDES
+=========================== */
+
+/* Desvanecimiento suave con movimiento hacia arriba */
+@keyframes fadeInSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(25px) scale(0.98);
+    filter: blur(3px);
+  }
+  60% {
+    opacity: 0.7;
+    transform: translateY(-5px) scale(1.01);
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes fadeOutSlide {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+}
+
+/* Variantes para combinaciones aleatorias (puedes usarlas después si querés más dinamismo) */
+@keyframes slideRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-60px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Clases aplicadas dinámicamente por React */
+.fadeInSlide {
+  animation: fadeInSlide 1s ease forwards;
+}
+
+.fadeOutSlide {
+  animation: fadeOutSlide 0.8s ease forwards;
+}
+
+/* Efecto visual adicional al cambiar de imagen */
+.carousel-slide img {
+  transition: transform 0.6s ease, opacity 0.6s ease, filter 0.6s ease;
+}
+
+.carousel-slide.fadeInSlide img {
+  filter: drop-shadow(0 0 12px rgba(255, 0, 60, 0.4));
+  transform: scale(1.02);
+}
+
+.carousel-slide.fadeOutSlide img {
+  filter: blur(2px) brightness(0.8);
+}

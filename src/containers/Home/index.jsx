@@ -120,12 +120,12 @@ function PaginaPrincipal() {
 
               <div className="testimonio-cards">
                 <div className="testimonio-card">
-                  <h3>Anastasia McLemar</h3>
+                  <h3>Sophia Paradela</h3>
                   <p className="testimonio-text">{t("home.testimonials.1")}</p>
                 </div>
 
                 <div className="testimonio-card">
-                  <h3>Benito Ramires</h3>
+                  <h3>Andrés Ramires</h3>
                   <p className="testimonio-text">{t("home.testimonials.2")}</p>
                 </div>
 

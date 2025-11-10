@@ -48,93 +48,104 @@ export default function Navbar() {
     { to: "/contacto", icon: <FaEnvelope />, label: t("navbar.contact") },
   ];
 
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!e.target.closest(".language-dropdown")) setShowLang(false);
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
+        {/* 🔙 Botón volver */}
         {!isHome && (
           <button className="back-button" onClick={() => navigate(-1)}>
             <FaArrowLeft />
           </button>
         )}
 
-        <Link to="/" className="navbar-logo">
-          <img src={Logo} alt="Boldsites Logo" />
-          <span className="logo-text">USA AUTO SERVICE</span>
-        </Link>
+        {/* 🧱 Recuadro metálico que encierra TODO */}
+        <div className="navbar-box full-width">
+          {/* 🔧 Logo + texto */}
+          <Link to="/" className="navbar-logo">
+            <img src={Logo} alt="USA Auto Service Logo" />
+            <span className="logo-text">USA AUTO SERVICE</span>
+          </Link>
 
-        {/* 🌟 MAGIC NAVIGATION MENU */}
-        <div className="magic-menu">
-          <ul>
-            {menuItems.map((item, index) => (
-              <li
-                key={index}
-                className={activeIndex === index ? "active" : ""}
-                onMouseEnter={() => setActiveIndex(index)}
-              >
-                <Link to={item.to}>
-                  <span className="icon">{item.icon}</span>
-                  <span className="text">{item.label}</span>
-                </Link>
-              </li>
-            ))}
-            <div
-              className="indicator"
-              style={{ transform: `translateX(${activeIndex * 75}px)` }}
-            ></div>
-          </ul>
-        </div>
+          {/* 🌟 Menú mágico */}
+          <div className="magic-menu">
+            <ul>
+              {menuItems.map((item, index) => (
+                <li
+                  key={index}
+                  className={activeIndex === index ? "active" : ""}
+                  onMouseEnter={() => setActiveIndex(index)}
+                >
+                  <Link to={item.to}>
+                    <span className="icon">{item.icon}</span>
+                    <span className="text">{item.label}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        <button className="theme-toggle" onClick={toggleDarkMode}>
-          {darkMode ? <FaSun /> : <FaMoon />}
-        </button>
-
-        {/* 🌍 Selector de idioma */}
-        <div className="language-dropdown">
-          <button className="lang-toggle" onClick={toggleLang}>
-            <svg className="flag-icon" width="20" height="15" viewBox="0 0 20 15">
-              {language === "es" ? (
-                <>
-                  <rect width="20" height="15" fill="#AA151B" />
-                  <rect y="4" height="7" width="20" fill="#F1BF00" />
-                </>
-              ) : (
-                <>
-                  <rect width="20" height="15" fill="#012169" />
-                  <path d="M0,0 L20,15 M20,0 L0,15" stroke="#fff" strokeWidth="2" />
-                  <path d="M0,0 L20,15 M20,0 L0,15" stroke="#C8102E" strokeWidth="1" />
-                  <path d="M10,0 v15 M0,7.5 h20" stroke="#fff" strokeWidth="3" />
-                  <path d="M10,0 v15 M0,7.5 h20" stroke="#C8102E" strokeWidth="2" />
-                </>
-              )}
-            </svg>
-            {language === "es" ? "ES" : "EN"}
+          {/* ☀️🌙 Modo oscuro / claro */}
+          <button className="theme-toggle" onClick={toggleDarkMode}>
+            {darkMode ? <FaSun /> : <FaMoon />}
           </button>
 
-          {showLang && (
-            <ul className="lang-menu">
-              <li>
-                <button className="lang-option" onClick={() => selectLanguage("es")}>
-                  <svg className="flag-icon" width="20" height="15" viewBox="0 0 20 15">
+          {/* 🌍 Selector de idioma */}
+          <div className="language-dropdown">
+            <button className="lang-toggle" onClick={toggleLang}>
+              <svg className="flag-icon" width="20" height="15" viewBox="0 0 20 15">
+                {language === "es" ? (
+                  <>
                     <rect width="20" height="15" fill="#AA151B" />
                     <rect y="4" height="7" width="20" fill="#F1BF00" />
-                  </svg>
-                  Español
-                </button>
-              </li>
-              <li>
-                <button className="lang-option" onClick={() => selectLanguage("en")}>
-                  <svg className="flag-icon" width="20" height="15" viewBox="0 0 20 15">
+                  </>
+                ) : (
+                  <>
                     <rect width="20" height="15" fill="#012169" />
                     <path d="M0,0 L20,15 M20,0 L0,15" stroke="#fff" strokeWidth="2" />
                     <path d="M0,0 L20,15 M20,0 L0,15" stroke="#C8102E" strokeWidth="1" />
                     <path d="M10,0 v15 M0,7.5 h20" stroke="#fff" strokeWidth="3" />
                     <path d="M10,0 v15 M0,7.5 h20" stroke="#C8102E" strokeWidth="2" />
-                  </svg>
-                  English
-                </button>
-              </li>
-            </ul>
-          )}
+                  </>
+                )}
+              </svg>
+              {language === "es" ? "ES" : "EN"}
+              <span className="arrow">▾</span>
+            </button>
+
+            {showLang && (
+              <ul className="lang-menu">
+                <li>
+                  <button className="lang-option" onClick={() => selectLanguage("es")}>
+                    <svg className="flag-icon" width="20" height="15" viewBox="0 0 20 15">
+                      <rect width="20" height="15" fill="#AA151B" />
+                      <rect y="4" height="7" width="20" fill="#F1BF00" />
+                    </svg>
+                    Español
+                  </button>
+                </li>
+                <li>
+                  <button className="lang-option" onClick={() => selectLanguage("en")}>
+                    <svg className="flag-icon" width="20" height="15" viewBox="0 0 20 15">
+                      <rect width="20" height="15" fill="#012169" />
+                      <path d="M0,0 L20,15 M20,0 L0,15" stroke="#fff" strokeWidth="2" />
+                      <path d="M0,0 L20,15 M20,0 L0,15" stroke="#C8102E" strokeWidth="1" />
+                      <path d="M10,0 v15 M0,7.5 h20" stroke="#fff" strokeWidth="3" />
+                      <path d="M10,0 v15 M0,7.5 h20" stroke="#C8102E" strokeWidth="2" />
+                    </svg>
+                    English
+                  </button>
+                </li>
+              </ul>
+            )}
+          </div>
         </div>
       </div>
     </nav>
