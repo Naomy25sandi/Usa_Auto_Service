@@ -97,55 +97,61 @@ export default function Navbar() {
             {darkMode ? <FaSun /> : <FaMoon />}
           </button>
 
-          {/* 🌍 Selector de idioma */}
-          <div className="language-dropdown">
-            <button className="lang-toggle" onClick={toggleLang}>
-              <svg className="flag-icon" width="20" height="15" viewBox="0 0 20 15">
-                {language === "es" ? (
-                  <>
-                    <rect width="20" height="15" fill="#AA151B" />
-                    <rect y="4" height="7" width="20" fill="#F1BF00" />
-                  </>
-                ) : (
-                  <>
-                    <rect width="20" height="15" fill="#012169" />
-                    <path d="M0,0 L20,15 M20,0 L0,15" stroke="#fff" strokeWidth="2" />
-                    <path d="M0,0 L20,15 M20,0 L0,15" stroke="#C8102E" strokeWidth="1" />
-                    <path d="M10,0 v15 M0,7.5 h20" stroke="#fff" strokeWidth="3" />
-                    <path d="M10,0 v15 M0,7.5 h20" stroke="#C8102E" strokeWidth="2" />
-                  </>
-                )}
-              </svg>
-              {language === "es" ? "ES" : "EN"}
-              <span className="arrow">▾</span>
-            </button>
+         {/* 🌍 Selector de idioma */}
+<div className={`language-dropdown ${showLang ? "open" : ""}`}>
+  <button className="lang-toggle" onClick={toggleLang}>
+    <svg className="flag-icon" width="20" height="15" viewBox="0 0 20 15">
+      {language === "es" ? (
+        <>
+          <rect width="20" height="15" fill="#AA151B" />
+          <rect y="4" height="7" width="20" fill="#F1BF00" />
+        </>
+      ) : (
+        <>
+          <rect width="20" height="15" fill="#012169" />
+          <path d="M0,0 L20,15 M20,0 L0,15" stroke="#fff" strokeWidth="2" />
+          <path d="M0,0 L20,15 M20,0 L0,15" stroke="#C8102E" strokeWidth="1" />
+          <path d="M10,0 v15 M0,7.5 h20" stroke="#fff" strokeWidth="3" />
+          <path d="M10,0 v15 M0,7.5 h20" stroke="#C8102E" strokeWidth="2" />
+        </>
+      )}
+    </svg>
+    {language === "es" ? "ES" : "EN"} ▾
+  </button>
 
-            {showLang && (
-              <ul className="lang-menu">
-                <li>
-                  <button className="lang-option" onClick={() => selectLanguage("es")}>
-                    <svg className="flag-icon" width="20" height="15" viewBox="0 0 20 15">
-                      <rect width="20" height="15" fill="#AA151B" />
-                      <rect y="4" height="7" width="20" fill="#F1BF00" />
-                    </svg>
-                    Español
-                  </button>
-                </li>
-                <li>
-                  <button className="lang-option" onClick={() => selectLanguage("en")}>
-                    <svg className="flag-icon" width="20" height="15" viewBox="0 0 20 15">
-                      <rect width="20" height="15" fill="#012169" />
-                      <path d="M0,0 L20,15 M20,0 L0,15" stroke="#fff" strokeWidth="2" />
-                      <path d="M0,0 L20,15 M20,0 L0,15" stroke="#C8102E" strokeWidth="1" />
-                      <path d="M10,0 v15 M0,7.5 h20" stroke="#fff" strokeWidth="3" />
-                      <path d="M10,0 v15 M0,7.5 h20" stroke="#C8102E" strokeWidth="2" />
-                    </svg>
-                    English
-                  </button>
-                </li>
-              </ul>
-            )}
-          </div>
+  {showLang && (
+    <ul className="lang-menu visible">
+      <li>
+        <button
+          className="lang-option"
+          onClick={() => selectLanguage("es")}
+        >
+          <svg className="flag-icon" width="20" height="15" viewBox="0 0 20 15">
+            <rect width="20" height="15" fill="#AA151B" />
+            <rect y="4" height="7" width="20" fill="#F1BF00" />
+          </svg>
+          Español
+        </button>
+      </li>
+      <li>
+        <button
+          className="lang-option"
+          onClick={() => selectLanguage("en")}
+        >
+          <svg className="flag-icon" width="20" height="15" viewBox="0 0 20 15">
+            <rect width="20" height="15" fill="#012169" />
+            <path d="M0,0 L20,15 M20,0 L0,15" stroke="#fff" strokeWidth="2" />
+            <path d="M0,0 L20,15 M20,0 L0,15" stroke="#C8102E" strokeWidth="1" />
+            <path d="M10,0 v15 M0,7.5 h20" stroke="#fff" strokeWidth="3" />
+            <path d="M10,0 v15 M0,7.5 h20" stroke="#C8102E" strokeWidth="2" />
+          </svg>
+          English
+        </button>
+      </li>
+    </ul>
+  )}
+</div>
+
         </div>
       </div>
     </nav>

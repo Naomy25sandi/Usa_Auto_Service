@@ -31,6 +31,85 @@
 }
 
 /* ========================================================= */
+/* 🧱 RECUADRO GLOBAL DEL NAVBAR (CORREGIDO: OVERFLOW VISIBLE PARA DROPDOWN) */
+/* ========================================================= */
+.navbar-box {
+  flex: 1;
+  background: linear-gradient(180deg, #e5e5e5, #f0f0f0);
+  border-radius: 18px;
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow:
+    inset 0 2px 6px rgba(255, 255, 255, 0.7),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.25),
+    0 4px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(180, 180, 180, 0.5);
+  position: relative;
+  /* FIX: Cambiado a visible para evitar clipping del dropdown */
+  overflow: visible;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* Modo oscuro versión metálica inversa */
+html.dark .navbar-box {
+  background: linear-gradient(180deg, #1b1b1b, #2c2c2c);
+  border: 1px solid rgba(220, 20, 60, 0.3);
+  box-shadow:
+    inset 0 2px 8px rgba(255, 255, 255, 0.08),
+    inset 0 -2px 8px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(220, 20, 60, 0.2);
+}
+
+/* Efecto brillo lateral */
+.navbar-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.15), rgba(255,255,255,0));
+  transform: skewX(-25deg);
+  transition: all 0.8s ease;
+}
+
+.navbar-box:hover::before {
+  left: 110%;
+}
+
+/* Asegurar que el magic-menu y el selector queden dentro */
+.navbar-box .magic-menu {
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.navbar-box .theme-toggle,
+.navbar-box .language-dropdown {
+  position: relative;
+  z-index: 10;
+  margin-left: 1rem;
+}
+
+/* Responsive: compactar */
+@media (max-width: 768px) {
+  .navbar-box {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .navbar-box .magic-menu {
+    justify-content: center;
+  }
+}
+
+/* ========================================================= */
 /* 🏎️ LOGO ESTILO METÁLICO                                   */
 /* ========================================================= */
 .navbar-logo {
@@ -109,79 +188,166 @@ html.light {
 }
 
 /* ========================================================= */
-/* 🌍 SELECTOR DE IDIOMA                                     */
+/* 🌍 SELECTOR DE IDIOMA (FIX: UNIFICADO Y SIN CONFLICTOS)   */
 /* ========================================================= */
 
 .language-dropdown {
   position: relative;
   display: inline-block;
+  z-index: 1001; /* Alto para flotar sobre todo */
   margin-left: 1rem;
 }
 
 .lang-toggle {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--accent);
+  background: linear-gradient(180deg, #dc143c, #a9102e);
+  border: 1px solid #dc143c;
   border-radius: 8px;
-  color: var(--text);
-  font-weight: 600;
+  color: #fff;
+  font-weight: 700;
   font-size: 1rem;
-  padding: 0.4rem 0.8rem;
+  padding: 0.5rem 1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.6rem;
   transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(220, 20, 60, 0.4);
+  position: relative; /* Para la flecha */
 }
 
 .lang-toggle:hover {
-  background: var(--accent);
-  color: #fff;
   transform: scale(1.05);
-  box-shadow: 0 0 12px var(--accent);
+  box-shadow: 0 0 20px rgba(220, 20, 60, 0.8);
 }
 
+.lang-toggle::after {
+  content: "▾";
+  font-size: 0.8rem;
+  margin-left: 0.3rem;
+  color: #fff;
+  transition: transform 0.3s ease;
+}
+
+.language-dropdown.open .lang-toggle::after {
+  transform: rotate(180deg);
+}
+
+/* FIX: Regla unificada para .lang-menu - Usa estado React (.visible y .open) */
 .lang-menu {
   position: absolute;
-  top: 110%;
+  top: calc(100% + 12px); /* Más espacio para evitar solapamiento */
   right: 0;
-  background: var(--menu-bg);
-  border: 1px solid var(--accent);
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(220, 20, 60, 0.4);
+  min-width: 190px;
+  background: linear-gradient(180deg, #1a1a1a, #0b0b0b);
+  border: 1px solid rgba(220, 20, 60, 0.6);
+  border-radius: 14px;
+  box-shadow:
+    0 6px 25px rgba(220, 20, 60, 0.35),
+    0 0 30px rgba(220, 20, 60, 0.25),
+    inset 0 1px 6px rgba(255, 255, 255, 0.1);
   list-style: none;
   margin: 0;
-  padding: 0.4rem 0;
-  min-width: 150px;
-  display: none;
+  padding: 0.6rem 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-12px) scale(0.96);
+  pointer-events: none;
+  transition: all 0.4s ease;
+  overflow: hidden;
+  backdrop-filter: blur(6px) saturate(1.2);
+  z-index: 1002; /* Superior al dropdown */
 }
 
+/* Estado abierto via React (showLang) */
+.language-dropdown.open .lang-menu.visible,
+.language-dropdown.open .lang-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+  animation: dropdownLift 0.45s cubic-bezier(0.3, 1.4, 0.3, 1) forwards;
+}
+
+/* Soporte legacy para hover (opcional, pero no principal) */
 .language-dropdown:hover .lang-menu {
-  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
 }
 
+/* Animación metálica al aparecer */
+@keyframes dropdownLift {
+  0% {
+    transform: translateY(-15px) scale(0.95);
+    box-shadow: 0 0 0 rgba(220, 20, 60, 0);
+  }
+  60% {
+    transform: translateY(2px) scale(1.02);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 0 25px rgba(220, 20, 60, 0.45);
+  }
+}
+
+/* Opciones refinadas */
 .lang-option {
-  background: none;
-  border: none;
-  color: var(--text);
   width: 100%;
-  padding: 0.6rem 1rem;
-  text-align: left;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.8rem;
+  padding: 0.85rem 1.3rem;
+  border: none;
+  background: transparent;
+  color: #e5e5e5;
+  font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.35s ease;
+  text-align: left;
+  z-index: 1003;
 }
 
 .lang-option:hover {
+  background: radial-gradient(circle at center, rgba(220, 20, 60, 0.25) 0%, rgba(220, 20, 60, 0.05) 100%);
+  color: #fff;
+  text-shadow: 0 0 12px rgba(220, 20, 60, 0.7);
+  transform: translateX(5px);
+  box-shadow: inset 0 0 12px rgba(220, 20, 60, 0.2);
+}
+
+.lang-option:hover .flag-icon {
+  filter: brightness(1.3) drop-shadow(0 0 6px #dc143c);
+}
+
+/* ===================== ☀️ MODO CLARO ===================== */
+
+html.light .lang-menu {
+  background: linear-gradient(180deg, #ffffff, #f1f1f1);
+  border: 1px solid rgba(220, 20, 60, 0.4);
+  box-shadow:
+    0 8px 20px rgba(220, 20, 60, 0.2),
+    inset 0 1px 6px rgba(255, 255, 255, 0.6);
+}
+
+html.light .lang-option {
+  color: #2a2a2a;
+  font-weight: 600;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.4);
+}
+
+html.light .lang-option:hover {
+  color: #dc143c;
   background: rgba(220, 20, 60, 0.1);
-  color: var(--accent);
-  transform: translateX(6px);
+  text-shadow: 0 0 8px rgba(220, 20, 60, 0.4);
+  transform: translateX(5px);
 }
 
 /* ========================================================= */
 /* ⚙️ MENÚ MÁGICO GLOBAL                                     */
 /* ========================================================= */
+/* ... (resto del CSS para magic-menu, animaciones, responsive, etc., sin cambios - copio el bloque completo para completitud) ... */
 
 .magic-menu {
   position: relative;
@@ -198,10 +364,6 @@ html.light {
   transition: all 0.4s ease;
   overflow: hidden;
 }
-
-/* ========================================================= */
-/* 🔘 ELEMENTOS DENTRO DEL MENÚ                              */
-/* ========================================================= */
 
 .magic-menu ul {
   list-style: none;
@@ -221,6 +383,25 @@ html.light {
   height: 90px;
   transition: all 0.4s ease;
   cursor: pointer;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.magic-menu li:nth-child(1) { animation-delay: 0.1s; }
+.magic-menu li:nth-child(2) { animation-delay: 0.2s; }
+.magic-menu li:nth-child(3) { animation-delay: 0.3s; }
+.magic-menu li:nth-child(4) { animation-delay: 0.4s; }
+.magic-menu li:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Círculo metálico base */
@@ -237,15 +418,9 @@ html.light {
     0 0 20px rgba(220,20,60,0.4);
   z-index: 0;
   transition: all 0.5s ease;
+  animation-play-state: paused;
 }
 
-/* Animación tipo llanta */
-@keyframes spinWheel {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* Hover = giro metálico */
 .magic-menu li:hover::before {
   animation: spinWheel 0.8s linear forwards;
   box-shadow:
@@ -253,6 +428,12 @@ html.light {
     0 0 35px rgba(220,20,60,0.8),
     inset 0 0 20px rgba(255,255,255,0.2);
   background: radial-gradient(circle at 60% 60%, #eee, #555 70%, #111);
+  animation-play-state: running;
+}
+
+@keyframes spinWheel {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 /* Icono y texto dentro del círculo */
@@ -265,9 +446,10 @@ html.light {
   justify-content: center;
   align-items: center;
   position: relative;
-  z-index: 1;
+  z-index: 3; /* Superior a ::before/::after */
   height: 100%;
   transition: all 0.4s ease;
+  pointer-events: auto;
 }
 
 .magic-menu .icon {
@@ -280,6 +462,8 @@ html.light {
   font-size: 0.8rem;
   opacity: 0.85;
   transition: opacity 0.3s ease, transform 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 /* Hover brillante */
@@ -287,6 +471,7 @@ html.light {
   transform: scale(1.15) rotate(12deg);
   text-shadow: 0 0 15px var(--accent);
   color: #fff;
+  animation: wheelSpin 0.8s ease-in-out, iconGlow 2s infinite ease-in-out;
 }
 
 .magic-menu li:hover .text {
@@ -295,20 +480,84 @@ html.light {
   color: #fff;
 }
 
+@keyframes wheelSpin {
+  0% {
+    transform: rotate(0deg);
+    filter: brightness(1);
+  }
+  50% {
+    transform: rotate(180deg);
+    filter: brightness(1.3);
+  }
+  100% {
+    transform: rotate(360deg);
+    filter: brightness(1);
+  }
+}
+
+@keyframes iconGlow {
+  0% {
+    text-shadow: 0 0 6px var(--accent);
+  }
+  50% {
+    text-shadow: 0 0 18px var(--accent), 0 0 8px #fff;
+  }
+  100% {
+    text-shadow: 0 0 6px var(--accent);
+  }
+}
+
 /* Activo */
 .magic-menu li.active::before {
   background: radial-gradient(circle at 50% 50%, #dc143c 0%, #320000 100%);
   border: 2px solid #ff4b4b;
   box-shadow: 0 0 25px #dc143c, inset 0 0 25px #ff3b3b;
+  animation: neonPulse 2s infinite ease-in-out, neonWheel 3s infinite ease-in-out;
 }
 
 .magic-menu li.active a {
   color: #fff;
   text-shadow: 0 0 10px #ff3b3b;
 }
-/* ========================================================= */
-/* 💫 ANIMACIONES DE REFLEJO Y BRILLO METÁLICO               */
-/* ========================================================= */
+
+.magic-menu li.active .icon {
+  animation: wheelActive 1.5s linear infinite;
+}
+
+@keyframes neonPulse {
+  0% {
+    box-shadow: 0 0 12px rgba(220, 20, 60, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(220, 20, 60, 0.9);
+  }
+  100% {
+    box-shadow: 0 0 12px rgba(220, 20, 60, 0.4);
+  }
+}
+
+@keyframes neonWheel {
+  0%, 100% {
+    box-shadow:
+      0 0 15px rgba(220, 20, 60, 0.4),
+      0 0 30px rgba(220, 20, 60, 0.6),
+      inset 0 0 20px rgba(255,255,255,0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 30px rgba(255, 80, 80, 0.9),
+      0 0 45px rgba(255, 0, 0, 0.9),
+      inset 0 0 30px rgba(255,255,255,0.3);
+  }
+}
+
+@keyframes wheelActive {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(90deg); }
+  50% { transform: rotate(180deg); }
+  75% { transform: rotate(270deg); }
+  100% { transform: rotate(360deg); }
+}
 
 /* Simulación de superficie metálica brillante */
 @keyframes chromeShine {
@@ -320,7 +569,6 @@ html.light {
   }
 }
 
-/* Brillo tipo auto en taller */
 .magic-menu li::after {
   content: "";
   position: absolute;
@@ -339,6 +587,7 @@ html.light {
   opacity: 0;
   transition: opacity 0.4s ease;
   background-size: 300px;
+  pointer-events: none;
 }
 
 .magic-menu li:hover::after {
@@ -346,32 +595,7 @@ html.light {
   animation: chromeShine 2s linear infinite;
 }
 
-/* ========================================================= */
-/* 🛞 EFECTO LLANTA GIRATORIA                                */
-/* ========================================================= */
-@keyframes wheelSpin {
-  0% {
-    transform: rotate(0deg);
-    filter: brightness(1);
-  }
-  50% {
-    transform: rotate(180deg);
-    filter: brightness(1.3);
-  }
-  100% {
-    transform: rotate(360deg);
-    filter: brightness(1);
-  }
-}
-
-/* Al pasar el mouse, gira el ícono como llanta */
-.magic-menu li:hover .icon {
-  animation: wheelSpin 0.8s ease-in-out;
-}
-
-/* ========================================================= */
-/* 🪞 EFECTOS DE PROFUNDIDAD Y VIDRIO                        */
-/* ========================================================= */
+/* Profundidad 3D */
 .magic-menu {
   perspective: 1000px;
   transform-style: preserve-3d;
@@ -383,49 +607,10 @@ html.light {
 
 .magic-menu li:hover {
   transform: rotateY(12deg) translateY(-5px) scale(1.05);
+  filter: drop-shadow(0 0 20px rgba(220, 20, 60, 0.8));
 }
 
-/* Glow animado */
-@keyframes neonPulse {
-  0% {
-    box-shadow: 0 0 12px rgba(220, 20, 60, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 25px rgba(220, 20, 60, 0.9);
-  }
-  100% {
-    box-shadow: 0 0 12px rgba(220, 20, 60, 0.4);
-  }
-}
-
-.magic-menu li.active::before {
-  animation: neonPulse 2s infinite ease-in-out;
-}
-
-/* ========================================================= */
-/* ✨ BRILLOS AVANZADOS EN ICONOS                            */
-/* ========================================================= */
-
-@keyframes iconGlow {
-  0% {
-    text-shadow: 0 0 6px var(--accent);
-  }
-  50% {
-    text-shadow: 0 0 18px var(--accent), 0 0 8px #fff;
-  }
-  100% {
-    text-shadow: 0 0 6px var(--accent);
-  }
-}
-
-.magic-menu li:hover .icon {
-  animation: iconGlow 2s infinite ease-in-out;
-}
-
-/* ========================================================= */
-/* 🌗 TRANSICIONES ENTRE TEMAS                               */
-/* ========================================================= */
-
+/* Transiciones temas */
 html.dark .magic-menu {
   background: linear-gradient(90deg, rgba(10,10,10,0.95), rgba(25,25,25,0.98));
 }
@@ -440,10 +625,59 @@ html.light .magic-menu li::before {
   border-color: #dc143c;
 }
 
-/* ========================================================= */
-/* 📱 RESPONSIVE OPTIMIZADO COMPLETO                         */
-/* ========================================================= */
+html.light .magic-menu .icon {
+  color: #222;
+}
 
+html.light .magic-menu li.active::before {
+  box-shadow: 0 0 30px rgba(220, 20, 60, 0.8),
+              inset 0 0 30px rgba(255,255,255,0.2);
+}
+
+html.light .magic-menu li:hover::before {
+  box-shadow: 0 0 25px rgba(220,20,60,0.6), 0 0 35px rgba(220,20,60,0.8);
+}
+
+/* Efecto reflectivo en texto */
+.magic-menu li a .text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: rgba(255,255,255,0.2);
+  transform: scaleY(-1);
+  filter: blur(1px);
+}
+
+/* Fixes de interacción */
+.magic-menu li::before,
+.magic-menu li::after {
+  pointer-events: none;
+}
+
+.magic-menu li a:focus {
+  outline: none;
+}
+
+.magic-menu li:active {
+  transform: scale(0.97);
+}
+
+.lang-toggle:active,
+.theme-toggle:active {
+  transform: scale(0.9);
+  filter: brightness(1.2);
+  text-shadow: 0 0 10px var(--accent);
+}
+
+.navbar, .magic-menu, .navbar-logo, .lang-toggle, .theme-toggle {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Fixes responsive completos */
 @media (max-width: 1200px) {
   .navbar-container {
     flex-wrap: wrap;
@@ -532,175 +766,13 @@ html.light .magic-menu li::before {
   .language-dropdown {
     margin-top: 0.5rem;
   }
-}
 
-/* ========================================================= */
-/* 🧲 EFECTOS GLOBALES DE INTERACCIÓN                        */
-/* ========================================================= */
-
-.navbar:hover {
-  box-shadow: 0 4px 25px rgba(220, 20, 60, 0.2),
-              inset 0 -1px 20px rgba(255, 255, 255, 0.1);
-}
-
-.magic-menu:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 25px rgba(220, 20, 60, 0.3),
-              inset 0 0 25px rgba(255,255,255,0.05);
-}
-
-/* ========================================================= */
-/* 💎 EFECTO REFLECTIVO EN TEXTO                             */
-/* ========================================================= */
-
-.magic-menu li a .text {
-  position: relative;
-  color: var(--text);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 600;
-  font-size: 0.8rem;
-  transition: all 0.3s ease;
-}
-
-.magic-menu li a .text::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  color: rgba(255,255,255,0.2);
-  transform: scaleY(-1);
-  filter: blur(1px);
-}
-
-/* ========================================================= */
-/* 🧠 EFECTOS DE SOMBRA DINÁMICA                             */
-/* ========================================================= */
-
-.magic-menu li::before {
-  transition: all 0.5s ease;
-}
-
-.magic-menu li:hover::before {
-  filter: drop-shadow(0 0 20px rgba(220, 20, 60, 0.8));
-}
-
-/* ========================================================= */
-/* ⚡ EFECTOS DE ENTRADA Y SALIDA                            */
-/* ========================================================= */
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  /* Asegura espacio extra para dropdown en mobile */
+  .navbar-box {
+    padding-bottom: 1.5rem; /* Espacio para dropdown */
   }
 }
 
-.magic-menu li {
-  opacity: 0;
-  animation: fadeInUp 0.6s ease forwards;
-}
-
-.magic-menu li:nth-child(1) { animation-delay: 0.1s; }
-.magic-menu li:nth-child(2) { animation-delay: 0.2s; }
-.magic-menu li:nth-child(3) { animation-delay: 0.3s; }
-.magic-menu li:nth-child(4) { animation-delay: 0.4s; }
-.magic-menu li:nth-child(5) { animation-delay: 0.5s; }
-
-/* ========================================================= */
-/* 🔮 EFECTO NEÓN SOBRE CÍRCULO ACTIVO                       */
-/* ========================================================= */
-.magic-menu li.active::before {
-  animation: neonWheel 3s infinite ease-in-out;
-}
-
-@keyframes neonWheel {
-  0%, 100% {
-    box-shadow:
-      0 0 15px rgba(220, 20, 60, 0.4),
-      0 0 30px rgba(220, 20, 60, 0.6),
-      inset 0 0 20px rgba(255,255,255,0.2);
-  }
-  50% {
-    box-shadow:
-      0 0 30px rgba(255, 80, 80, 0.9),
-      0 0 45px rgba(255, 0, 0, 0.9),
-      inset 0 0 30px rgba(255,255,255,0.3);
-  }
-}
-
-/* ========================================================= */
-/* 🧩 GLOW AUTOMÁTICO EN CAMBIO DE IDIOMA Y TEMA             */
-/* ========================================================= */
-.lang-toggle:active,
-.theme-toggle:active {
-  transform: scale(0.9);
-  filter: brightness(1.2);
-  text-shadow: 0 0 10px var(--accent);
-}
-
-/* ========================================================= */
-/* 💥 EFECTO DE LLANTA EN ACTIVO                             */
-/* ========================================================= */
-@keyframes wheelActive {
-  0% { transform: rotate(0deg); }
-  25% { transform: rotate(90deg); }
-  50% { transform: rotate(180deg); }
-  75% { transform: rotate(270deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.magic-menu li.active .icon {
-  animation: wheelActive 1.5s linear infinite;
-}
-
-/* ========================================================= */
-/* 🧰 FINALIZACIÓN Y PULIDO GLOBAL                            */
-/* ========================================================= */
-
-.navbar, .magic-menu, .navbar-logo, .lang-toggle, .theme-toggle {
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.magic-menu li a:focus {
-  outline: none;
-}
-
-.magic-menu li:active {
-  transform: scale(0.97);
-}
-
-/* ========================================================= */
-/* ✅ MODO CLARO EXTRA PULIDO                                */
-/* ========================================================= */
-html.light .magic-menu li::before {
-  border-color: #dc143c;
-  background: radial-gradient(circle at 40% 40%, #fff, #aaa 60%, #555 100%);
-}
-
-html.light .magic-menu li:hover::before {
-  box-shadow: 0 0 25px rgba(220,20,60,0.6), 0 0 35px rgba(220,20,60,0.8);
-}
-
-html.light .magic-menu .icon {
-  color: #222;
-}
-
-html.light .magic-menu li.active::before {
-  box-shadow: 0 0 30px rgba(220, 20, 60, 0.8),
-              inset 0 0 30px rgba(255,255,255,0.2);
-}
-
-/* ========================================================= */
-/* 🧩 FINAL RESPONSIVE ULTRA                                 */
-/* ========================================================= */
 @media (max-width: 480px) {
   .magic-menu li {
     width: 60px;
@@ -722,110 +794,25 @@ html.light .magic-menu li.active::before {
   .theme-toggle {
     font-size: 1.3rem;
   }
+
+  .lang-menu {
+    min-width: 160px; /* Más compacto en mobile */
+  }
 }
 
-/* ========================================================= */
-/* FIN DEL NAVBAR MASTER CSS                                 */
-/* ========================================================= */
-/* ========================================================= */
-/* 🧩 FIXES DE INTERACCIÓN Y ACCESIBILIDAD                   */
-/* ========================================================= */
-
-/* ✅ Permitir clics en los enlaces */
-.magic-menu li::before,
-.magic-menu li::after {
-  pointer-events: none; /* No bloquean clics */
+/* Efectos globales */
+.navbar:hover {
+  box-shadow: 0 4px 25px rgba(220, 20, 60, 0.2),
+              inset 0 -1px 20px rgba(255, 255, 255, 0.1);
 }
 
-/* ✅ Asegurar que los enlaces sean la capa superior */
-.magic-menu li a {
-  position: relative;
-  z-index: 3;
+.magic-menu:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 25px rgba(220, 20, 60, 0.3),
+              inset 0 0 25px rgba(255,255,255,0.05);
 }
 
-/* ✅ Evitar círculos “fantasma” vacíos */
-.magic-menu ul {
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.magic-menu li:empty {
-  display: none;
-}
-
-/* ✅ Fix del dropdown de idioma */
-.language-dropdown {
-  position: relative;
-}
-
-.lang-menu {
-  pointer-events: auto;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-8px);
-  transition: all 0.3s ease;
-}
-
-.language-dropdown:hover .lang-menu,
-.language-dropdown:focus-within .lang-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-/* ✅ Flecha visible del toggle */
-.lang-toggle::after {
-  content: "▾";
-  font-size: 0.8rem;
-  margin-left: 0.3rem;
-  color: var(--accent);
-  transition: transform 0.3s ease;
-}
-
-.language-dropdown:hover .lang-toggle::after {
-  transform: rotate(180deg);
-}
-
-/* ✅ Evitar cierre accidental */
-.lang-option {
-  z-index: 10;
-}
-
-.lang-option:focus,
-.lang-option:hover {
-  background: rgba(220, 20, 60, 0.15);
-}
-
-/* ========================================================= */
-/* ✨ BONUS – Ajuste del círculo giratorio                    */
-/* ========================================================= */
-.magic-menu li::before {
-  animation-play-state: paused;
-}
-
-.magic-menu li:hover::before {
-  animation-play-state: running;
-}
-
-/* Elimina “círculo suelto” lateral */
-.magic-menu li:last-child {
-  margin-right: 0 !important;
-}
-/* ========================================================= */
-/* 🧩 FIX CÍRCULO FANTASMA DERECHA                           */
-/* ========================================================= */
-
-/* 1️⃣ Oculta cualquier indicador o pseudo-elemento fuera de rango */
-.magic-menu .indicator {
-  display: none !important; /* ese círculo no se usa ya */
-}
-
-/* 2️⃣ Si quedó un li sin contenido visible, lo elimina */
-.magic-menu ul li:empty {
-  display: none !important;
-}
-
-/* 3️⃣ Corrige spacing final del contenedor */
+/* Limpieza: Elimina círculos fantasma */
 .magic-menu ul {
   justify-content: center !important;
   overflow: hidden;
@@ -833,267 +820,18 @@ html.light .magic-menu li.active::before {
   margin-right: 0 !important;
 }
 
-/* 4️⃣ Asegura que los últimos círculos estén centrados */
+.magic-menu li:empty {
+  display: none !important;
+}
+
 .magic-menu li:last-child {
   margin-right: 0 !important;
 }
 
-/* 5️⃣ Limpieza visual adicional */
 .magic-menu {
   overflow-x: hidden !important;
 }
+
 /* ========================================================= */
-/* 🧩 FIX DE DROPDOWN DE IDIOMA – MODO CLARO                 */
+/* FIN DEL NAVBAR MASTER CSS (FIX APLICADO)                  */
 /* ========================================================= */
-
-/* Aumentar área de detección para mantenerlo abierto */
-.language-dropdown {
-  position: relative;
-  z-index: 2000;
-}
-
-.language-dropdown:hover .lang-menu,
-.language-dropdown:focus-within .lang-menu {
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: translateY(0) !important;
-  pointer-events: auto !important;
-}
-
-/* Área invisible extendida para evitar cierre accidental */
-.language-dropdown::before {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  height: 25px; /* aumenta área hover */
-  background: transparent;
-  z-index: 10;
-}
-
-/* En modo claro reforzamos visibilidad y pointer-events */
-html.light .lang-menu {
-  background: #fff !important;
-  border: 1px solid #dc143c !important;
-  box-shadow: 0 0 15px rgba(220, 20, 60, 0.2) !important;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  pointer-events: none;
-  transition: all 0.25s ease;
-}
-
-html.light .language-dropdown:hover .lang-menu,
-html.light .language-dropdown:focus-within .lang-menu {
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: translateY(0);
-  pointer-events: auto !important;
-}
-
-/* Reforzar comportamiento estable de hover */
-.lang-menu li {
-  position: relative;
-  z-index: 3000;
-}
-
-/* Añadir transición suave a la flecha */
-.lang-toggle::after {
-  content: "▾";
-  color: var(--accent);
-  transition: transform 0.3s ease;
-}
-
-.language-dropdown:hover .lang-toggle::after {
-  transform: rotate(180deg);
-}
-/* ========================================================= */
-/* 🧱 RECUADRO GLOBAL DEL NAVBAR (SIN LOGO)                  */
-/* ========================================================= */
-
-.navbar-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  gap: 2rem;
-}
-
-/* El contenedor visual que envuelve los íconos y dropdown */
-.navbar-box {
-  flex: 1;
-  background: linear-gradient(180deg, #e5e5e5, #f0f0f0);
-  border-radius: 18px;
-  padding: 0.8rem 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow:
-    inset 0 2px 6px rgba(255, 255, 255, 0.7),
-    inset 0 -2px 6px rgba(0, 0, 0, 0.25),
-    0 4px 10px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(180, 180, 180, 0.5);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Modo oscuro versión metálica inversa */
-html.dark .navbar-box {
-  background: linear-gradient(180deg, #1b1b1b, #2c2c2c);
-  border: 1px solid rgba(220, 20, 60, 0.3);
-  box-shadow:
-    inset 0 2px 8px rgba(255, 255, 255, 0.08),
-    inset 0 -2px 8px rgba(0, 0, 0, 0.6),
-    0 0 20px rgba(220, 20, 60, 0.2);
-}
-
-/* Efecto brillo lateral */
-.navbar-box::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -60%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(120deg, rgba(255,255,255,0.15), rgba(255,255,255,0));
-  transform: skewX(-25deg);
-  transition: all 0.8s ease;
-}
-
-.navbar-box:hover::before {
-  left: 110%;
-}
-
-/* Asegurar que el magic-menu y el selector queden dentro */
-.navbar-box .magic-menu {
-  flex-grow: 1;
-  justify-content: center;
-}
-
-.navbar-box .theme-toggle,
-.navbar-box .language-dropdown {
-  position: relative;
-  z-index: 10;
-  margin-left: 1rem;
-}
-
-/* Responsive: compactar */
-@media (max-width: 768px) {
-  .navbar-wrapper {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .navbar-box {
-    flex-direction: column;
-    gap: 1rem;
-    width: 100%;
-    padding: 1rem;
-  }
-
-  .navbar-box .magic-menu {
-    justify-content: center;
-  }
-}
-/* ========================================================= */
-/* 🌍 DROPDOWN ULTRA METÁLICO FINAL                          */
-/* ========================================================= */
-
-.lang-menu {
-  position: absolute;
-  top: 120%;
-  right: 0;
-  min-width: 190px;
-  background: radial-gradient(circle at top, #1a1a1a 0%, #0b0b0b 90%);
-  border: 1px solid rgba(220, 20, 60, 0.6);
-  border-radius: 14px;
-  box-shadow:
-    0 6px 25px rgba(220, 20, 60, 0.35),
-    0 0 30px rgba(220, 20, 60, 0.25),
-    inset 0 1px 6px rgba(255, 255, 255, 0.1);
-  list-style: none;
-  padding: 0.6rem 0;
-  margin: 0;
-  opacity: 0;
-  transform: translateY(-12px) scale(0.96);
-  pointer-events: none;
-  transition: all 0.4s ease;
-  overflow: hidden;
-  backdrop-filter: blur(6px) saturate(1.2);
-}
-
-.language-dropdown:hover .lang-menu,
-.language-dropdown.open .lang-menu {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  pointer-events: auto;
-  animation: dropdownLift 0.45s cubic-bezier(0.3, 1.4, 0.3, 1) forwards;
-}
-
-/* Animación metálica al aparecer */
-@keyframes dropdownLift {
-  0% {
-    transform: translateY(-15px) scale(0.95);
-    box-shadow: 0 0 0 rgba(220, 20, 60, 0);
-  }
-  60% {
-    transform: translateY(2px) scale(1.02);
-  }
-  100% {
-    transform: translateY(0) scale(1);
-    box-shadow: 0 0 25px rgba(220, 20, 60, 0.45);
-  }
-}
-
-/* Opciones refinadas */
-.lang-option {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  padding: 0.85rem 1.3rem;
-  border: none;
-  background: transparent;
-  color: #e5e5e5;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.35s ease;
-  text-align: left;
-}
-
-.lang-option:hover {
-  background: radial-gradient(circle at center, rgba(220, 20, 60, 0.25) 0%, rgba(220, 20, 60, 0.05) 100%);
-  color: #fff;
-  text-shadow: 0 0 12px rgba(220, 20, 60, 0.7);
-  transform: translateX(5px);
-  box-shadow: inset 0 0 12px rgba(220, 20, 60, 0.2);
-}
-
-.lang-option:hover .flag-icon {
-  filter: brightness(1.3) drop-shadow(0 0 6px #dc143c);
-}
-
-/* ===================== ☀️ MODO CLARO ===================== */
-
-html.light .lang-menu {
-  background: linear-gradient(180deg, #ffffff, #f1f1f1);
-  border: 1px solid rgba(220, 20, 60, 0.4);
-  box-shadow:
-    0 8px 20px rgba(220, 20, 60, 0.2),
-    inset 0 1px 6px rgba(255, 255, 255, 0.6);
-}
-
-html.light .lang-option {
-  color: #2a2a2a;
-  font-weight: 600;
-  text-shadow: 0 0 3px rgba(255, 255, 255, 0.4);
-}
-
-html.light .lang-option:hover {
-  color: #dc143c;
-  background: rgba(220, 20, 60, 0.1);
-  text-shadow: 0 0 8px rgba(220, 20, 60, 0.4);
-  transform: translateX(5px);
-}
