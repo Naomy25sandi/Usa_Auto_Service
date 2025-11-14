@@ -1,45 +1,59 @@
-services-section {
-  background: linear-gradient(135deg, #0A2540, #1A4030);
+.services-section {
+  background: linear-gradient(135deg, #000000, #1a1a1a); /* Negro metálico base */
   padding: 4rem 1rem;
   position: relative;
   overflow: hidden;
   border-radius: 20px;
   margin: 2rem 0;
-  box-shadow: 0 0 30px rgba(0, 209, 255, 0.2);
+  box-shadow: 0 0 30px rgba(220, 20, 60, 0.3); /* Rojo glow metálico */
+  border: 1px solid #DC143C; /* Borde rojo pro */
 }
 
 .services-section::before {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(0, 209, 255, 0.1) 0%, transparent 70%);
-  animation: radialGlow 6s infinite;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 80%, rgba(192, 192, 192, 0.05) 0%, transparent 50%), /* Plata sutil */
+              radial-gradient(circle at 80% 20%, rgba(220, 20, 60, 0.05) 0%, transparent 50%); /* Rojo esquina */
   z-index: 0;
-}
-
-@keyframes radialGlow {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  opacity: 0.5;
+  pointer-events: none; /* Estabilidad scroll */
 }
 
 .services-title {
   font-size: 2.5rem;
-  color: #E6F0FA;
+  color: #C0C0C0; /* Plata base – IDÉNTICO EN AMBOS */
   text-align: center;
   margin-bottom: 2.5rem;
-  background: linear-gradient(90deg, #00D1FF, #00FFAA);
+  background: linear-gradient(90deg, #C0C0C0, #DC143C); /* GRADIENTE PLATA-ROJO IDÉNTICO */
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 15px #00D1FF;
-  animation: titlePulse 2s infinite alternate;
+  /* Glow base (igual en ambos) */
+  text-shadow: 0 0 10px rgba(220, 20, 60, 0.4);
+  animation: titleMetallicPulse 2s infinite alternate;
+  letter-spacing: 3px; /* Spacing para sharp */
+  font-weight: 900; /* Extra bold para definición */
+  /* Sharp rendering universal (mismo en light/dark) */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  paint-order: stroke fill;
+  -webkit-text-stroke: 0.3px rgba(192, 192, 192, 0.1); /* Stroke plata fino para edges */
+  backface-visibility: hidden;
 }
 
-@keyframes titlePulse {
-  0% { text-shadow: 0 0 10px #00D1FF; }
-  100% { text-shadow: 0 0 20px #00FFAA; }
+@keyframes titleMetallicPulse {
+  0% { 
+    text-shadow: 0 0 10px rgba(220, 20, 60, 0.4), 0 0 20px rgba(192, 192, 192, 0.2); 
+    filter: brightness(1);
+  }
+  100% { 
+    text-shadow: 0 0 20px rgba(220, 20, 60, 0.8), 0 0 30px rgba(192, 192, 192, 0.4); 
+    filter: brightness(1.05);
+  }
 }
 
 .services-grid {
@@ -49,48 +63,79 @@ services-section {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   padding: 0 1rem;
+  z-index: 1; /* Sobre ::before */
+  position: relative;
 }
 
 .service-card {
-  background: rgba(10, 37, 64, 0.9);
+  background: rgba(0, 0, 0, 0.8); /* Negro metálico */
   padding: 2rem;
   border-radius: 15px;
-  box-shadow: 0 0 10px rgba(0, 255, 170, 0.1);
-  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(192, 192, 192, 0.1); /* Plata glow */
+  transition: all 0.4s ease; /* Suave para pro feel */
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(0, 209, 255, 0.2);
+  border: 1px solid #DC143C; /* Rojo borde */
+  animation: cardHoloStagger 0.8s ease-out forwards; /* Holo stagger futurista */
+  will-change: transform, opacity; /* Perf en card */
+  backface-visibility: hidden; /* No jank en scroll */
 }
 
+@keyframes cardHoloStagger {
+  from { 
+    opacity: 0; 
+    transform: translateY(40px) scale(0.9) rotateX(15deg); /* Warp 3D sutil */
+    filter: blur(4px) hue-rotate(0deg);
+    border-radius: 50%; /* Morph oval a rect */
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0) scale(1) rotateX(0deg); 
+    filter: blur(0) hue-rotate(0deg);
+    border-radius: 15px;
+  }
+}
+
+/* Holographic Polish: Shine metálico en cards */
 .service-card::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
+  left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, transparent, rgba(0, 255, 170, 0.1));
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(192, 192, 192, 0.3), /* Plata shine */
+    rgba(220, 20, 60, 0.2), /* Rojo acento */
+    transparent
+  );
   z-index: 0;
-  transition: opacity 0.3s ease;
-  opacity: 0;
+  transition: left 0.6s ease;
+  opacity: 0.8;
+  transform: skewX(-20deg); /* Skew "pulido" metálico */
 }
 
 .service-card:hover::before {
-  opacity: 1;
+  left: 100%; /* Shine en hover */
 }
 
 .service-card:hover {
-  transform: translateY(-10px) scale(1.05);
-  box-shadow: 0 0 20px rgba(0, 255, 170, 0.3);
+  transform: translateY(-10px) scale(1.02) rotateZ(1deg); /* Tilt futurista sutil */
+  box-shadow: 0 0 25px rgba(220, 20, 60, 0.5), inset 0 0 20px rgba(192, 192, 192, 0.1); /* Glow rojo + inner plata */
+  border-color: #ff4b4b; /* Rojo más intenso en hover */
 }
 
 .service-card__title {
   font-size: 1.5rem;
-  color: #E6F0FA;
+  color: #C0C0C0; /* Plata */
   margin-bottom: 1rem;
   text-transform: uppercase;
   letter-spacing: 1px;
+  position: relative;
+  z-index: 2;
   animation: fadeInUp 1s ease-out;
+  text-shadow: 0 0 5px rgba(220, 20, 60, 0.3); /* Glow rojo */
 }
 
 @keyframes fadeInUp {
@@ -100,8 +145,10 @@ services-section {
 
 .service-card__description {
   font-size: 1rem;
-  color: #B0C4DE;
+  color: #A0A0A0; /* Plata atenuada */
   line-height: 1.6;
+  position: relative;
+  z-index: 2;
   animation: fadeIn 1.5s ease-out;
 }
 
@@ -128,6 +175,7 @@ services-section {
 
   .service-card {
     padding: 1.5rem;
+    animation-duration: 0.6s; /* Más rápido en mobile */
   }
 
   .service-card__title {
@@ -139,191 +187,132 @@ services-section {
   }
 }
 
-/* Theme Styles */
-html.dark .services-section {
-  background: linear-gradient(135deg, #0A1F30, #153F2A);
-}
-
+/* Light Mode: Sharp + Mismo visual que dark */
 html.light .services-section {
-  background: linear-gradient(135deg, #2A6F9F, #347B68);
-}
-
-html.light .services-title {
-  color: #0A2540;
-  background: linear-gradient(90deg, #007BFF, #00D1FF);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 15px #007BFF;
-}
-
-html.light .service-card {
-  background: rgba(240, 248, 255, 0.9);
-  border: 1px solid rgba(0, 123, 255, 0.2);
-}
-
-html.light .service-card:hover {
-  box-shadow: 0 0 20px rgba(0, 209, 255, 0.3);
-}
-
-html.light .service-card__title {
-  color: #0A2540;
-}
-
-html.light .service-card__description {
-  color: #333;
-}
-
-/* Nuevos overrides para alinear con logo: negro/plata/rojo. Agregados al final sin tocar lo existente. Profesionales, audaces y futuristas con animaciones complementarias. */
-html.dark .services-section {
-  background: linear-gradient(135deg, #000000, #1a1a1a) !important; /* Negro del logo */
-  box-shadow: 0 0 30px rgba(220, 20, 60, 0.3) !important; /* Sombra roja audaz */
-  border: 1px solid #DC143C !important; /* Borde rojo sutil */
-}
-
-html.dark .services-section::before {
-  background: radial-gradient(circle, rgba(192, 192, 192, 0.05) 0%, transparent 70%) !important; /* Plata sutil para glow futurista */
-  animation: circuitGlow 8s linear infinite !important; /* Nueva animación: circuito giratorio complementaria a radialGlow */
-}
-
-@keyframes circuitGlow {
-  0% { transform: rotate(0deg) scale(1); opacity: 0.3; }
-  50% { opacity: 0.6; }
-  100% { transform: rotate(360deg) scale(1.05); opacity: 0.3; }
-}
-
-html.dark .services-title {
-  color: #C0C0C0 !important; /* Plata para título */
-  background: linear-gradient(90deg, #C0C0C0, #DC143C) !important; /* Plata a rojo */
-  text-shadow: 0 0 15px #DC143C !important;
-  animation: glitchTitle 2.5s infinite !important; /* Glitch audaz complementario a titlePulse */
-}
-
-@keyframes glitchTitle {
-  0%, 100% { transform: translate(0); text-shadow: 0 0 15px #DC143C; }
-  10%, 20% { transform: translate(-1px, -1px); text-shadow: -1px 0 #C0C0C0, 1px 0 #DC143C; }
-  30%, 40% { transform: translate(1px, 1px); text-shadow: 1px 0 #C0C0C0, -1px 0 #DC143C; }
-}
-
-html.dark .service-card {
-  background: rgba(0, 0, 0, 0.8) !important; /* Negro sutil */
-  border: 1px solid #DC143C !important; /* Rojo audaz */
-  box-shadow: 0 0 10px rgba(192, 192, 192, 0.1) !important; /* Plata glow */
-  animation: cardStagger 0.6s ease-out forwards !important; /* Nueva animación stagger complementaria a fadeInUp (delay via inline style) */
-}
-
-@keyframes cardStagger {
-  from { 
-    opacity: 0; 
-    transform: translateY(30px) rotateX(10deg) scale(0.95); /* Warp 3D futurista */
-    filter: blur(3px);
-  }
-  to { 
-    opacity: 1; 
-    transform: translateY(0) rotateX(0) scale(1); 
-    filter: blur(0);
-  }
-}
-
-html.dark .service-card:hover {
-  box-shadow: 0 0 25px rgba(220, 20, 60, 0.5) !important; /* Rojo intensificado */
-  transform: translateY(-15px) scale(1.08) rotateZ(2deg) !important; /* Rotación audaz extra */
-}
-
-html.dark .service-card::before {
-  background: linear-gradient(45deg, transparent, rgba(220, 20, 60, 0.15)) !important; /* Rojo sutil */
-}
-
-html.dark .service-card__title {
-  color: #C0C0C0 !important; /* Plata */
-  text-shadow: 0 0 5px #DC143C !important;
-  animation: fadeInUp 1s ease-out !important; /* Mantenida */
-}
-
-html.dark .service-card__description {
-  color: #A0A0A0 !important; /* Plata atenuada */
-  animation: fadeIn 1.5s ease-out !important; /* Mantenida */
-}
-
-/* Light mode adaptado: Grises para plata, rojo intacto */
-html.light .services-section {
-  background: linear-gradient(135deg, #2a2a2a, #404040) !important; /* Gris plata */
+  background: linear-gradient(135deg, #f0f0f0, #d0d0d0) !important; /* Gris plata metálico */
   box-shadow: 0 0 30px rgba(220, 20, 60, 0.2) !important;
   border: 1px solid #DC143C !important;
 }
 
 html.light .services-section::before {
-  background: radial-gradient(circle, rgba(192, 192, 192, 0.1) 0%, transparent 70%) !important;
-  animation: circuitGlow 8s linear infinite !important;
+  background: radial-gradient(circle at 20% 80%, rgba(192, 192, 192, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(220, 20, 60, 0.03) 0%, transparent 50%);
+  opacity: 0.3;
 }
 
 html.light .services-title {
-  color: #C0C0C0 !important;
-  background: linear-gradient(90deg, #C0C0C0, #DC143C) !important;
-  text-shadow: 0 0 15px #DC143C !important;
-  animation: glitchTitle 2.5s infinite !important;
+  color: #C0C0C0 !important; /* Plata base – IDÉNTICO */
+  background: linear-gradient(90deg, #C0C0C0, #DC143C) !important; /* GRADIENTE IDÉNTICO */
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  /* Glow IDÉNTICO AL DARK, con layers para sharp en light */
+  text-shadow: 
+    0 0 10px rgba(220, 20, 60, 0.6), /* Rojo glow intenso */
+    0 0 20px rgba(192, 192, 192, 0.3), /* Plata layer */
+    1px 1px 2px rgba(0, 0, 0, 0.2), /* Sharp edge dark */
+    -1px -1px 2px rgba(255, 255, 255, 0.3) !important; /* Sharp edge light */
+  animation: titleMetallicPulse 2s infinite alternate !important; /* Mismo pulso */
+  /* Sharp reforzado (mismo que light anterior) */
+  font-weight: 900 !important;
+  letter-spacing: 3px !important;
+  -webkit-text-stroke: 0.3px rgba(255, 255, 255, 0.9) !important; /* Stroke blanco para pop */
 }
 
 html.light .service-card {
-  background: rgba(40, 40, 40, 0.9) !important;
+  background: rgba(255, 255, 255, 0.95) !important; /* Blanco metálico legible */
   border: 1px solid #DC143C !important;
-  box-shadow: 0 0 10px rgba(192, 192, 192, 0.1) !important;
-  animation: cardStagger 0.6s ease-out forwards !important;
-}
-
-html.light .service-card:hover {
-  box-shadow: 0 0 25px rgba(220, 20, 60, 0.4) !important;
-  transform: translateY(-15px) scale(1.08) rotateZ(2deg) !important;
+  box-shadow: 0 0 10px rgba(192, 192, 192, 0.2) !important;
+  animation: cardHoloStagger 0.8s ease-out forwards !important;
+  /* Etch metálico en border */
+  border-image: linear-gradient(45deg, #DC143C, #C0C0C0) 1 !important;
 }
 
 html.light .service-card::before {
-  background: linear-gradient(45deg, transparent, rgba(220, 20, 60, 0.1)) !important;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(192, 192, 192, 0.2), /* Plata shine */
+    rgba(220, 20, 60, 0.1), /* Rojo acento */
+    transparent
+  ) !important;
+}
+
+html.light .service-card:hover {
+  box-shadow: 0 0 25px rgba(220, 20, 60, 0.4), inset 0 0 20px rgba(192, 192, 192, 0.05) !important;
+  border-color: #ff4b4b !important; /* Rojo hover */
 }
 
 html.light .service-card__title {
-  color: #C0C0C0 !important;
-  text-shadow: 0 0 5px #DC143C !important;
+  color: #333 !important; /* Gris oscuro sharp */
+  text-shadow: 0 0 5px rgba(220, 20, 60, 0.2) !important;
 }
 
 html.light .service-card__description {
+  color: #555 !important; /* Gris medio legible */
+}
+
+/* Dark Mode: Sharp + Mismo visual que light */
+html.dark .services-section {
+  background: linear-gradient(135deg, #000000, #1a1a1a) !important;
+}
+
+html.dark .services-section::before {
+  opacity: 0.4;
+}
+
+html.dark .services-title {
+  color: #C0C0C0 !important; /* Plata base – IDÉNTICO */
+  background: linear-gradient(90deg, #C0C0C0, #DC143C) !important; /* GRADIENTE IDÉNTICO */
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  /* Glow IDÉNTICO AL LIGHT, con layers para sharp en dark */
+  text-shadow: 
+    0 0 10px rgba(220, 20, 60, 0.6), /* Rojo glow intenso */
+    0 0 20px rgba(192, 192, 192, 0.3), /* Plata layer */
+    1px 1px 2px rgba(0, 0, 0, 0.3), /* Sharp edge dark */
+    -1px -1px 2px rgba(255, 255, 255, 0.2) !important; /* Sharp edge light para contraste */
+  animation: titleMetallicPulse 2s infinite alternate !important; /* Mismo pulso */
+  /* Sharp reforzado (mismo que light) */
+  font-weight: 900 !important;
+  letter-spacing: 3px !important;
+  -webkit-text-stroke: 0.3px rgba(192, 192, 192, 0.9) !important; /* Stroke plata para pop en dark */
+}
+
+html.dark .service-card {
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+
+html.dark .service-card__title {
+  color: #C0C0C0 !important;
+}
+
+html.dark .service-card__description {
   color: #A0A0A0 !important;
 }
-html.dark .services-title {
-  color: #C0C0C0 !important; /* Plata base legible */
-  background: linear-gradient(90deg, #C0C0C0, #DC143C) !important; /* Plata a rojo suave */
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  text-shadow: 0 0 10px rgba(220, 20, 60, 0.4) !important; /* Glow rojo sutil, sin múltiples shifts */
-  animation: neonElitePulse 2s infinite alternate !important; /* Nueva animación: pulso elegante, sin translateX/Y que causa duplicados */
-  letter-spacing: 2px !important; /* Espaciado para pro look */
-  font-weight: 800 !important; /* Bold audaz */
+
+/* Fix Footer en Light: Reforzado para texto legible */
+html.light footer,
+html.light .footer,
+html.light .footer * {
+  color: #333 !important; /* Gris oscuro sharp */
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef) !important; /* Fondo plata claro */
+  text-shadow: none !important; /* Sin glow que borre */
+  font-weight: 500 !important; /* Bold sutil para pro */
 }
 
-@keyframes neonElitePulse {
-  0% { 
-    text-shadow: 0 0 10px rgba(220, 20, 60, 0.4), 0 0 20px rgba(192, 192, 192, 0.2); /* Plata + rojo base */
-    filter: brightness(1);
-  }
-  100% { 
-    text-shadow: 0 0 20px rgba(220, 20, 60, 0.8), 0 0 30px rgba(192, 192, 192, 0.4); /* Intensifica glow sin distorsión */
-    filter: brightness(1.1);
-  }
-}
-
-/* Ajuste para light: Mismo glow pero atenuado para legibilidad */
-html.light .services-title {
-  color: #C0C0C0 !important;
-  background: linear-gradient(90deg, #C0C0C0, #DC143C) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  text-shadow: 0 0 8px rgba(220, 20, 60, 0.3) !important;
-  animation: neonElitePulse 2s infinite alternate !important;
-  letter-spacing: 2px !important;
-  font-weight: 800 !important;
-}
-
-/* Fix general para evitar borrosidad en títulos: Asegura sharp rendering */
+/* Global fixes para scroll y rendering */
+.services-section,
+.services-grid,
+.service-card,
 .services-title {
-  -webkit-font-smoothing: antialiased !important;
-  -moz-osx-font-smoothing: grayscale !important;
-  backface-visibility: hidden !important; /* Evita glitches en animaciones */
+  backface-visibility: hidden;
+}
+
+body {
+  scroll-behavior: smooth;
+}
+
+footer {
+  transition: none; /* Evita jank */
 }

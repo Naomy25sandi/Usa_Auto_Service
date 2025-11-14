@@ -220,6 +220,7 @@ html.light {
   box-shadow: 0 0 20px rgba(220, 20, 60, 0.8);
 }
 
+/* FIX: Flecha única via CSS (JSX ya sin ▾ duplicado) */
 .lang-toggle::after {
   content: "▾";
   font-size: 0.8rem;
@@ -344,10 +345,24 @@ html.light .lang-option:hover {
   transform: translateX(5px);
 }
 
+/* FIX NUEVO: Rojo más claro en modo light para resaltar bandera */
+html.light .lang-toggle {
+  background: linear-gradient(180deg, #ef5350, #e53935); /* Rojo coral claro/vibrante */
+  border-color: #ef5350;
+  box-shadow: 0 0 10px rgba(239, 83, 80, 0.5); /* Sombra más suave para light */
+}
+
+html.light .lang-toggle:hover {
+  box-shadow: 0 0 20px rgba(239, 83, 80, 0.9);
+}
+
+html.light .lang-toggle::after {
+  color: #fff; /* Flecha blanca para contraste */
+}
+
 /* ========================================================= */
 /* ⚙️ MENÚ MÁGICO GLOBAL                                     */
 /* ========================================================= */
-/* ... (resto del CSS para magic-menu, animaciones, responsive, etc., sin cambios - copio el bloque completo para completitud) ... */
 
 .magic-menu {
   position: relative;

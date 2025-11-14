@@ -36,6 +36,30 @@
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 15px #DC143C;
   animation: neonBlink 2s infinite alternate;
+  position: relative; /* Para el efecto de luz */
+  overflow: hidden;
+}
+
+.contact-form__title::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(220, 20, 60, 0.4),
+    transparent
+  );
+  animation: titleShimmer 3s infinite linear;
+  z-index: 1;
+}
+
+@keyframes titleShimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
 }
 
 @keyframes neonBlink {
@@ -187,12 +211,14 @@
   }
 }
 
+/* Dark Mode (default) - Existing styles refined for consistency */
 html.dark .contact-form {
   background: linear-gradient(135deg, #000000, #1a1a1a);
 }
 
 html.dark .contact-form__container {
   background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(220, 20, 60, 0.2);
 }
 
 /* Asegurar que los placeholders sean visibles en oscuro */
@@ -202,55 +228,176 @@ html.dark .contact-form__textarea::placeholder {
   opacity: 0.8;
 }
 
+html.dark .contact-form__label {
+  color: #A0A0A0;
+}
 
+html.dark .contact-form__input,
+html.dark .contact-form__textarea {
+  color: #C0C0C0;
+  background: rgba(26, 26, 26, 0.9);
+  border: 1px solid rgba(220, 20, 60, 0.3);
+}
+
+html.dark .contact-form__button {
+  color: #fff; /* Blanco para mejor contraste en rojo */
+  background: linear-gradient(135deg, #DC143C, #a9102e);
+  box-shadow: 0 0 10px #DC143C;
+}
+
+html.dark .contact-form__button:hover {
+  box-shadow: 0 0 20px #DC143C;
+}
+
+/* Light Mode - Futurista, Elegante y Profesional */
 html.light .contact-form {
-  background: linear-gradient(135deg, #2a2a2a, #404040);
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef); /* Blanco/gris claro suave */
+  border: 1px solid rgba(220, 20, 60, 0.1);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5); /* Sombra sutil + highlight interno */
+  animation: formGlow 4s infinite alternate; /* Glow suave en lugar de pulse agresivo */
+}
+
+@keyframes formGlow {
+  0% { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.5); }
+  100% { box-shadow: 0 15px 40px rgba(220, 20, 60, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); }
 }
 
 html.light .contact-form__container {
-  background: rgba(40, 40, 40, 0.9);
+  background: rgba(255, 255, 255, 0.7); /* Glassmorphism: blanco semi-transparente */
+  backdrop-filter: blur(20px) saturate(1.2); /* Efecto vidrio futurista */
+  border: 1px solid rgba(220, 20, 60, 0.15);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 4px 15px rgba(0, 0, 0, 0.05); /* Highlight interno + sombra suave */
+  padding: 2rem;
+}
+
+html.light .contact-form__title {
+  color: var(--text, #111); /* Usa var del navbar para consistencia */
+  background: linear-gradient(90deg, #333, #DC143C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra sutil, no neon */
+  animation: titleSubtle 3s infinite alternate; /* Animación más profesional */
+  position: relative; /* Para el efecto de luz */
+  overflow: hidden;
+}
+
+html.light .contact-form__title::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(220, 20, 60, 0.3),
+    transparent
+  );
+  animation: titleShimmer 3s infinite linear;
+  z-index: 1;
+}
+
+@keyframes titleSubtle {
+  0% { text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
+  100% { text-shadow: 0 2px 6px rgba(220, 20, 60, 0.2); }
 }
 
 html.light .contact-form__label {
-  color: #A0A0A0;
+  color: #555; /* Gris oscuro para legibilidad */
+  font-weight: 600; /* Más bold para profesionalismo */
+  letter-spacing: 0.5px; /* Menos spacing para elegancia */
 }
 
 html.light .contact-form__input,
 html.light .contact-form__textarea {
-  color: #C0C0C0;
-  background: rgba(60, 60, 60, 0.9);
-  border: 1px solid rgba(220, 20, 60, 0.3);
+  color: #333; /* Texto oscuro para contraste */
+  background: rgba(255, 255, 255, 0.9); /* Fondo casi blanco */
+  border: 1px solid #dee2e6; /* Borde gris neutro */
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); /* Sombra interna sutil */
 }
 
 html.light .contact-form__input::placeholder,
 html.light .contact-form__textarea::placeholder {
-  color: #A0A0A0;
+  color: #adb5bd; /* Placeholder gris medio */
+  opacity: 1;
 }
 
 html.light .contact-form__input:focus,
 html.light .contact-form__textarea:focus {
+  border-color: var(--accent, #DC143C);
+  box-shadow: 
+    0 0 0 0.2rem rgba(220, 20, 60, 0.15), /* Ring sutil alrededor */
+    inset 0 1px 0 rgba(220, 20, 60, 0.1); /* Highlight en foco */
+  transform: translateY(-1px); /* Lift más sutil */
+  background: #fff; /* Blanco puro en foco */
+}
+
+html.light .contact-form__input--error,
+html.light .contact-form__textarea--error {
   border-color: #DC143C;
-  box-shadow: 0 0 15px rgba(220, 20, 60, 0.5);
+  box-shadow: 
+    0 0 0 0.2rem rgba(220, 20, 60, 0.15),
+    inset 0 1px 3px rgba(220, 20, 60, 0.1);
+}
+
+html.light .contact-form__error {
+  color: #DC143C;
+  background: rgba(220, 20, 60, 0.1); /* Fondo rojo sutil para error */
+  padding: 0.5rem;
+  border-radius: 5px;
+  border-left: 3px solid #DC143C;
 }
 
 html.light .contact-form__button {
-  color: #000;
-  background: linear-gradient(135deg, #DC143C, #C0C0C0);
-  box-shadow: 0 0 10px #DC143C;
+  color: #fff; /* Blanco para contraste en rojo */
+  background: linear-gradient(135deg, var(--accent, #DC143C), #b71c1c); /* Rojo con degradado metálico */
+  box-shadow: 
+    0 4px 15px rgba(220, 20, 60, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2); /* Sombra externa + highlight interno */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 html.light .contact-form__button:hover {
-  box-shadow: 0 0 20px #DC143C;
+  transform: scale(1.02) translateY(-2px); /* Hover más sutil */
+  box-shadow: 
+    0 6px 20px rgba(220, 20, 60, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+html.light .contact-form__button::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent); /* Shimmer más luminoso */
 }
 
 html.light .contact-form__success {
-  color: #DC143C;
+  color: var(--accent, #DC143C);
+  background: rgba(220, 20, 60, 0.1); /* Fondo rojo claro para éxito */
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(220, 20, 60, 0.2);
+  font-weight: 500;
 }
 
-html.light .contact-form__title {
-  color: #C0C0C0;
-  background: linear-gradient(90deg, #C0C0C0, #DC143C);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 15px #DC143C;
+/* Responsive adjustments for light mode */
+@media (max-width: 768px) {
+  html.light .contact-form {
+    margin: 2rem auto;
+    padding: 1.5rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  }
+
+  html.light .contact-form__container {
+    padding: 1.5rem;
+    backdrop-filter: blur(15px); /* Blur más fuerte en mobile */
+  }
+
+  html.light .contact-form__title {
+    font-size: 2rem;
+  }
 }
