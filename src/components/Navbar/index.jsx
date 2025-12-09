@@ -71,7 +71,7 @@ export default function Navbar() {
           {/* 🔧 Logo + texto */}
           <Link to="/" className="navbar-logo">
             <img src={Logo} alt="USA Auto Service Logo" />
-            <span className="logo-text">USA AUTO SERVICE</span>
+            <span className="logo-text">USA AUTO SERVICE IMP/LLC</span>
           </Link>
 
           {/* 🌟 Menú mágico */}

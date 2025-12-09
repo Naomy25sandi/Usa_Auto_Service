@@ -846,6 +846,15 @@ html.light .magic-menu li:hover::before {
 .magic-menu {
   overflow-x: hidden !important;
 }
+.navbar-logo .logo-text {
+  white-space: nowrap;       /* ❗ Evita que se parta en varias líneas */
+  display: inline-block;
+}
+@media (max-width: 600px) {
+  .navbar-logo .logo-text {
+    font-size: 1.1rem;
+  }
+}
 
 /* ========================================================= */
 /* FIN DEL NAVBAR MASTER CSS (FIX APLICADO)                  */
