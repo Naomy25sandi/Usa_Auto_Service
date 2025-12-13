@@ -42,8 +42,8 @@ export default function ContactForm() {
     setSending(true);
 
     const serviceID = "service_5kyf60m";
-    const templateID = "template_zyt51wo"; // TEMPLATE ACG
-    const publicKey = "i3tr2d_Xi2kLCpFy8";
+    const templateID = "template_x1s34yz"; // TEMPLATE ACG
+    const publicKey = "9JrrztGAf0rTsGWwL";
 
     const templateParams = {
       name: formData.name,
