@@ -74,8 +74,7 @@ const Hero = () => {
             alt="USA Auto Service official auto repair shop logo"
             className="small-logo"
             loading="lazy"
-            width="160"
-            height="160"
+          
           />
         </div>
 
