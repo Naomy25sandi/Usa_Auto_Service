@@ -6,18 +6,42 @@ export default function Footer() {
   const { t } = useTranslation();
 
   return (
-    <footer className="footer">
+    <footer
+      className="footer"
+      itemScope
+      itemType="https://schema.org/AutoRepair"
+    >
       <div className="footer-container">
 
         {/* 📝 Derechos reservados */}
-        <p>
+        <p itemProp="name">
           © {new Date().getFullYear()} USA Auto-Service – {t("footer.rights")}
         </p>
 
         {/* 📍 Dirección física optimizada SEO */}
-        <address className="footer-address" style={{ fontStyle: "normal" }}>
-          1913 10Th Avenue N, Lake Worth, Florida 33461
+        <address
+          className="footer-address"
+          style={{ fontStyle: "normal" }}
+          itemProp="address"
+          itemScope
+          itemType="https://schema.org/PostalAddress"
+        >
+          <span itemProp="streetAddress">
+            1913 10Th Avenue N
+          </span>,{" "}
+          <span itemProp="addressLocality">
+            Lake Worth
+          </span>,{" "}
+          <span itemProp="addressRegion">
+            Florida
+          </span>{" "}
+          <span itemProp="postalCode">
+            33461
+          </span>
         </address>
+
+        {/* 📞 Teléfono para SEO local */}
+        <meta itemProp="telephone" content="+1-754-366-3591" />
 
         {/* 🔗 Redes sociales (SEO + accesibilidad) */}
         <div className="footer-socials">
@@ -26,7 +50,8 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className="social-link whatsapp"
-            aria-label="WhatsApp USA Auto Service"
+            aria-label="Contact USA Auto Service via WhatsApp"
+            itemProp="sameAs"
           >
             <FaWhatsapp />
           </a>
@@ -36,7 +61,8 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className="social-link instagram"
-            aria-label="Instagram USA Auto Service"
+            aria-label="USA Auto Service Instagram profile"
+            itemProp="sameAs"
           >
             <FaInstagram />
           </a>
@@ -46,7 +72,8 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className="social-link facebook"
-            aria-label="Facebook USA Auto Service"
+            aria-label="USA Auto Service Facebook page"
+            itemProp="sameAs"
           >
             <FaFacebook />
           </a>

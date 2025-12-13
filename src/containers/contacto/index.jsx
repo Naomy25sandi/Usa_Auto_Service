@@ -21,9 +21,11 @@ export default function ContactForm() {
   const validate = () => {
     const newErrors = {};
     if (!formData.name.trim()) newErrors.name = t("contact.errors.name");
-    if (!formData.email.trim()) newErrors.email = t("contact.errors.emailEmpty");
-    else if (!/\S+@\S+\.\S+/.test(formData.email))
+    if (!formData.email.trim()) {
+      newErrors.email = t("contact.errors.emailEmpty");
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = t("contact.errors.emailInvalid");
+    }
     if (!formData.message.trim()) newErrors.message = t("contact.errors.message");
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -42,7 +44,7 @@ export default function ContactForm() {
     setSending(true);
 
     const serviceID = "service_5kyf60m";
-    const templateID = "template_x1s34yz"; // TEMPLATE ACG
+    const templateID = "template_x1s34yz";
     const publicKey = "9JrrztGAf0rTsGWwL";
 
     const templateParams = {
@@ -75,11 +77,23 @@ export default function ContactForm() {
   return (
     <div className="contact-page">
       <Navbar />
-      <div className="contact-content">
-        <form className="contact-form" onSubmit={handleSubmit} noValidate>
-          <h2 className="contact-form__title">{t("contact.title")}</h2>
+
+      <main
+        className="contact-content"
+        role="main"
+        aria-label="Contact USA Auto Service"
+      >
+        <form
+          className="contact-form"
+          onSubmit={handleSubmit}
+          noValidate
+        >
+          <h1 className="contact-form__title">
+            {t("contact.title")}
+          </h1>
 
           <div className="contact-form__container">
+            {/* 👤 Name */}
             <label htmlFor="name" className="contact-form__label">
               {t("contact.fields.name")}
             </label>
@@ -90,6 +104,7 @@ export default function ContactForm() {
               placeholder={t("contact.placeholders.name")}
               value={formData.name}
               onChange={handleChange}
+              autoComplete="name"
               className={`contact-form__input ${
                 errors.name ? "contact-form__input--error" : ""
               }`}
@@ -98,6 +113,7 @@ export default function ContactForm() {
               <p className="contact-form__error">{errors.name}</p>
             )}
 
+            {/* 📧 Email */}
             <label htmlFor="email" className="contact-form__label">
               {t("contact.fields.email")}
             </label>
@@ -108,6 +124,7 @@ export default function ContactForm() {
               placeholder={t("contact.placeholders.email")}
               value={formData.email}
               onChange={handleChange}
+              autoComplete="email"
               className={`contact-form__input ${
                 errors.email ? "contact-form__input--error" : ""
               }`}
@@ -116,6 +133,7 @@ export default function ContactForm() {
               <p className="contact-form__error">{errors.email}</p>
             )}
 
+            {/* 💬 Message */}
             <label htmlFor="message" className="contact-form__label">
               {t("contact.fields.message")}
             </label>
@@ -133,6 +151,7 @@ export default function ContactForm() {
               <p className="contact-form__error">{errors.message}</p>
             )}
 
+            {/* 🚀 Submit */}
             <button
               type="submit"
               className="contact-form__button"
@@ -141,12 +160,20 @@ export default function ContactForm() {
               {sending ? t("contact.sending") : t("contact.send")}
             </button>
 
+            {/* ✅ Success / Error message (solo si existe) */}
             {successMsg && (
-              <p className="contact-form__success">{successMsg}</p>
+              <p
+                id="contact-form-status"
+                className="contact-form__success"
+                aria-live="polite"
+              >
+                {successMsg}
+              </p>
             )}
           </div>
         </form>
-      </div>
+      </main>
+
       <Footer />
     </div>
   );
