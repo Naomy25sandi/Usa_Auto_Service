@@ -42,14 +42,14 @@ export default function ContactForm() {
     setSending(true);
 
     const serviceID = "service_5kyf60m";
-    const templateID = "template_x1s34yz"; // 🔥 TEMPLATE DE ACG
-    const publicKey = "9JrrztGAf0rTsGWwL";
+    const templateID = "template_zyt51wo"; // TEMPLATE ACG
+    const publicKey = "i3tr2d_Xi2kLCpFy8";
 
     const templateParams = {
       name: formData.name,
       email: formData.email,
       message: formData.message,
-      date: new Date().toLocaleString("en-US", {
+      date: new Date().toLocaleString("es-CR", {
         weekday: "long",
         year: "numeric",
         month: "long",
@@ -80,43 +80,70 @@ export default function ContactForm() {
           <h2 className="contact-form__title">{t("contact.title")}</h2>
 
           <div className="contact-form__container">
-            <label htmlFor="name">{t("contact.fields.name")}</label>
+            <label htmlFor="name" className="contact-form__label">
+              {t("contact.fields.name")}
+            </label>
             <input
               type="text"
               id="name"
               name="name"
+              placeholder={t("contact.placeholders.name")}
               value={formData.name}
               onChange={handleChange}
-              className={errors.name ? "error" : ""}
+              className={`contact-form__input ${
+                errors.name ? "contact-form__input--error" : ""
+              }`}
             />
-            {errors.name && <p className="error-msg">{errors.name}</p>}
+            {errors.name && (
+              <p className="contact-form__error">{errors.name}</p>
+            )}
 
-            <label htmlFor="email">{t("contact.fields.email")}</label>
+            <label htmlFor="email" className="contact-form__label">
+              {t("contact.fields.email")}
+            </label>
             <input
               type="email"
               id="email"
               name="email"
+              placeholder={t("contact.placeholders.email")}
               value={formData.email}
               onChange={handleChange}
-              className={errors.email ? "error" : ""}
+              className={`contact-form__input ${
+                errors.email ? "contact-form__input--error" : ""
+              }`}
             />
-            {errors.email && <p className="error-msg">{errors.email}</p>}
+            {errors.email && (
+              <p className="contact-form__error">{errors.email}</p>
+            )}
 
-            <label htmlFor="message">{t("contact.fields.message")}</label>
+            <label htmlFor="message" className="contact-form__label">
+              {t("contact.fields.message")}
+            </label>
             <textarea
               id="message"
               name="message"
+              placeholder={t("contact.placeholders.message")}
               value={formData.message}
               onChange={handleChange}
-              className={errors.message ? "error" : ""}
+              className={`contact-form__textarea ${
+                errors.message ? "contact-form__input--error" : ""
+              }`}
             />
-            {errors.message && <p className="error-msg">{errors.message}</p>}
+            {errors.message && (
+              <p className="contact-form__error">{errors.message}</p>
+            )}
 
-            <button type="submit" disabled={sending}>
+            <button
+              type="submit"
+              className="contact-form__button"
+              disabled={sending}
+            >
               {sending ? t("contact.sending") : t("contact.send")}
             </button>
 
-            {successMsg && <p className="success-msg">{successMsg}</p>}
+            {successMsg && (
+              <p className="contact-form__success">{successMsg}</p>
+            )}
           </div>
         </form>
       </div>
