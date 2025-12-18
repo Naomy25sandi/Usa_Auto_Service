@@ -95,20 +95,6 @@ html.dark .navbar-box {
   margin-left: 1rem;
 }
 
-/* Responsive: compactar */
-@media (max-width: 768px) {
-  .navbar-box {
-    flex-direction: column;
-    gap: 1rem;
-    width: 100%;
-    padding: 1rem;
-  }
-
-  .navbar-box .magic-menu {
-    justify-content: center;
-  }
-}
-
 /* ========================================================= */
 /* 🏎️ LOGO ESTILO METÁLICO                                   */
 /* ========================================================= */
@@ -692,7 +678,7 @@ html.light .magic-menu li:hover::before {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Fixes responsive completos */
+/* Fixes responsive completos - ADAPTACIONES MÓVILES MEJORADAS */
 @media (max-width: 1200px) {
   .navbar-container {
     flex-wrap: wrap;
@@ -719,17 +705,28 @@ html.light .magic-menu li:hover::before {
   }
 
   .navbar-container {
-    flex-direction: column;
-    gap: 0.8rem;
+    flex-direction: row; /* Cambiado a row para integrar back-button mejor */
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .back-button {
+    order: 1;
+    flex: 0 0 auto;
+  }
+
+  .navbar-box {
+    order: 2;
+    flex: 1;
   }
 
   .magic-menu {
-    padding: 1rem;
+    padding: 0.6rem 1rem;
   }
 
   .magic-menu ul {
-    flex-wrap: wrap;
-    justify-content: space-around;
+    flex-wrap: nowrap; /* Evita wrap innecesario */
+    gap: 0.8rem;
   }
 
   .magic-menu li {
@@ -747,51 +744,114 @@ html.light .magic-menu li:hover::before {
 }
 
 @media (max-width: 768px) {
-  .navbar-container {
-    flex-direction: column;
+  .navbar {
+    padding: 0.4rem 0;
   }
 
+  .navbar-container {
+    padding: 0 0.5rem;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+  }
+
+  .back-button {
+    font-size: 1.2rem;
+    padding: 0.5rem;
+  }
+
+  .navbar-box {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 12px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Orden para fila superior: back (fuera), logo, theme, lang; menú abajo full */
   .navbar-logo {
-    justify-content: center;
-    margin-bottom: 0.5rem;
+    order: 1;
+    flex: 0 0 auto;
+    margin: 0;
+  }
+
+  .theme-toggle {
+    order: 2;
+    flex: 0 0 auto;
+    margin: 0 0.2rem;
+    font-size: 1.4rem;
+  }
+
+  .language-dropdown {
+    order: 3;
+    flex: 0 0 auto;
+    margin: 0 0.2rem 0 0;
   }
 
   .magic-menu {
-    flex-direction: column;
-    border-radius: 0;
-    padding: 1rem 0.5rem;
-    gap: 1rem;
+    order: 4;
+    flex: 1 1 100%;
+    padding: 0.4rem 0.5rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    gap: 0;
   }
 
   .magic-menu ul {
-    flex-wrap: wrap;
-    gap: 1rem;
+    gap: 0.5rem;
+    justify-content: space-around;
   }
 
   .magic-menu li {
-    width: 65px;
-    height: 65px;
+    width: 60px;
+    height: 60px;
   }
 
   .magic-menu .icon {
     font-size: 1.3rem;
   }
 
-  .theme-toggle,
-  .language-dropdown {
-    margin-top: 0.5rem;
+  .magic-menu .text {
+    font-size: 0.75rem;
   }
 
-  /* Asegura espacio extra para dropdown en mobile */
-  .navbar-box {
-    padding-bottom: 1.5rem; /* Espacio para dropdown */
+  /* Dropdown ajustado para mobile */
+  .lang-menu {
+    right: auto;
+    left: 0;
+    min-width: 160px;
+  }
+
+  .navbar-logo img {
+    height: 45px;
+  }
+
+  .navbar-logo {
+    font-size: 1.2rem;
+  }
+
+  .logo-text {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar-logo .logo-text {
+    font-size: 1.1rem;
   }
 }
 
 @media (max-width: 480px) {
+  .navbar-box {
+    padding: 0.4rem 0.6rem;
+    gap: 0.3rem;
+  }
+
   .magic-menu li {
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
   }
 
   .magic-menu .icon {
@@ -799,11 +859,12 @@ html.light .magic-menu li:hover::before {
   }
 
   .magic-menu .text {
-    display: none;
+    display: none; /* Ocultar textos en pantallas muy pequeñas */
   }
 
   .lang-toggle {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.6rem;
   }
 
   .theme-toggle {
@@ -811,7 +872,94 @@ html.light .magic-menu li:hover::before {
   }
 
   .lang-menu {
-    min-width: 160px; /* Más compacto en mobile */
+    min-width: 150px;
+  }
+
+  .navbar-logo img {
+    height: 40px;
+  }
+
+  .navbar-logo {
+    font-size: 1.1rem;
+  }
+
+  .logo-text {
+    font-size: 1rem;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 425px) {
+  /* Para celulares muy pequeños (ej. iPhone SE) */
+  .navbar-container {
+    padding: 0 0.3rem;
+  }
+
+  .back-button {
+    font-size: 1.1rem;
+    padding: 0.3rem;
+  }
+
+  .navbar-box {
+    padding: 0.3rem 0.5rem;
+    gap: 0.2rem;
+  }
+
+  .navbar-logo {
+    gap: 0.3rem;
+    font-size: 1rem;
+  }
+
+  .navbar-logo img {
+    height: 35px;
+  }
+
+  .logo-text {
+    font-size: 0.9rem;
+  }
+
+  .theme-toggle {
+    font-size: 1.2rem;
+    margin: 0 0.1rem;
+  }
+
+  .lang-toggle {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.8rem;
+    gap: 0.3rem;
+  }
+
+  .flag-icon {
+    width: 16px;
+    height: 12px;
+  }
+
+  .magic-menu {
+    padding: 0.3rem 0.3rem;
+    margin-top: 0.3rem;
+  }
+
+  .magic-menu ul {
+    gap: 0.3rem;
+  }
+
+  .magic-menu li {
+    width: 50px;
+    height: 50px;
+  }
+
+  .magic-menu .icon {
+    font-size: 1.1rem;
+  }
+
+  .lang-menu {
+    min-width: 140px;
+    top: calc(100% + 8px);
+  }
+
+  .lang-option {
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
   }
 }
 
@@ -845,15 +993,6 @@ html.light .magic-menu li:hover::before {
 
 .magic-menu {
   overflow-x: hidden !important;
-}
-.navbar-logo .logo-text {
-  white-space: nowrap;       /* ❗ Evita que se parta en varias líneas */
-  display: inline-block;
-}
-@media (max-width: 600px) {
-  .navbar-logo .logo-text {
-    font-size: 1.1rem;
-  }
 }
 
 /* ========================================================= */
