@@ -65,3 +65,58 @@
 .promo-img-page:hover {
   transform: scale(1.05);
 }
+/* =========================================
+   FIX PROMOCIONES MOBILE (SIN CAMBIAR ESTILO)
+========================================= */
+
+/* 1) En dispositivos táctiles NO hay hover real */
+@media (hover: none) and (pointer: coarse) {
+  .promo-img-page:hover {
+    transform: none !important;
+  }
+}
+
+/* 2) Refuerzo para móviles: imagen siempre dentro */
+@media (max-width: 768px) {
+  .promo-img-page {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    transform: none !important;
+    display: block;
+  }
+}
+/* ================================
+   FIX PROMOCIONES MOBILE (REAL)
+   Evita overflow de grid y recortes
+================================== */
+
+@media (max-width: 768px) {
+  .promociones-page {
+    padding: 4rem 1rem; /* menos padding lateral para que quepa */
+  }
+
+  .promo-grid-page {
+    grid-template-columns: 1fr; /* 1 columna sí o sí */
+    padding: 0;                 /* quita el padding que mata el ancho */
+    gap: 1.5rem;
+  }
+
+  .promo-card-page {
+    width: 100%;
+  }
+
+  .promo-img-page {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+  }
+}
+
+/* Para teléfonos bien pequeños */
+@media (max-width: 480px) {
+  .promociones-page {
+    padding: 3.5rem 0.75rem;
+  }
+}

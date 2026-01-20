@@ -56,3 +56,20 @@ html.light .btn:hover {
   background: linear-gradient(90deg, #ff6b6b, #ff8a80);
   transform: translateY(-3px);
 }
+/* =========================
+   STICKY FOOTER (GLOBAL)
+========================= */
+html, body {
+  height: 100%;
+}
+
+#root, .App {
+  min-height: 100vh;      /* o 100dvh si querés mejor en mobile */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tu contenido principal debe crecer para empujar el footer abajo */
+main {
+  flex: 1;
+}

@@ -109,6 +109,8 @@ html.dark .navbar-box {
   font-size: 1.4rem;
   color: #C0C0C0;
   transition: all 0.4s ease;
+   min-width: 0;       
+  flex: 1 1 auto;
 }
 
 .navbar-logo img {
@@ -127,6 +129,16 @@ html.dark .navbar-box {
   color: #C0C0C0;
   text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
   transition: all 0.3s ease;
+}
+.navbar-logo span,
+.logo-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 52vw;
+  display: inline-block;
+   min-width: 0;        /* 🔥 CLAVE */
+  max-width: 100%;
 }
 
 .navbar-logo:hover span {
@@ -998,3 +1010,129 @@ html.light .magic-menu li:hover::before {
 /* ========================================================= */
 /* FIN DEL NAVBAR MASTER CSS (FIX APLICADO)                  */
 /* ========================================================= */
+/* ========================================================= */
+/* 🔒 PATCH ANTI-CORTE GLOBAL (NO VISUAL CHANGES)            */
+/* ========================================================= */
+
+/* Navbar y toda su jerarquía JAMÁS se corta */
+/* solo lo que ocupa overflow visible */
+.navbar-box,
+.language-dropdown,
+.lang-menu {
+  overflow: visible;
+}
+body { overflow-x: hidden; }
+
+
+/* ========================================================= */
+/* 🌍 LANGUAGE DROPDOWN – AISLAMIENTO REAL                   */
+/* ========================================================= */
+
+.language-dropdown {
+  position: relative;
+  z-index: 99999; /* por encima de todo */
+}
+
+.lang-menu {
+  position: absolute;
+  isolation: isolate; /* 🔥 evita heredar transforms */
+}
+/* ========================================================= */
+/* 📱 RESPONSIVE FIX UNIVERSAL (SOLO FLUJO)                  */
+/* ========================================================= */
+
+@media (max-width: 1366px) {
+  .navbar-container {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-container {
+    flex-wrap: wrap !important;
+  }
+
+  .navbar-box {
+    width: 100% !important;
+  }
+}
+
+
+  /* Dropdown no se sale de pantalla */
+  .lang-menu {
+    right: auto;
+    left: 0;
+  }
+
+@media (max-width: 480px) {
+  .magic-menu ul {
+    gap: 0.35rem !important;
+    justify-content: space-between !important;
+  }
+
+  .magic-menu li {
+    width: clamp(44px, 14vw, 56px);
+    height: clamp(44px, 14vw, 56px);
+  }
+
+  .magic-menu .icon {
+    font-size: clamp(1.05rem, 4.5vw, 1.25rem);
+  }
+}
+
+/* ========================================================= */
+/* 🛡️ SEGURO ANTI-PÁGINA (CONTACT / OTRAS VISTAS)           */
+/* ========================================================= */
+
+body {
+  overflow-x: hidden;
+}
+
+.navbar {
+  overflow: visible !important;
+}
+@media (max-width: 480px) {
+  .navbar-logo span,
+  .logo-text {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    display: block;
+    line-height: 1.1;
+  }
+}
+/* ✅ Tablet/Fold: evitar que se monten los items */
+@media (min-width: 600px) and (max-width: 1024px) {
+  .magic-menu {
+    overflow-x: auto;                 /* permite deslizar si no cabe */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .magic-menu::-webkit-scrollbar { display: none; }
+
+  .magic-menu ul {
+    width: max-content;               /* clave: el UL mide lo que ocupa */
+    justify-content: flex-start;      /* no repartir espacio a la fuerza */
+    gap: 0.8rem;
+    padding: 0 0.5rem;
+  }
+
+  .magic-menu li {
+    width: clamp(54px, 7vw, 70px);
+    height: clamp(54px, 7vw, 70px);
+  }
+
+  .magic-menu .icon {
+    font-size: clamp(1.2rem, 2.3vw, 1.5rem);
+  }
+
+  /* En estos anchos, el texto estorba */
+  .magic-menu .text {
+    display: none;
+  }
+}
+.navbar-container,
+.navbar-box,
+.magic-menu {
+  min-width: 0;
+}

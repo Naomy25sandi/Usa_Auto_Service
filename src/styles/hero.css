@@ -306,5 +306,67 @@ html.light .hero {
     height: 8px;
   }
 }
+/* =========================================
+   PATCH RESPONSIVE HERO (NO CAMBIA ESTILO)
+   Pegar al FINAL del hero.css
+========================================= */
+
+/* 1) Móviles: NO uses height fija + padding-top grande con overflow hidden */
+@media (max-width: 768px) {
+  .hero {
+    height: auto;                     /* deja de forzar 80vh */
+    min-height: calc(100dvh - 70px);  /* ocupa pantalla sin cortar */
+    align-items: center;              /* evita que se vaya arriba */
+    padding-top: 0.5rem;              /* reduce empuje */
+    overflow: visible;                /* 🔥 evita clipping del carrusel */
+  }
+
+  .hero-carousel {
+    height: min(70dvh, 520px);        /* límite para que no se pase */
+  }
+
+  .carousel-slide {
+    overflow: hidden;                 /* el recorte que sea interno, no del hero */
+  }
+  
+
+  /* 2) Asegura que la imagen no “quede rara” por width:auto */
+  .slide-image {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: contain;              /* mantiene tu estilo */
+  }
+}
+
+/* 3) Teléfonos pequeños: si querés que no se vea “vacío”, permití cover SOLO aquí */
+@media (max-width: 414px) {
+  .hero-carousel {
+    height: min(62dvh, 460px);
+  }
+
+  .slide-image {
+    object-fit: cover;                /* llena mejor en pantallas estrechas */
+  }
+}
+/* =========================================
+   FIX: evitar que el glow se “corte” en mobile
+   (NO cambia estilos, solo dónde se aplica el overflow)
+========================================= */
+@media (max-width: 768px) {
+  .hero-carousel {
+    overflow: visible;        /* deja respirar el glow */
+  }
+
+  .carousel-slide {
+    overflow: hidden;         /* el recorte se hace aquí */
+    border-radius: inherit;   /* mantiene exactamente los mismos bordes */
+  }
+}
+@media (max-width: 768px) {
+  .slide-image {
+    transform: translateZ(0); /* fuerza composición y reduce cortes raros */
+  }
+}
 
 

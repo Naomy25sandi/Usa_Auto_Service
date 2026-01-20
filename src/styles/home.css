@@ -403,10 +403,7 @@ html.dark {
   color: #C0C0C0;
 }
 
-html.light {
-  background: linear-gradient(180deg, #2a2a2a, #404040); /* Gris oscuro para simular plata en luz */
-  color: #C0C0C0;
-}
+
 
 html.dark .header,
 html.dark .servicios,
@@ -797,5 +794,23 @@ html.light .servicios li:hover {
 /* Animación holográfica suave */
 .promo-image:hover {
   transform: scale(1.05);
+}
+/* =========================================
+   FIX RESPONSIVE HERO (SIN CAMBIAR ESTILO)
+   Evita recortes en mobile
+========================================= */
+@media (max-width: 768px) {
+  .hero {
+    overflow: visible;                 /* 🔥 evita que se corte el carrusel */
+    padding: 1rem;                     /* mantiene breathing room pero menor */
+    min-height: calc(100dvh - 70px);   /* altura real mobile */
+    height: auto;                      /* no fuerces vh fijo */
+  }
+}
+@media (max-width: 480px) {
+  .hero {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
 }
 
