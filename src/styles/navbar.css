@@ -132,10 +132,6 @@ html.dark .navbar-box {
 }
 .navbar-logo span,
 .logo-text {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 52vw;
   display: inline-block;
    min-width: 0;        /* 🔥 CLAVE */
   max-width: 100%;
@@ -192,8 +188,9 @@ html.light {
 .language-dropdown {
   position: relative;
   display: inline-block;
-  z-index: 1001; /* Alto para flotar sobre todo */
+  z-index: 99999; /* Alto para flotar sobre todo */
   margin-left: 1rem;
+  isolation: isolate;
 }
 
 .lang-toggle {
@@ -1135,4 +1132,26 @@ body {
 .navbar-box,
 .magic-menu {
   min-width: 0;
+}
+/* =========================================
+   ELIMINAR RECUADRO DEL NAVBAR
+========================================= */
+
+.navbar-box {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+@media (max-width: 768px) {
+  .logo-text {
+    display: none !important;
+  }
+}
+@media (max-width: 768px) {
+  .navbar-logo {
+    flex: 0 0 auto;
+    gap: 0;
+  }
 }

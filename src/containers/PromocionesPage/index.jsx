@@ -3,9 +3,8 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import "../../styles/promociones.css";
 import { useTranslation } from "react-i18next";
-
 import Promo1 from "../../assets/Promo1.jpg";
-import Promo2 from "../../assets/Promo2.jpg";
+import Promo2 from "../../assets/promocion.jpeg";
 
 const PromocionesPage = () => {
   const { t } = useTranslation();

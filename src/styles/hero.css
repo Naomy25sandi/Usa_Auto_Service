@@ -368,5 +368,15 @@ html.light .hero {
     transform: translateZ(0); /* fuerza composición y reduce cortes raros */
   }
 }
+/* ======================================
+   HERO: DESACTIVADO EN MOBILE
+====================================== */
+
+@media (max-width: 768px) {
+  .hero,
+  .hero-carousel {
+    display: none !important;
+  }
+}
 
 
