@@ -278,8 +278,12 @@ color:#e6f0fa;
 
 }
 
-html.light .magic-menu li a{
-color:#222;
+html.light .magic-menu li a {
+  color: #2b2b2b;
+}
+
+html.light .magic-menu li:hover a {
+  color: #dc143c;
 }
 
 /* ICON */
@@ -523,4 +527,29 @@ color:#fff;
 html.light .mobile-item.active{
 background:#dc143c;
 color:#fff;
+}
+.magic-menu .text {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.1;
+  max-width: 70px;
+  word-wrap: break-word;
+}
+.magic-menu li a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 4px;
+}
+.magic-menu .text {
+  width: 60px;
+  .magic-menu .text {
+  font-size: clamp(0.6rem, 1vw, 0.75rem);
+}
+  font-size: 0.65rem;
+  text-align: center;
+  line-height: 1.1;
 }

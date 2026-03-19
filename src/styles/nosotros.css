@@ -135,7 +135,7 @@
   position: relative;
   overflow: hidden; /* Contiene animaciones internas, evita rebote en scroll */
   max-width: 350px; /* Limita tamaño para estabilidad */
-  will-change: contents; /* Optimización perf para anims contenidas */
+  will-change: transform;
 }
 
 /* Nueva animación: "Diagnostic Scan Beam" - Línea escaneadora horizontal como OBD-II, futurista y pro */
@@ -202,11 +202,14 @@
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  object-fit: cover;
+  object-fit: contain;
+  background-color: #000;
   margin-bottom: 1rem;
   border: 3px solid transparent;
   transition: border 0.3s ease;
   filter: drop-shadow(0 0 5px rgba(0, 221, 235, 0.3)); /* Glow base sutil */
+  display: block;
+margin: 0 auto;
 }
 
 .persona:hover img {
@@ -388,4 +391,44 @@ html.light body,
 html.light .nosotros,
 html.light .container {
   color: #111 !important;
+}
+@media (max-width: 768px) {
+  .persona-wrapper {
+    animation: none;
+  }
+
+  .persona {
+    animation: none;
+  }
+
+  .persona::after {
+    animation: none;
+  }
+}
+@media (max-width: 768px) {
+  .persona {
+    backdrop-filter: none;
+    background: rgba(255,255,255,0.08);
+  }
+}@media (max-width: 768px) {
+  .persona-wrapper,
+  .persona,
+  .persona::after {
+    animation: none !important;
+  }
+
+  .persona {
+    backdrop-filter: none;
+    transform: none !important;
+  }
+
+  .persona img {
+    display: block;
+    margin: 0 auto;
+  }
+}
+@media (hover: hover) {
+  .persona-wrapper {
+    animation: subtleFloat 6s ease-in-out infinite;
+  }
 }

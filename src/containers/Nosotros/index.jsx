@@ -2,7 +2,7 @@ import React from "react";
 import "../../styles/nosotros.css";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import Foto from "../../assets/foto-noe.jpg";
+import Foto from "../../assets/foto Noe.jpeg";
 import { useTranslation } from "react-i18next";
 
 const Nosotros = () => {

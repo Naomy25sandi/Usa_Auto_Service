@@ -172,6 +172,28 @@ export default function ContactForm() {
             )}
           </div>
         </form>
+        <section className="contact-map">
+  <h2 className="contact-map__title">
+    {t("Location")}
+  </h2>
+
+  <div className="map-container">
+    <iframe
+      src="https://www.google.com/maps?q=1913+10th+Avenue+N+Lake+Worth+Florida+33461&output=embed"
+      loading="lazy"
+      referrerPolicy="no-referrer-when-downgrade"
+      title="USA Auto Service Location"
+    ></iframe>
+  </div>
+</section>
+<a
+  href="https://www.google.com/maps?q=1913+10th+Avenue+N+Lake+Worth+Florida+33461"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="map-button"
+>
+  {t("Open map")}
+</a>
       </main>
 
       <Footer />
