@@ -3,22 +3,35 @@
   <head>
     <meta charset="utf-8" />
 
-    <!-- ✅ Favicon (TAB del navegador) -->
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-
+    <!-- 📱 Responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
 
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- 🔹 Primary Meta Tags -->
+    <!-- 🎯 SEO Primary -->
     <title>USA Auto Service | Trusted Auto Repair Shop in Miami</title>
     <meta
       name="description"
-      content="USA Auto Service is a professional auto repair shop in Miami with years of experience. We specialize in mechanical repairs, diagnostics, maintenance, and reliable automotive solutions."
+      content="USA Auto Service is a trusted auto repair shop in Miami. We specialize in brake repair, diagnostics, maintenance, and professional automotive services. Call us today!"
     />
 
-    <!-- 🔹 Open Graph / Facebook -->
+    <!-- 🔗 Canonical -->
+    <link rel="canonical" href="https://www.usaautoservice.com/" />
+
+    <!-- 🤖 Robots -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- 🎨 Theme -->
+    <meta name="theme-color" content="#000000" />
+
+    <!-- 🔹 Favicon -->
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- 🍎 Apple -->
+    <link rel="apple-touch-icon" href="/usa-auto-service-logo-192px.png" />
+
+    <!-- 📱 Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- 🔵 Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.usaautoservice.com/" />
     <meta
@@ -27,14 +40,14 @@
     />
     <meta
       property="og:description"
-      content="Trusted auto repair shop in Miami with years of experience. Expert mechanics providing diagnostics, maintenance, and high-quality automotive repair services."
+      content="Trusted auto repair shop in Miami. Expert mechanics in diagnostics, brake repair, maintenance, and automotive solutions."
     />
     <meta
       property="og:image"
-      content="%PUBLIC_URL%/usa-auto-service-logo-512px.png"
+      content="https://www.usaautoservice.com/usa-auto-service-logo-512px.png"
     />
 
-    <!-- 🔹 Twitter -->
+    <!-- 🔷 Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
@@ -42,21 +55,46 @@
     />
     <meta
       name="twitter:description"
-      content="Professional auto repair and maintenance services in Miami. USA Auto Service delivers quality, experience, and trusted mechanical solutions."
+      content="Professional auto repair and maintenance services in Miami."
     />
     <meta
       name="twitter:image"
-      content="%PUBLIC_URL%/usa-auto-service-logo-512px.png"
+      content="https://www.usaautoservice.com/usa-auto-service-logo-512px.png"
     />
 
-    <!-- 🍎 Apple Touch Icon -->
-    <link
-      rel="apple-touch-icon"
-      href="%PUBLIC_URL%/usa-auto-service-logo-192px.png"
-    />
+    <!-- ⚡ Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- 📱 PWA / Manifest -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!-- 🧠 SEO LOCAL (Schema) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "AutoRepair",
+        "name": "USA Auto Service",
+        "image": "https://www.usaautoservice.com/usa-auto-service-logo-512px.png",
+        "url": "https://www.usaautoservice.com/",
+        "telephone": "+1-XXX-XXX-XXXX",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Miami",
+          "addressRegion": "FL",
+          "addressCountry": "US"
+        },
+        "openingHours": "Mo-Sa 08:00-18:00",
+        "priceRange": "$$"
+      }
+    </script>
+
+    <!-- 📊 Google Analytics (CORRECTO) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LCWSQCJE1V"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-LCWSQCJE1V');
+    </script>
+
   </head>
 
   <body>

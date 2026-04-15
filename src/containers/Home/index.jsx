@@ -1,145 +1,143 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Footer from "../../components/Footer/index";
 import Navbar from "../../components/Navbar/index";
 import Hero from "../../components/Hero/index";
 import "../../styles/home.css";
-import Logo from "../../assets/Boldsites-logo.png";
-import { useTranslation } from "react-i18next";
 
 function PaginaPrincipal() {
-  const [showModal, setShowModal] = useState(true);
-  const { t } = useTranslation();
-
-  useEffect(() => {
-    const timer = setTimeout(() => setShowModal(false), 5000);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <div className="pagina-principal">
-      {/* MODAL DE BIENVENIDA */}
-      {showModal && (
-        <div className="welcome-modal">
-          <div className="welcome-content">
-            <h1 className="welcome-title">USA AUTO SERVICE</h1>
-            <p className="boldsites-text">
-              By <span>Boldsites</span>
-            </p>
-            <img src={Logo} alt="Boldsites Logo" className="boldsites-logo" />
-            <p className="welcome-subtitle">{t("home.loading")}</p>
-            <div className="loader"></div>
+      <Navbar />
+      <Hero />
+
+      {/* 🔥 HERO SEO */}
+      <header className="header">
+        <div className="container">
+          <h1>Auto Repair Shop in Miami | USA Auto Service</h1>
+
+          <p className="intro-text">
+            USA Auto Service is a trusted auto repair shop in Miami offering
+            professional brake repair, engine diagnostics, oil changes,
+            suspension services, and complete car maintenance. Our experienced
+            mechanics deliver reliable, fast, and affordable automotive solutions.
+          </p>
+        </div>
+      </header>
+
+      {/* 🔥 SERVICIOS */}
+      <section className="servicios">
+        <div className="container">
+          <h2>Auto Repair Services in Miami</h2>
+
+          <p className="section-subtitle">
+            We provide a wide range of professional automotive services in Miami
+            to keep your vehicle running at its best.
+          </p>
+
+          <ul>
+            <li>
+              <strong>Brake Repair in Miami:</strong> Complete brake inspection,
+              repair, and replacement services for your safety.
+            </li>
+
+            <li>
+              <strong>Engine Diagnostics:</strong> Advanced diagnostics to detect
+              and fix engine issues quickly and efficiently.
+            </li>
+
+            <li>
+              <strong>Oil Change Service:</strong> Fast and affordable oil changes
+              to keep your engine in optimal condition.
+            </li>
+
+            <li>
+              <strong>AC Repair:</strong> Professional air conditioning repair to
+              keep your car cool in Miami’s heat.
+            </li>
+
+            <li>
+              <strong>Suspension Repair:</strong> Improve ride comfort and vehicle
+              stability with expert suspension services.
+            </li>
+
+            <li>
+              <strong>Tire Services:</strong> Tire replacement, balancing, and
+              alignment for maximum performance.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      {/* 🔥 SECCIÓN SEO EXTRA (CLAVE PARA RANKING) */}
+      <section className="why-us">
+        <div className="container">
+          <h2>Why Choose USA Auto Service in Miami?</h2>
+
+          <p>
+            With years of experience in the automotive industry, USA Auto Service
+            has built a strong reputation as one of the most reliable auto repair
+            shops in Miami. Our certified mechanics are committed to delivering
+            high-quality repairs, honest diagnostics, and excellent customer service.
+          </p>
+
+          <p>
+            Whether you need brake repair, engine diagnostics, or routine maintenance,
+            we are your trusted local mechanic in Miami, FL.
+          </p>
+        </div>
+      </section>
+
+      {/* 🔥 TESTIMONIOS (SEO + CONVERSIÓN) */}
+      <section className="testimonios">
+        <div className="container">
+          <h2>Customer Reviews</h2>
+
+          <p className="section-subtitle">
+            See why our customers trust USA Auto Service in Miami.
+          </p>
+
+          <div className="testimonio-cards">
+            <div className="testimonio-card">
+              <h3>Sophia Paradela</h3>
+              <p className="testimonio-text">
+                Excellent service! The best auto repair shop in Miami. Fast,
+                reliable, and very professional mechanics.
+              </p>
+            </div>
+
+            <div className="testimonio-card">
+              <h3>Andrés Ramires</h3>
+              <p className="testimonio-text">
+                They diagnosed my car problem quickly and fixed it the same day.
+                Highly recommended if you need a trusted mechanic in Miami.
+              </p>
+            </div>
+
+            <div className="testimonio-card">
+              <h3>Phillipe Johnson</h3>
+              <p className="testimonio-text">
+                Great experience. Honest pricing and excellent customer service.
+                Definitely my go-to auto repair shop in Miami.
+              </p>
+            </div>
           </div>
         </div>
-      )}
+      </section>
 
-      {!showModal && (
-        <>
-          <Navbar />
-          <Hero />
+      {/* 🔥 UBICACIÓN (LOCAL SEO BOOST) */}
+      <section className="location">
+        <div className="container">
+          <h2>Auto Repair Shop in Miami, FL</h2>
 
-          {/* BIENVENIDA */}
-          <header className="header">
-            <div className="container">
-              <h1 className="neon-title">{t("home.welcomeTitle")}</h1>
-              <p className="intro-text">{t("home.introText")}</p>
-            </div>
-          </header>
+          <p>
+            USA Auto Service proudly serves customers in Miami, Florida. If you
+            are looking for a reliable mechanic near you, visit our shop today
+            or contact us for a free estimate.
+          </p>
+        </div>
+      </section>
 
-          {/* SERVICIOS */}
-          <section className="servicios">
-            <div className="container">
-              <h2 className="section-title">{t("home.servicesTitle")}</h2>
-              <p className="section-subtitle">{t("home.servicesSubtitle")}</p>
-
-              <ul>
-                <li>
-                  {t("home.services.maintenance.title")}:
-                  <span className="descripcion">
-                    {" "}
-                    {t("home.services.maintenance.desc")}
-                  </span>
-                </li>
-                <li>
-                  {t("home.services.repairs.title")}:
-                  <span className="descripcion">
-                    {" "}
-                    {t("home.services.repairs.desc")}
-                  </span>
-                </li>
-                <li>
-                  {t("home.services.brakes.title")}:
-                  <span className="descripcion">
-                    {" "}
-                    {t("home.services.brakes.desc")}
-                  </span>
-                </li>
-                <li>
-                  {t("home.services.ac.title")}:
-                  <span className="descripcion">
-                    {" "}
-                    {t("home.services.ac.desc")}
-                  </span>
-                </li>
-                <li>
-                  {t("home.services.suspension.title")}:
-                  <span className="descripcion">
-                    {" "}
-                    {t("home.services.suspension.desc")}
-                  </span>
-                </li>
-                <li>
-                  {t("home.services.oil.title")}:
-                  <span className="descripcion">
-                    {" "}
-                    {t("home.services.oil.desc")}
-                  </span>
-                </li>
-                <li>
-                  {t("home.services.diagnostic.title")}:
-                  <span className="descripcion">
-                    {" "}
-                    {t("home.services.diagnostic.desc")}
-                  </span>
-                </li>
-                <li>
-                  {t("home.services.tires.title")}:
-                  <span className="descripcion">
-                    {" "}
-                    {t("home.services.tires.desc")}
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </section>
-
-          {/* TESTIMONIOS */}
-          <section className="testimonios">
-            <div className="container">
-              <h2 className="section-title">{t("home.testimonialsTitle")}</h2>
-              <p className="section-subtitle">{t("home.testimonialsSubtitle")}</p>
-
-              <div className="testimonio-cards">
-                <div className="testimonio-card">
-                  <h3>Sophia Paradela</h3>
-                  <p className="testimonio-text">{t("home.testimonials.1")}</p>
-                </div>
-
-                <div className="testimonio-card">
-                  <h3>Andrés Ramires</h3>
-                  <p className="testimonio-text">{t("home.testimonials.2")}</p>
-                </div>
-
-                <div className="testimonio-card">
-                  <h3>Phillipe Jhonson</h3>
-                  <p className="testimonio-text">{t("home.testimonials.3")}</p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <Footer />
-        </>
-      )}
+      <Footer />
     </div>
   );
 }

@@ -4,97 +4,96 @@ import Logo from "../../assets/logo-taller.jpg";
 import foto1 from "../../assets/foto1.jpg";
 import foto2 from "../../assets/foto2.jpg";
 import foto3 from "../../assets/foto3.jpg";
-import { useTranslation } from "react-i18next";
 
 const workImages = [
   {
     src: foto1,
-    alt: "Professional auto repair service in Lake Worth Florida – example work 1",
+    alt: "Brake repair service in Miami Florida by certified mechanics",
   },
   {
     src: foto2,
-    alt: "Certified auto mechanics performing vehicle maintenance – example work 2",
+    alt: "Car diagnostics and engine repair in Miami FL auto shop",
   },
   {
     src: foto3,
-    alt: "Trusted auto repair shop servicing cars in Lake Worth FL – example work 3",
+    alt: "Professional auto maintenance service in Miami Florida workshop",
   },
 ];
 
 const Hero = () => {
-  useTranslation(); // ← FIX: No warning
-
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [animation, setAnimation] = useState("fadeInSlide");
+  const [animation, setAnimation] = useState("fadeIn");
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setAnimation("fadeOutSlide");
+      setAnimation("fadeOut");
+
       setTimeout(() => {
         setCurrentIndex((prev) => (prev + 1) % workImages.length);
-        setAnimation("fadeInSlide");
-      }, 400);
+        setAnimation("fadeIn");
+      }, 300);
     }, 5000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section
-      className="hero"
-      aria-label="USA Auto Service auto repair shop in Lake Worth Florida"
-      itemScope
-      itemType="https://schema.org/AutoRepair"
-    >
-      {/* 🔹 SEO invisible pero poderoso */}
-      <meta itemProp="name" content="USA Auto Service" />
-      <meta
-        itemProp="description"
-        content="Professional auto repair shop in Lake Worth, Florida specializing in diagnostics, maintenance, and mechanical repairs."
-      />
-      <meta itemProp="areaServed" content="Lake Worth, Florida" />
+    <section className="hero">
+      {/* 🔥 CONTENIDO SEO REAL */}
+      <div className="hero-content">
+        <h1>Auto Repair Shop in Miami | USA Auto Service</h1>
 
+        <p className="hero-description">
+          USA Auto Service is a trusted auto repair shop in Miami, Florida.
+          We specialize in brake repair, engine diagnostics, oil changes,
+          suspension, and complete vehicle maintenance. Our experienced
+          mechanics deliver reliable, fast, and affordable automotive solutions.
+        </p>
+
+        {/* 🔥 CTA (importante para conversión) */}
+        <a href="#contact" className="hero-cta">
+          Get a Free Estimate
+        </a>
+      </div>
+
+      {/* 🔥 IMAGEN PRINCIPAL (LCP optimizado) */}
       <div className="hero-carousel">
-        <figure
-          className={`carousel-slide ${animation}`}
-          itemProp="image"
-        >
-          <img
-            src={workImages[currentIndex].src}
-            alt={workImages[currentIndex].alt}
-            loading="eager"
-            fetchPriority="high"
-            className="slide-image"
-          />
-        </figure>
+        <img
+          src={workImages[currentIndex].src}
+          alt={workImages[currentIndex].alt}
+          loading="eager"
+          fetchPriority="high"
+          className={`slide-image ${animation}`}
+          width="1200"
+          height="700"
+        />
 
-        <div className="slide-logo-overlay" aria-hidden="false">
+        {/* 🔥 LOGO (NO lazy en hero) */}
+        <div className="logo-overlay">
           <img
             src={Logo}
-            alt="USA Auto Service official auto repair shop logo"
-            className="small-logo"
-            loading="lazy"
-          
+            alt="USA Auto Service logo - auto repair shop in Miami"
+            loading="eager"
+            className="hero-logo"
+            width="120"
+            height="120"
           />
         </div>
 
-        <nav
-          className="carousel-indicators"
-          role="tablist"
-          aria-label="Change auto repair service image"
-        >
+        {/* 🔥 INDICADORES ACCESIBLES */}
+        <div className="carousel-indicators">
           {workImages.map((_, index) => (
             <button
               key={index}
-              role="tab"
-              aria-selected={currentIndex === index}
-              aria-label={`Show auto repair example ${index + 1}`}
-              tabIndex={0}
-              className={`indicator ${currentIndex === index ? "active" : ""}`}
+              aria-label={`View auto repair work example ${index + 1}`}
+              aria-current={currentIndex === index}
+              className={`indicator ${
+                currentIndex === index ? "active" : ""
+              }`}
               onClick={() => setCurrentIndex(index)}
             />
           ))}
-        </nav>
+        </div>
       </div>
     </section>
   );
