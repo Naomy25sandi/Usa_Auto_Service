@@ -68,24 +68,7 @@ function PaginaPrincipal() {
         </div>
       </section>
 
-      {/* 🔥 SECCIÓN SEO EXTRA (CLAVE PARA RANKING) */}
-      <section className="why-us">
-        <div className="container">
-          <h2>Why Choose USA Auto Service in Miami?</h2>
-
-          <p>
-            With years of experience in the automotive industry, USA Auto Service
-            has built a strong reputation as one of the most reliable auto repair
-            shops in Miami. Our certified mechanics are committed to delivering
-            high-quality repairs, honest diagnostics, and excellent customer service.
-          </p>
-
-          <p>
-            Whether you need brake repair, engine diagnostics, or routine maintenance,
-            we are your trusted local mechanic in Miami, FL.
-          </p>
-        </div>
-      </section>
+     
 
       {/* 🔥 TESTIMONIOS (SEO + CONVERSIÓN) */}
       <section className="testimonios">
@@ -124,18 +107,7 @@ function PaginaPrincipal() {
         </div>
       </section>
 
-      {/* 🔥 UBICACIÓN (LOCAL SEO BOOST) */}
-      <section className="location">
-        <div className="container">
-          <h2>Auto Repair Shop in Miami, FL</h2>
 
-          <p>
-            USA Auto Service proudly serves customers in Miami, Florida. If you
-            are looking for a reliable mechanic near you, visit our shop today
-            or contact us for a free estimate.
-          </p>
-        </div>
-      </section>
 
       <Footer />
     </div>

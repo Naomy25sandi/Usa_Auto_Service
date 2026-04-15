@@ -39,22 +39,7 @@ const Hero = () => {
 
   return (
     <section className="hero">
-      {/* 🔥 CONTENIDO SEO REAL */}
-      <div className="hero-content">
-        <h1>Auto Repair Shop in Miami | USA Auto Service</h1>
-
-        <p className="hero-description">
-          USA Auto Service is a trusted auto repair shop in Miami, Florida.
-          We specialize in brake repair, engine diagnostics, oil changes,
-          suspension, and complete vehicle maintenance. Our experienced
-          mechanics deliver reliable, fast, and affordable automotive solutions.
-        </p>
-
-        {/* 🔥 CTA (importante para conversión) */}
-        <a href="#contact" className="hero-cta">
-          Get a Free Estimate
-        </a>
-      </div>
+    
 
       {/* 🔥 IMAGEN PRINCIPAL (LCP optimizado) */}
       <div className="hero-carousel">
