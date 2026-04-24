@@ -22,12 +22,12 @@ const Nosotros = () => {
           <div className="fundadores">
             <div className="persona-wrapper">
               <div className="persona">
-                <img src={Foto} alt={t("about.founder.name")} />
-                <p>
+                {/* <img src={Foto} alt={t("about.founder.name")} /> */}
+                {/* <p>
                   {t("about.founder.name")} <br />
                   <span className="role">{t("about.founder.role")}</span>
-                </p>
-                <p className="bio">{t("about.founder.bio")}</p>
+                </p> */}
+                {/* <p className="bio">{t("about.founder.bio")}</p> */}
               </div>
             </div>
           </div>
