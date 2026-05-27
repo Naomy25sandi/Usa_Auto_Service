@@ -2,7 +2,7 @@ import React from "react";
 import "../../styles/nosotros.css";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import Logo from "../../assets/logo-taller.jpg";
+import Logo from "../../assets/logo-nuevo.webp";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
 import {
