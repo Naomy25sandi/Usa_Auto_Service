@@ -1,5 +1,5 @@
 /* ========================================================= */
-/* ⚡ FOOTER FUTURISTA 3D AJUSTADO PARA MODO CLARO OSCURO     */
+/* ⚡ FOOTER FUTURISTA 3D                                      */
 /* ========================================================= */
 .footer {
   background: var(--footer-bg);
@@ -36,11 +36,17 @@
   transition: color 0.3s ease;
 }
 
+.footer-address {
+  font-size: 0.82rem;
+  color: var(--footer-text);
+  opacity: 0.7;
+}
+
 /* --- Íconos flotantes 3D --- */
 .footer-socials {
   display: flex;
   gap: 1.8rem;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   perspective: 800px;
 }
 
@@ -53,19 +59,17 @@
   position: relative;
 }
 
-/* === Animación 3D al hover === */
 .social-link:hover {
   transform: rotateY(25deg) rotateX(10deg) translateY(-8px) scale(1.15);
   color: var(--accent);
   text-shadow: 0 0 15px var(--accent), 0 0 25px rgba(220, 20, 60, 0.4);
 }
 
-/* Colores hover personalizados */
 .social-link.whatsapp:hover { color: #25D366; text-shadow: 0 0 15px #25D366; }
 .social-link.instagram:hover { color: #E1306C; text-shadow: 0 0 15px #E1306C; }
 .social-link.facebook:hover { color: #1877F2; text-shadow: 0 0 15px #1877F2; }
 
-/* --- Fondo dinámico tipo energía pulsante --- */
+/* --- Fondo pulsante --- */
 .footer::before {
   content: "";
   position: absolute;
@@ -86,6 +90,62 @@
 }
 
 /* ========================================================= */
+/* ❤️ CRÉDITOS BOLDSITES                                      */
+/* ========================================================= */
+.footer-credits {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+  font-size: 0.72rem;
+  color: #555;
+  flex-wrap: wrap;
+}
+
+.footer-heart {
+  color: #DC143C;
+  font-size: 0.7rem;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.35); }
+}
+
+.footer-boldsites {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: #DC143C;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.5px;
+  transition: opacity 0.3s;
+}
+
+.footer-boldsites:hover { opacity: 0.75; }
+
+.footer-boldsites-logo {
+  height: 22px;
+  width: 22px;
+  object-fit: contain;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+html.dark .footer-boldsites-logo {
+  background: #fff;
+  padding: 2px;
+  border-radius: 4px;
+}
+
+html.light .footer-boldsites-logo {
+  background: transparent;
+}
+
+/* ========================================================= */
 /* 🌑 MODO OSCURO                                             */
 /* ========================================================= */
 html.dark {
@@ -101,31 +161,30 @@ html.dark .footer {
 /* ========================================================= */
 /* 🌞 MODO CLARO                                              */
 /* ========================================================= */
-/* ========================================================= */
-/* 🌞 MODO CLARO – NO MÁS DISCRIMINACIÓN 😎                   */
-/* ========================================================= */
 html.light {
   --footer-bg: #ffffff;
-  --footer-text: #000000; /* Negro sólido real */
+  --footer-text: #000000;
   --accent: #dc143c;
 }
 
 html.light .footer {
   background: linear-gradient(180deg, #ffffff, #f9f9f9);
   box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.1);
-  color: var(--footer-text);
-  position: relative;
-  overflow: hidden;
 }
 
-/* 🔠 Texto visible y nítido */
 html.light .footer p {
   color: #000 !important;
   font-weight: 600;
-  text-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
 }
 
-/* 🧠 Íconos 3D activos también en modo claro */
+html.light .footer-address {
+  color: #333;
+}
+
+html.light .footer-credits {
+  color: #666;
+}
+
 html.light .social-link {
   color: #000000;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
@@ -139,51 +198,38 @@ html.light .social-link:hover {
   text-shadow: 0 0 15px var(--accent), 0 0 25px rgba(220, 20, 60, 0.4);
 }
 
-/* 🎨 Hover color personalizado igual que modo oscuro */
-html.light .social-link.whatsapp:hover {
-  color: #25D366;
-  text-shadow: 0 0 15px #25D366;
-}
+html.light .social-link.whatsapp:hover { color: #25D366; text-shadow: 0 0 15px #25D366; }
+html.light .social-link.instagram:hover { color: #E1306C; text-shadow: 0 0 15px #E1306C; }
+html.light .social-link.facebook:hover { color: #1877F2; text-shadow: 0 0 15px #1877F2; }
 
-html.light .social-link.instagram:hover {
-  color: #E1306C;
-  text-shadow: 0 0 15px #E1306C;
-}
-
-html.light .social-link.facebook:hover {
-  color: #1877F2;
-  text-shadow: 0 0 15px #1877F2;
-}
-
-/* 💫 Energía pulsante visible también */
 html.light .footer::before {
-  content: "";
-  position: absolute;
-  bottom: -80px;
-  left: 50%;
-  width: 280px;
-  height: 280px;
   background: radial-gradient(circle, rgba(220, 20, 60, 0.25), transparent 70%);
-  transform: translateX(-50%);
   filter: blur(70px);
-  animation: pulseEnergy 6s infinite alternate ease-in-out;
-  z-index: 0;
 }
-
 
 /* ========================================================= */
 /* 📱 RESPONSIVE                                              */
 /* ========================================================= */
 @media (max-width: 768px) {
-  .footer-socials {
-    gap: 1.2rem;
-  }
+  .footer-socials { gap: 1.2rem; }
+  .social-link { font-size: 1.8rem; }
+  .footer p { font-size: 0.85rem; }
+  .footer-credits { font-size: 0.68rem; }
+}
+@media (max-width: 480px) {
+  .footer { padding: 1.5rem 1rem; }
+  .footer p { font-size: 0.78rem; }
+  .footer-address { font-size: 0.72rem; }
+  .footer-socials { gap: 1rem; }
+  .social-link { font-size: 1.6rem; }
+  .footer-credits { font-size: 0.64rem; gap: 0.25rem; }
+  .footer-boldsites { font-size: 0.64rem; }
+  .footer-boldsites-logo { height: 18px; width: 18px; }
+}
 
-  .social-link {
-    font-size: 1.8rem;
-  }
-
-  .footer p {
-    font-size: 0.85rem;
-  }
+@media (max-width: 360px) {
+  .footer-socials { gap: 0.75rem; }
+  .social-link { font-size: 1.4rem; }
+  .footer p { font-size: 0.72rem; }
+  .footer-address { font-size: 0.65rem; }
 }

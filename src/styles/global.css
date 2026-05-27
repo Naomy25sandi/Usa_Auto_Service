@@ -73,3 +73,6 @@ html, body {
 main {
   flex: 1;
 }
+html {
+  scroll-behavior: auto !important;
+}

@@ -1,141 +1,158 @@
-.services-section {
-  background: linear-gradient(135deg, #000000, #1a1a1a); /* Negro metálico base */
-  padding: 4rem 1rem;
-  position: relative;
-  overflow: hidden;
-  border-radius: 20px;
-  margin: 2rem 0;
-  box-shadow: 0 0 30px rgba(220, 20, 60, 0.3); /* Rojo glow metálico */
-  border: 1px solid #DC143C; /* Borde rojo pro */
-}
-
-.services-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
+/* ============================= */
+/* PAGE BASE                     */
+/* ============================= */
+.services-page {
   width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 20% 80%, rgba(192, 192, 192, 0.05) 0%, transparent 50%), /* Plata sutil */
-              radial-gradient(circle at 80% 20%, rgba(220, 20, 60, 0.05) 0%, transparent 50%); /* Rojo esquina */
-  z-index: 0;
-  opacity: 0.5;
-  pointer-events: none; /* Estabilidad scroll */
+  min-height: 100vh;
 }
 
-.services-title {
-  font-size: 2.5rem;
-  color: #C0C0C0; /* Plata base – IDÉNTICO EN AMBOS */
+html.dark .services-page { background: #000; }
+html.light .services-page { background: #fafafa; }
+
+/* ============================= */
+/* HERO BANNER                   */
+/* ============================= */
+.services-hero {
+  position: relative;
+  padding: 5rem 1.5rem 4rem;
+  padding-top: calc(72px + 3rem); /* ← compensa el navbar fixed */
   text-align: center;
-  margin-bottom: 2.5rem;
-  background: linear-gradient(90deg, #C0C0C0, #DC143C); /* GRADIENTE PLATA-ROJO IDÉNTICO */
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  /* Glow base (igual en ambos) */
-  text-shadow: 0 0 10px rgba(220, 20, 60, 0.4);
-  animation: titleMetallicPulse 2s infinite alternate;
-  letter-spacing: 3px; /* Spacing para sharp */
-  font-weight: 900; /* Extra bold para definición */
-  /* Sharp rendering universal (mismo en light/dark) */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  paint-order: stroke fill;
-  -webkit-text-stroke: 0.3px rgba(192, 192, 192, 0.1); /* Stroke plata fino para edges */
-  backface-visibility: hidden;
-}
-
-@keyframes titleMetallicPulse {
-  0% { 
-    text-shadow: 0 0 10px rgba(220, 20, 60, 0.4), 0 0 20px rgba(192, 192, 192, 0.2); 
-    filter: brightness(1);
-  }
-  100% { 
-    text-shadow: 0 0 20px rgba(220, 20, 60, 0.8), 0 0 30px rgba(192, 192, 192, 0.4); 
-    filter: brightness(1.05);
-  }
-}
-
-.services-grid {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  padding: 0 1rem;
-  z-index: 1; /* Sobre ::before */
-  position: relative;
-}
-
-.service-card {
-  background: rgba(0, 0, 0, 0.8); /* Negro metálico */
-  padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 0 10px rgba(192, 192, 192, 0.1); /* Plata glow */
-  transition: all 0.4s ease; /* Suave para pro feel */
-  position: relative;
   overflow: hidden;
-  border: 1px solid #DC143C; /* Rojo borde */
-  animation: cardHoloStagger 0.8s ease-out forwards; /* Holo stagger futurista */
-  will-change: transform, opacity; /* Perf en card */
-  backface-visibility: hidden; /* No jank en scroll */
+  border-bottom: 1px solid rgba(220,20,60,0.15);
 }
 
-@keyframes cardHoloStagger {
-  from { 
-    opacity: 0; 
-    transform: translateY(40px) scale(0.9) rotateX(15deg); /* Warp 3D sutil */
-    filter: blur(4px) hue-rotate(0deg);
-    border-radius: 50%; /* Morph oval a rect */
-  }
-  to { 
-    opacity: 1; 
-    transform: translateY(0) scale(1) rotateX(0deg); 
-    filter: blur(0) hue-rotate(0deg);
-    border-radius: 15px;
-  }
+.services-hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at top, rgba(220,20,60,0.04), transparent 70%),
+    linear-gradient(180deg, #000 0%, #0a0a0a 100%);
+  z-index: 0;
 }
 
-/* Holographic Polish: Shine metálico en cards */
-.service-card::before {
+html.light .services-hero-bg {
+  background:
+    radial-gradient(circle at top, rgba(220,20,60,0.04), transparent 70%),
+    linear-gradient(180deg, #fff 0%, #f5f5f5 100%);
+}
+
+.services-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.services-hero-tag {
+  display: inline-block;
+  background: rgba(220,20,60,0.1);
+  border: 1px solid rgba(220,20,60,0.3);
+  color: #DC143C;
+  padding: 0.35rem 1.1rem;
+  border-radius: 100px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  white-space: nowrap; /* ← evita que se corte */
+}
+
+.services-hero-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  text-shadow: 0 0 18px rgba(255,40,80,0.25);
+}
+
+html.light .services-hero-title {
+  color: #111 !important;
+  -webkit-text-fill-color: #111 !important;
+  background: none !important;
+  text-shadow: none;
+}
+
+.services-hero-line {
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #DC143C, transparent);
+  border-radius: 2px;
+}
+
+.services-hero-sub {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0;
+  line-height: 1.6;
+}
+
+html.light .services-hero-sub { color: #555 !important; }
+
+/* ============================= */
+/* SERVICES LIST                 */
+/* ============================= */
+.services-list-section {
+  padding: 3rem 1rem 4rem;
+}
+
+html.light .services-list-section { background: #fff; }
+
+.services-list-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* SERVICE ITEM */
+.service-item {
+  display: grid;
+  grid-template-columns: 30px 48px 1fr 32px; /* ← primera columna de 48px a 30px */
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem 1.25rem; /* ← era 1.75rem */
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: all 0.3s ease;
+  cursor: default;
+  animation: fadeInUp 0.6s ease both;
+  position: relative;
+}
+
+html.light .service-item {
+  border-bottom-color: rgba(0,0,0,0.06);
+}
+
+.service-item:first-child {
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+html.light .service-item:first-child {
+  border-top-color: rgba(0,0,0,0.06);
+}
+
+.service-item::before {
   content: '';
   position: absolute;
+  left: 0;
   top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(192, 192, 192, 0.3), /* Plata shine */
-    rgba(220, 20, 60, 0.2), /* Rojo acento */
-    transparent
-  );
-  z-index: 0;
-  transition: left 0.6s ease;
-  opacity: 0.8;
-  transform: skewX(-20deg); /* Skew "pulido" metálico */
+  bottom: 0;
+  width: 0;
+  background: rgba(220,20,60,0.04);
+  transition: width 0.3s ease;
+  border-radius: 0 8px 8px 0;
 }
 
-.service-card:hover::before {
-  left: 100%; /* Shine en hover */
-}
-
-.service-card:hover {
-  transform: translateY(-10px) scale(1.02) rotateZ(1deg); /* Tilt futurista sutil */
-  box-shadow: 0 0 25px rgba(220, 20, 60, 0.5), inset 0 0 20px rgba(192, 192, 192, 0.1); /* Glow rojo + inner plata */
-  border-color: #ff4b4b; /* Rojo más intenso en hover */
-}
-
-.service-card__title {
-  font-size: 1.5rem;
-  color: #C0C0C0; /* Plata */
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  position: relative;
-  z-index: 2;
-  animation: fadeInUp 1s ease-out;
-  text-shadow: 0 0 5px rgba(220, 20, 60, 0.3); /* Glow rojo */
+.service-item:hover::before { width: 100%; }
+.service-item:hover {
+  border-bottom-color: rgba(220,20,60,0.15);
+  transform: translateX(4px);
 }
 
 @keyframes fadeInUp {
@@ -143,176 +160,223 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-.service-card__description {
-  font-size: 1rem;
-  color: #A0A0A0; /* Plata atenuada */
-  line-height: 1.6;
+/* NUMBER */
+.service-item-number {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: rgba(220,20,60,0.7); /* ← sube de 0.4 a 0.7 */
+  letter-spacing: 1px;
+  font-family: 'Orbitron', monospace;
   position: relative;
-  z-index: 2;
-  animation: fadeIn 1.5s ease-out;
+  z-index: 1;
+  width: 30px; /* ← era 48px en el grid */
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+/* ICON */
+.service-item-icon {
+  width: 42px;
+  height: 42px;
+  background: rgba(220,20,60,0.08);
+  border: 1px solid rgba(220,20,60,0.15);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #DC143C;
+  font-size: 1.1rem;
+  transition: all 0.3s;
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .services-section {
-    padding: 2rem 1rem;
-    margin: 1rem 0;
+.service-item:hover .service-item-icon {
+  background: rgba(220,20,60,0.15);
+  border-color: rgba(220,20,60,0.3);
+  transform: scale(1.08);
+  box-shadow: 0 0 20px rgba(220,20,60,0.2);
+}
+
+/* CONTENT */
+.service-item-content {
+  position: relative;
+  z-index: 1;
+}
+
+.service-item-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ddd;
+  margin: 0 0 0.35rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+html.light .service-item-title {
+  color: #111 !important;
+  -webkit-text-fill-color: #111 !important;
+}
+
+.service-item:hover .service-item-title { color: #fff; }
+html.light .service-item:hover .service-item-title { color: #DC143C !important; -webkit-text-fill-color: #DC143C !important; }
+
+.service-item-desc {
+  font-size: 0.82rem;
+  color: #555;
+  margin: 0;
+  line-height: 1.55;
+  transition: color 0.3s;
+}
+
+html.light .service-item-desc { color: #666 !important; }
+.service-item:hover .service-item-desc { color: #777; }
+
+/* ARROW */
+.service-item-arrow {
+  font-size: 1.4rem; /* ← era 1rem */
+  color: rgba(220,20,60,0.55); /* ← era 0.3 */
+  transition: all 0.3s;
+  position: relative;
+  z-index: 1;
+  text-align: right;
+  text-decoration: none;
+}
+
+.service-item:hover .service-item-arrow {
+  color: #DC143C;
+  transform: translateX(4px);
+}
+
+/* ============================= */
+/* CTA                           */
+/* ============================= */
+.services-cta {
+  padding: 3rem 1rem 4rem;
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+
+html.light .services-cta {
+  background: #f9f9f9;
+  border-top-color: rgba(0,0,0,0.06);
+}
+
+.services-cta-container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.services-cta-box {
+  background: linear-gradient(135deg, rgba(220,20,60,0.08), transparent);
+  border: 1px solid rgba(220,20,60,0.2);
+  border-radius: 20px;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+}
+
+.services-cta-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 0.75rem;
+}
+
+html.light .services-cta-title {
+  color: #111 !important;
+  -webkit-text-fill-color: #111 !important;
+}
+
+.services-cta-sub {
+  font-size: 0.82rem;
+  color: #888; /* ← era #555, sube a #888 en modo oscuro */
+  margin: 0 0 2rem;
+  line-height: 1.6;
+}
+
+html.light .services-cta-sub { color: #555 !important; }
+
+.services-cta-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.services-cta-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #25D366;
+  color: #fff;
+  padding: 0.9rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+  transition: all 0.3s;
+  box-shadow: 0 4px 16px rgba(37,211,102,0.3);
+}
+.services-cta-primary:hover {
+  background: #20bc5a;
+  transform: translateY(-2px);
+}
+
+.services-cta-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: #C0C0C0;
+  padding: 0.9rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+  border: 1px solid rgba(192,192,192,0.2);
+  transition: all 0.3s;
+}
+.services-cta-secondary:hover {
+  border-color: #DC143C;
+  color: #fff;
+  background: rgba(220,20,60,0.08);
+}
+
+html.light .services-cta-secondary {
+  color: #111;
+  border-color: #333;
+}
+html.light .services-cta-secondary:hover {
+  border-color: #DC143C;
+  color: #DC143C;
+  background: rgba(220,20,60,0.05);
+}
+
+/* ============================= */
+/* RESPONSIVE                    */
+/* ============================= */
+@media (min-width: 768px) {
+  .services-hero-title { font-size: 3.5rem; }
+  .services-hero-sub { font-size: 1rem; }
+  .service-item { padding: 1.75rem 1.5rem; gap: 1.5rem; }
+  .service-item-title { font-size: 1rem; }
+  .service-item-desc { font-size: 0.85rem; }
+  .services-cta-btns { flex-direction: row; justify-content: center; }
+  .services-cta-primary,
+  .services-cta-secondary { width: auto; }
+}
+
+@media (min-width: 1024px) {
+  .services-hero-title { font-size: 4rem; }
+  .services-list-section { padding: 4rem 2rem 5rem; }
+  .services-cta { padding: 4rem 2rem 5rem; }
+}
+
+@media (max-width: 480px) {
+  .service-item {
+    grid-template-columns: 36px 38px 1fr;
+    gap: 0.85rem;
   }
-
-  .services-title {
-    font-size: 2rem;
-  }
-
-  .services-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .service-card {
-    padding: 1.5rem;
-    animation-duration: 0.6s; /* Más rápido en mobile */
-  }
-
-  .service-card__title {
-    font-size: 1.3rem;
-  }
-
-  .service-card__description {
-    font-size: 0.9rem;
-  }
-}
-
-/* Light Mode: Sharp + Mismo visual que dark */
-html.light .services-section {
-  background: linear-gradient(135deg, #f0f0f0, #d0d0d0) !important; /* Gris plata metálico */
-  box-shadow: 0 0 30px rgba(220, 20, 60, 0.2) !important;
-  border: 1px solid #DC143C !important;
-}
-
-html.light .services-section::before {
-  background: radial-gradient(circle at 20% 80%, rgba(192, 192, 192, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 80% 20%, rgba(220, 20, 60, 0.03) 0%, transparent 50%);
-  opacity: 0.3;
-}
-
-html.light .services-title {
-  color: #C0C0C0 !important; /* Plata base – IDÉNTICO */
-  background: linear-gradient(90deg, #C0C0C0, #DC143C) !important; /* GRADIENTE IDÉNTICO */
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  /* Glow IDÉNTICO AL DARK, con layers para sharp en light */
-  text-shadow: 
-    0 0 10px rgba(220, 20, 60, 0.6), /* Rojo glow intenso */
-    0 0 20px rgba(192, 192, 192, 0.3), /* Plata layer */
-    1px 1px 2px rgba(0, 0, 0, 0.2), /* Sharp edge dark */
-    -1px -1px 2px rgba(255, 255, 255, 0.3) !important; /* Sharp edge light */
-  animation: titleMetallicPulse 2s infinite alternate !important; /* Mismo pulso */
-  /* Sharp reforzado (mismo que light anterior) */
-  font-weight: 900 !important;
-  letter-spacing: 3px !important;
-  -webkit-text-stroke: 0.3px rgba(255, 255, 255, 0.9) !important; /* Stroke blanco para pop */
-}
-
-html.light .service-card {
-  background: rgba(255, 255, 255, 0.95) !important; /* Blanco metálico legible */
-  border: 1px solid #DC143C !important;
-  box-shadow: 0 0 10px rgba(192, 192, 192, 0.2) !important;
-  animation: cardHoloStagger 0.8s ease-out forwards !important;
-  /* Etch metálico en border */
-  border-image: linear-gradient(45deg, #DC143C, #C0C0C0) 1 !important;
-}
-
-html.light .service-card::before {
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(192, 192, 192, 0.2), /* Plata shine */
-    rgba(220, 20, 60, 0.1), /* Rojo acento */
-    transparent
-  ) !important;
-}
-
-html.light .service-card:hover {
-  box-shadow: 0 0 25px rgba(220, 20, 60, 0.4), inset 0 0 20px rgba(192, 192, 192, 0.05) !important;
-  border-color: #ff4b4b !important; /* Rojo hover */
-}
-
-html.light .service-card__title {
-  color: #333 !important; /* Gris oscuro sharp */
-  text-shadow: 0 0 5px rgba(220, 20, 60, 0.2) !important;
-}
-
-html.light .service-card__description {
-  color: #555 !important; /* Gris medio legible */
-}
-
-/* Dark Mode: Sharp + Mismo visual que light */
-html.dark .services-section {
-  background: linear-gradient(135deg, #000000, #1a1a1a) !important;
-}
-
-html.dark .services-section::before {
-  opacity: 0.4;
-}
-
-html.dark .services-title {
-  color: #C0C0C0 !important; /* Plata base – IDÉNTICO */
-  background: linear-gradient(90deg, #C0C0C0, #DC143C) !important; /* GRADIENTE IDÉNTICO */
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  /* Glow IDÉNTICO AL LIGHT, con layers para sharp en dark */
-  text-shadow: 
-    0 0 10px rgba(220, 20, 60, 0.6), /* Rojo glow intenso */
-    0 0 20px rgba(192, 192, 192, 0.3), /* Plata layer */
-    1px 1px 2px rgba(0, 0, 0, 0.3), /* Sharp edge dark */
-    -1px -1px 2px rgba(255, 255, 255, 0.2) !important; /* Sharp edge light para contraste */
-  animation: titleMetallicPulse 2s infinite alternate !important; /* Mismo pulso */
-  /* Sharp reforzado (mismo que light) */
-  font-weight: 900 !important;
-  letter-spacing: 3px !important;
-  -webkit-text-stroke: 0.3px rgba(192, 192, 192, 0.9) !important; /* Stroke plata para pop en dark */
-}
-
-html.dark .service-card {
-  background: rgba(0, 0, 0, 0.8) !important;
-}
-
-html.dark .service-card__title {
-  color: #C0C0C0 !important;
-}
-
-html.dark .service-card__description {
-  color: #A0A0A0 !important;
-}
-
-/* Fix Footer en Light: Reforzado para texto legible */
-html.light footer,
-html.light .footer,
-html.light .footer * {
-  color: #333 !important; /* Gris oscuro sharp */
-  background: linear-gradient(135deg, #f8f9fa, #e9ecef) !important; /* Fondo plata claro */
-  text-shadow: none !important; /* Sin glow que borre */
-  font-weight: 500 !important; /* Bold sutil para pro */
-}
-
-/* Global fixes para scroll y rendering */
-.services-section,
-.services-grid,
-.service-card,
-.services-title {
-  backface-visibility: hidden;
-}
-
-body {
-  scroll-behavior: smooth;
-}
-
-footer {
-  transition: none; /* Evita jank */
+  .service-item-arrow { display: none; }
+  .service-item-number { font-size: 0.62rem; }
+  .services-hero { padding: 4rem 1rem 3rem; }
+  .services-hero-title { font-size: 2rem; }
 }
