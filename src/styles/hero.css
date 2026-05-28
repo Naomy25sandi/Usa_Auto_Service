@@ -310,11 +310,11 @@ html.light .btn-secondary:hover {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition: opacity 0.4s ease;
 }
 
-.carousel-img.img-in { opacity: 1; transform: scale(1); }
-.carousel-img.img-out { opacity: 0; transform: scale(1.02); }
+.carousel-img.img-in { opacity: 1; }
+.carousel-img.img-out { opacity: 0; }
 
 /* CORNERS */
 .corner {
@@ -478,4 +478,33 @@ html.light .btn-secondary:hover {
 @media (min-width: 1280px) {
   .hero-inner { max-width: 1300px; padding: 4rem 2rem; }
   .title-line1, .title-line2 { font-size: 3.5rem; }
+}
+@media (min-width: 1440px) {
+  .hero-inner {
+    max-width: 1400px;
+    padding: 4rem 3rem;
+  }
+
+  .title-line1, .title-line2 { font-size: 4rem; }
+  .title-line3 { font-size: 2.5rem; }
+}
+
+@media (min-width: 1920px) {
+  .hero-inner {
+    max-width: 1600px;
+    padding: 5rem 4rem;
+  }
+
+  .title-line1, .title-line2 { font-size: 4.5rem; }
+  .title-line3 { font-size: 2.8rem; }
+}
+
+@media (min-width: 2560px) {
+  .hero-inner {
+    max-width: 1800px;
+    padding: 6rem 4rem;
+  }
+
+  .title-line1, .title-line2 { font-size: 5rem; }
+  .title-line3 { font-size: 3rem; }
 }

@@ -5,7 +5,7 @@ import {
   FaHome, FaWrench, FaUsers, FaTags, FaEnvelope
 } from "react-icons/fa";
 import "../../styles/navbar.css";
-import Logo from "../../assets/logo-nuevo.webp";
+import Logo from "../../assets/Logo-nuevo3.webp";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "../Lenguaje/LanguageContext";
 

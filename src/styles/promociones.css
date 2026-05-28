@@ -326,3 +326,14 @@ html.light .promos-btn-secondary:hover {
   .promos-hero-title { font-size: 2rem; }
   .promos-section { padding: 2rem 0.75rem 3rem; }
 }
+@media (min-width: 1920px) {
+  .promos-container { max-width: 1400px; }
+  .promos-hero-title { font-size: 5rem; }
+  .promos-grid { gap: 3rem; }
+}
+
+@media (min-width: 2560px) {
+  .promos-container { max-width: 1600px; }
+  .promos-hero-title { font-size: 6rem; }
+  .promos-grid { gap: 4rem; }
+}

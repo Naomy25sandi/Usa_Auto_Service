@@ -31,6 +31,8 @@ const resources = {
       footer: {
         rights: "Todos los derechos reservados",
         location: "Lake Worth, Florida, Estados Unidos",
+        madeWith: "Hecho con",
+        by: "por",
       },
       navbar: {
         home: "Inicio",
@@ -158,7 +160,7 @@ const resources = {
       hero: {
         ariaLabel: "USA Auto Service Hero Section",
         badge: "Certified Auto Repair · Lake Worth, FL",
-        line1: "Professional Auto",
+        line1: "Trusted Auto",
         line2: "Repair & Service",
         line3: "In South Florida",
         schedule: "Mon–Sat: 9AM – 7PM",
@@ -181,6 +183,8 @@ const resources = {
       footer: {
         rights: "All rights reserved",
         location: "Lake Worth, Florida, United States",
+        madeWith: "Made with",
+        by: "by",
       },
       navbar: {
         home: "Home",

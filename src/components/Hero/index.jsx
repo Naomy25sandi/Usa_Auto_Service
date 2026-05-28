@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { FaWhatsapp, FaPhone, FaStar } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import "../../styles/hero.css";
-import foto1 from "../../assets/foto1.webp";
-import foto2 from "../../assets/foto2.webp";
-import foto3 from "../../assets/foto3.webp";
+import foto1 from "../../assets/web1.webp";
+import foto2 from "../../assets/web2.webp";
+import foto3 from "../../assets/web3.webp";
 
 const workImages = [
   { src: foto1, altKey: "hero.img1Alt" },
@@ -17,16 +17,12 @@ const Hero = () => {
   const [animating, setAnimating] = useState(false);
   const { t } = useTranslation();
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setAnimating(true);
-      setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % workImages.length);
-        setAnimating(false);
-      }, 400);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
+useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrentIndex((prev) => (prev + 1) % workImages.length);
+  }, 5000);
+  return () => clearInterval(interval);
+}, []);
 
   const goTo = (index) => {
     setAnimating(true);
@@ -150,15 +146,16 @@ const Hero = () => {
             </div>
 
             <img
-              src={workImages[currentIndex].src}
-              alt={t(workImages[currentIndex].altKey)}
-              loading="eager"
-              fetchPriority="high"
-              width="600"
-              height="600"
-              className={`carousel-img ${animating ? "img-out" : "img-in"}`}
-              itemProp="image"
-            />
+  src={workImages[currentIndex].src}
+  alt={t(workImages[currentIndex].altKey)}
+  loading="eager"
+  fetchPriority="high"
+  width="600"
+  height="600"
+  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+  className={`carousel-img ${animating ? "img-out" : "img-in"}`}
+  itemProp="image"
+/>
 
             <div className="carousel-dots" role="tablist" aria-label="Controles del carrusel">
               {workImages.map((_, index) => (

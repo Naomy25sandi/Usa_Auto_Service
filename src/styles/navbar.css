@@ -442,3 +442,70 @@ html.light .mobile-item.active .nav-icon {
   .lang-btn { padding: 0 0.5rem; font-size: 0.62rem; }
   .mobile-toggle { width: 30px; height: 30px; }
 }
+@media (max-width: 1024px) {
+  .cta-call { display: none; }
+}
+
+@media (max-width: 1024px) {
+  .desktop-menu { display: none; }
+  .mobile-toggle { display: flex; }
+  .back-button { display: none; }
+  .navbar-container {
+    justify-content: space-between; /* ← clave */
+    gap: 0;
+    padding: 0 1.25rem;
+  }
+  .navbar-logo img { height: 44px; width: 44px; }
+  .logo-text { font-size: 0.82rem; letter-spacing: 1.5px; }
+  .logo-sub-text { font-size: 0.52rem; letter-spacing: 1px; }
+}
+
+@media (max-width: 480px) {
+  .navbar-container { padding: 0 1rem; gap: 8px; }
+  .navbar-logo img { height: 36px; width: 36px; }
+  .logo-text { font-size: 0.65rem; letter-spacing: 1px; }
+  .logo-sub-text { font-size: 0.46rem; letter-spacing: 1px; }
+}
+
+@media (max-width: 360px) {
+  .logo-text { font-size: 0.52rem; letter-spacing: 0.5px; }
+  .logo-sub-text { font-size: 0.42rem; letter-spacing: 0.5px; }
+  .navbar-logo img { height: 28px; width: 28px; }
+  .theme-toggle { width: 30px; height: 30px; font-size: 0.8rem; }
+  .lang-switcher { height: 30px; }
+  .lang-btn { padding: 0 0.5rem; font-size: 0.62rem; }
+  .mobile-toggle { width: 30px; height: 30px; }
+}
+@media (min-width: 1920px) {
+  .navbar-container {
+    max-width: 1600px;
+    height: 82px;
+  }
+
+  .navbar-logo img { height: 62px; width: 62px; }
+  .logo-text { font-size: 1rem; letter-spacing: 3px; }
+  .logo-sub-text { font-size: 0.7rem; letter-spacing: 2px; }
+  .nav-item { font-size: 0.75rem; padding: 0.5rem 1rem; }
+  .nav-icon { font-size: 1.1rem; }
+  .cta-call { font-size: 0.82rem; padding: 0.55rem 1.2rem; }
+  .theme-toggle { width: 42px; height: 42px; }
+  .lang-btn { font-size: 0.78rem; padding: 0 0.9rem; }
+  .lang-switcher { height: 40px; }
+}
+
+@media (min-width: 2560px) {
+  .navbar-container {
+    max-width: 1800px;
+    height: 90px;
+  }
+
+  .navbar-logo img { height: 70px; width: 70px; }
+  .logo-text { font-size: 1.1rem; letter-spacing: 3px; }
+  .logo-sub-text { font-size: 0.75rem; letter-spacing: 2px; }
+  .nav-item { font-size: 0.8rem; padding: 0.55rem 1.1rem; }
+  .nav-icon { font-size: 1.2rem; }
+  .cta-call { font-size: 0.88rem; padding: 0.6rem 1.4rem; }
+  .theme-toggle { width: 46px; height: 46px; }
+  .lang-btn { font-size: 0.82rem; padding: 0 1rem; }
+  .lang-switcher { height: 44px; }
+}

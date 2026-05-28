@@ -79,10 +79,10 @@ export default function Footer() {
           </a>
         </nav>
 
-        <div className="footer-credits">
-          <span>Hecho con</span>
-          <FaHeart className="footer-heart" aria-hidden="true" />
-          <span>por</span>
+       <div className="footer-credits">
+       <span>{t("footer.madeWith")}</span>
+       <FaHeart className="footer-heart" aria-hidden="true" />
+       <span>{t("footer.by")}</span>
           <a
             href="https://www.boldsitescr.com"
             target="_blank"

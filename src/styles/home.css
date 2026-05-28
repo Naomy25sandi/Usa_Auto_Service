@@ -746,3 +746,10 @@ html.light .reviews-block-title { color: #111 !important; }
   color: #fff;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
+@media (min-width: 1920px) {
+  .home-container { max-width: 1600px; }
+}
+
+@media (min-width: 2560px) {
+  .home-container { max-width: 1800px; }
+}

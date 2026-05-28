@@ -388,3 +388,16 @@ html.light .contact-map-title {
   .contact-info-item { font-size: 0.72rem; }
   .contact-form { padding: 1.5rem 1.25rem; }
 }
+@media (min-width: 1920px) {
+  .contact-container { max-width: 1400px; }
+  .contact-hero-title { font-size: 5rem; }
+  .contact-map-frame { height: 500px; }
+  .contact-form { padding: 2.5rem; }
+}
+
+@media (min-width: 2560px) {
+  .contact-container { max-width: 1600px; }
+  .contact-hero-title { font-size: 6rem; }
+  .contact-map-frame { height: 600px; }
+  .contact-form { padding: 3rem; }
+}

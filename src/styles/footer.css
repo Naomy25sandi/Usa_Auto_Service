@@ -233,3 +233,24 @@ html.light .footer::before {
   .footer p { font-size: 0.72rem; }
   .footer-address { font-size: 0.65rem; }
 }
+@media (min-width: 1920px) {
+  .footer-container { max-width: 1600px; }
+  .footer p { font-size: 1.05rem; }
+  .footer-address { font-size: 0.95rem; }
+  .social-link { font-size: 2.5rem; }
+  .footer-credits { font-size: 0.85rem; }
+  .footer-boldsites { font-size: 0.85rem; }
+  .footer-boldsites-logo { height: 26px; width: 26px; }
+  .footer-socials { gap: 2.2rem; }
+}
+
+@media (min-width: 2560px) {
+  .footer-container { max-width: 1800px; }
+  .footer p { font-size: 1.15rem; }
+  .footer-address { font-size: 1rem; }
+  .social-link { font-size: 2.8rem; }
+  .footer-credits { font-size: 0.92rem; }
+  .footer-boldsites { font-size: 0.92rem; }
+  .footer-boldsites-logo { height: 30px; width: 30px; }
+  .footer-socials { gap: 2.5rem; }
+}
