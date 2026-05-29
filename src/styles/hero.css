@@ -548,3 +548,9 @@ html.light .google-label { color: #444; }
   .title-line1, .title-line2 { font-size: 5rem; }
   .title-line3 { font-size: 3rem; }
 }
+.btn-primary, .cta-btn-primary {
+  background: #1DA851; /* ← más oscuro que #25D366 */
+}
+.btn-primary:hover, .cta-btn-primary:hover {
+  background: #178a42;
+}

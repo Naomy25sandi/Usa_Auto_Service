@@ -753,3 +753,9 @@ html.light .reviews-block-title { color: #111 !important; }
 @media (min-width: 2560px) {
   .home-container { max-width: 1800px; }
 }
+.btn-primary, .cta-btn-primary {
+  background: #1DA851; /* ← más oscuro que #25D366 */
+}
+.btn-primary:hover, .cta-btn-primary:hover {
+  background: #178a42;
+}
