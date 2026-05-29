@@ -172,6 +172,7 @@ html.light .hero {
   gap: 0.5rem;
   background: #25D366;
   color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
   padding: 0.9rem 1rem;
   border-radius: 10px;
   font-weight: 700;
@@ -347,32 +348,72 @@ html.light .btn-secondary:hover {
 }
 .slide-counter span { color: #DC143C; font-weight: 700; }
 
-/* DOTS */
+/* ============================= */
+/* FLECHAS — solo desktop        */
+/* ============================= */
+.carousel-arrow {
+  all: unset;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(220,20,60,0.3);
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  backdrop-filter: blur(4px);
+}
+
+.carousel-arrow:hover {
+  background: #DC143C;
+  border-color: #DC143C;
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 0 16px rgba(220,20,60,0.5);
+}
+
+.carousel-arrow--prev { left: 12px; }
+.carousel-arrow--next { right: 12px; }
+
+/* ============================= */
+/* DOTS — solo móvil             */
+/* ============================= */
 .carousel-dots {
   position: absolute;
-  bottom: 10px;
+  bottom: 12px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 0.4rem;
+  gap: 6px;
   z-index: 3;
+  align-items: center;
 }
 
 .dot {
   all: unset;
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.35);
   cursor: pointer;
   transition: all 0.3s;
   box-sizing: border-box;
+  display: block;
 }
+
 .dot.active {
   background: #DC143C;
-  width: 20px;
+  width: 18px;
   border-radius: 4px;
-  box-shadow: 0 0 8px #DC143C;
+  box-shadow: 0 0 6px #DC143C;
 }
 
 /* GOOGLE BADGE */
@@ -416,8 +457,10 @@ html.light .btn-secondary:hover {
 
 .google-label {
   font-size: 0.58rem;
-  color: #666;
+  color: #999;
 }
+
+html.light .google-label { color: #444; }
 
 /* ============================= */
 /* TABLET — 768px+               */
@@ -470,6 +513,12 @@ html.light .btn-secondary:hover {
 
   .top-badge { font-size: 0.7rem; padding: 0.4rem 0.9rem; }
   .carousel-frame { border-radius: 20px; }
+
+  /* Flechas visibles en desktop */
+  .carousel-arrow { display: flex; }
+
+  /* Dots ocultos en desktop */
+  .carousel-dots { display: none; }
 }
 
 /* ============================= */
@@ -479,32 +528,23 @@ html.light .btn-secondary:hover {
   .hero-inner { max-width: 1300px; padding: 4rem 2rem; }
   .title-line1, .title-line2 { font-size: 3.5rem; }
 }
-@media (min-width: 1440px) {
-  .hero-inner {
-    max-width: 1400px;
-    padding: 4rem 3rem;
-  }
 
+@media (min-width: 1440px) {
+  .hero-inner { max-width: 1400px; padding: 4rem 3rem; }
   .title-line1, .title-line2 { font-size: 4rem; }
   .title-line3 { font-size: 2.5rem; }
+  .carousel-arrow { width: 42px; height: 42px; font-size: 1rem; }
 }
 
 @media (min-width: 1920px) {
-  .hero-inner {
-    max-width: 1600px;
-    padding: 5rem 4rem;
-  }
-
+  .hero-inner { max-width: 1600px; padding: 5rem 4rem; }
   .title-line1, .title-line2 { font-size: 4.5rem; }
   .title-line3 { font-size: 2.8rem; }
+  .carousel-arrow { width: 48px; height: 48px; font-size: 1.1rem; }
 }
 
 @media (min-width: 2560px) {
-  .hero-inner {
-    max-width: 1800px;
-    padding: 6rem 4rem;
-  }
-
+  .hero-inner { max-width: 1800px; padding: 6rem 4rem; }
   .title-line1, .title-line2 { font-size: 5rem; }
   .title-line3 { font-size: 3rem; }
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FaWhatsapp, FaPhone, FaStar } from "react-icons/fa";
+import { FaWhatsapp, FaPhone, FaStar, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import "../../styles/hero.css";
 import foto1 from "../../assets/web1.webp";
@@ -15,14 +15,15 @@ const workImages = [
 const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
+  const [touchStartX, setTouchStartX] = useState(0);
   const { t } = useTranslation();
 
-useEffect(() => {
-  const interval = setInterval(() => {
-    setCurrentIndex((prev) => (prev + 1) % workImages.length);
-  }, 5000);
-  return () => clearInterval(interval);
-}, []);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % workImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   const goTo = (index) => {
     setAnimating(true);
@@ -30,6 +31,25 @@ useEffect(() => {
       setCurrentIndex(index);
       setAnimating(false);
     }, 400);
+  };
+
+  const goPrev = () => {
+    goTo((currentIndex - 1 + workImages.length) % workImages.length);
+  };
+
+  const goNext = () => {
+    goTo((currentIndex + 1) % workImages.length);
+  };
+
+  const handleTouchStart = (e) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e) => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? goNext() : goPrev();
+    }
   };
 
   return (
@@ -135,6 +155,8 @@ useEffect(() => {
             role="region"
             aria-label="Galería de trabajos realizados"
             aria-live="polite"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
           >
             <span className="corner tl" aria-hidden="true" />
             <span className="corner tr" aria-hidden="true" />
@@ -146,17 +168,34 @@ useEffect(() => {
             </div>
 
             <img
-  src={workImages[currentIndex].src}
-  alt={t(workImages[currentIndex].altKey)}
-  loading="eager"
-  fetchPriority="high"
-  width="600"
-  height="600"
-  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
-  className={`carousel-img ${animating ? "img-out" : "img-in"}`}
-  itemProp="image"
-/>
+              src={workImages[currentIndex].src}
+              alt={t(workImages[currentIndex].altKey)}
+              loading="eager"
+              fetchPriority="high"
+              width="600"
+              height="600"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+              className={`carousel-img ${animating ? "img-out" : "img-in"}`}
+              itemProp="image"
+            />
 
+            {/* FLECHAS — solo desktop */}
+            <button
+              className="carousel-arrow carousel-arrow--prev"
+              onClick={goPrev}
+              aria-label="Ver imagen anterior"
+            >
+              <FaChevronLeft aria-hidden="true" />
+            </button>
+            <button
+              className="carousel-arrow carousel-arrow--next"
+              onClick={goNext}
+              aria-label="Ver imagen siguiente"
+            >
+              <FaChevronRight aria-hidden="true" />
+            </button>
+
+            {/* DOTS — solo móvil */}
             <div className="carousel-dots" role="tablist" aria-label="Controles del carrusel">
               {workImages.map((_, index) => (
                 <button
@@ -180,7 +219,7 @@ useEffect(() => {
           >
             <div className="google-g" aria-hidden="true">G</div>
             <div className="google-info">
-              <div className="google-stars" aria-label="5 estrellas">
+              <div className="google-stars" role="img" aria-label="5 estrellas">
                 {[...Array(5)].map((_, i) => (
                   <FaStar key={i} aria-hidden="true" />
                 ))}
